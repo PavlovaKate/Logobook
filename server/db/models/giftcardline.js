@@ -2,13 +2,9 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class GiftCardLine extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+    static associate({ GiftCard, Cart }) {
+      this.belongsTo(GiftCard, { foreignKey: 'giftCardId' });
+      this.belongsTo(Cart, { foreignKey: 'cartId' });
     }
   }
   GiftCardLine.init(
