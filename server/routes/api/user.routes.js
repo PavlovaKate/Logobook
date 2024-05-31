@@ -4,13 +4,13 @@ const userController = require('../../controllers/userController');
 const { verifyAccessToken } = require('../../middleware/authMiddleware');
 router.post(
   '/',
-  [
-    body('username').notEmpty().withMessage('Имя обязательно'),
-    body('email').isEmail().withMessage('Неверный формат email'),
-    body('password')
-      .isLength({ min: 5 })
-      .withMessage('Пароль должен содержать минимум 5 символов'),
-  ],
+  // [
+  //   body('username').notEmpty().withMessage('Имя обязательно'),
+  //   body('email').isEmail().withMessage('Неверный формат email'),
+  //   body('password')
+  //     .isLength({ min: 5 })
+  //     .withMessage('Пароль должен содержать минимум 5 символов'),
+  // ],
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -23,12 +23,12 @@ router.post(
 
 router.post(
   '/login',
-  [
-    body('email').isEmail().withMessage('Неверный формат email'),
-    body('password')
-      .isLength({ min: 5 })
-      .withMessage('Пароль должен содержать минимум 5 символов'),
-  ],
+  // [
+  //   body('email').isEmail().withMessage('Неверный формат email'),
+  //   body('password')
+  //     .isLength({ min: 5 })
+  //     .withMessage('Пароль должен содержать минимум 5 символов'),
+  // ],
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

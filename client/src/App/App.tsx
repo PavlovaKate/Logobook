@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import AppRoutes from './provider/AppRoutes';
-import NavBar from '../pages/NavBar';
+import NavBar from '../pages/Navbar/NavBar';
 
 function App(): JSX.Element {
   return (
