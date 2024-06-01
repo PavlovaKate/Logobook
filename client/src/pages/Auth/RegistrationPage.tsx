@@ -13,18 +13,16 @@ import { useAppDispatch } from '../../App/store/store';
 import { loadUser } from './authSlice';
 
 const schema = object().shape({
-  username: string().trim().required('Необходимо указать имя'),
+  name: string().trim().required('Необходимо указать имя'),
   email: string().trim().required('Необходимо указать электронную почту'),
   password: string()
     .trim()
     .required('Необходимо указать пароль')
-    .min(3, 'Пароль должен быть более 3 символов')
-    .max(5, 'Пароль должен быть не более 5 символов'),
+    .min(3, 'Пароль должен быть не менее 3 символов'),
   checkPassword: string()
     .trim()
     .required('Необходимо подтвердить пароль')
-    .min(3, 'Пароль должен быть более 3 символов')
-    .max(5, 'Пароль должен быть не более 5 символов')
+    .min(3, 'Пароль должен быть не менее 3 символов')
     .oneOf([ref('password')], 'Пароли не совпадают'),
 });
 
@@ -50,7 +48,7 @@ function RegistrationPage(): JSX.Element {
   return (
     <form className="registration-form" onSubmit={handleSubmit(submit)}>
       <label htmlFor="name">
-        Name:
+        Имя:
         <input type="text" required {...register('name')} />
         <span>{errors.name?.message}</span>
       </label>
@@ -62,21 +60,21 @@ function RegistrationPage(): JSX.Element {
       </label>
       <br />
       <label htmlFor="password">
-        Password:
+        Пароль:
         <input type="password" required {...register('password')} />
         <span>{errors.password?.message}</span>
       </label>
       <br />
       <label htmlFor="password">
-        Check password:
+        Повторный пароль:
         <input type="password" required {...register('checkPassword')} />
         <span>{errors.checkPassword?.message}</span>
       </label>
       <br />
       <div className="button-container">
-        <button type="submit">Sign up</button>
+        <button type="submit">Регистрация</button>
         <Link to="/auth" className="login-button">
-          Sign in
+          Вход
         </Link>
       </div>
     </form>

@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from '../Navbar/NavBar';
 
 function Main(): JSX.Element {
   return (

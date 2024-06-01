@@ -6,6 +6,7 @@ export type User = {
 };
 
 export type UserWithoutId = Omit<User, 'id'>;
+export type UserLogo = Omit<UserWithoutId, 'name'>;
 
 export type UserId = User['id'];
 

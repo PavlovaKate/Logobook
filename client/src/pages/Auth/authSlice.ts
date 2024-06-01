@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { UserWithoutId, UsersState } from './type/type';
+import type { UserLogo, UserWithoutId, UsersState } from './type/type';
 // ипортируй все, что есть в папке api в переменную api
 import * as api from './api';
 
@@ -9,7 +9,7 @@ const initialState: UsersState = {
 };
 
 export const loadUser = createAsyncThunk('users/add', (user: UserWithoutId) => api.userAxios(user));
-export const loginUser = createAsyncThunk('users/login', (user: UserWithoutId) =>
+export const loginUser = createAsyncThunk('users/login', (user: UserLogo) =>
   api.userLoginAxios(user),
 );
 export const logoutUser = createAsyncThunk('users/logout', () => api.userLogOutAxios());
