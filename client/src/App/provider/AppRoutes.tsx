@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-// import Main from '../../pages/Main/Main';
-// import Error from '../../pages/ErrorPage/Error';
+import Error from '../../pages/ErrorPage/Error';
 import RegistrationPage from '../../pages/Auth/RegistrationPage';
 import Main from '../../pages/Main/Main';
 import AuthorizationPage from '../../pages/Auth/AuthorizationPage';
@@ -14,7 +13,7 @@ function AppRoutes(): JSX.Element {
         <Route path="/" element={<Main />} />
         <Route path="/registration" element={<RegistrationPage />} />
         <Route path="/authorization" element={<AuthorizationPage />} />
-        {/* <Route path="*" element={<Error />} /> */}
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

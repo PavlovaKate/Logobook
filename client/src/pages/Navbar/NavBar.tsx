@@ -61,7 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 type NavBarProps = {};
 
-const NavBar = ({}: NavBarProps): JSX.Element => {
+function NavBar({}: NavBarProps): JSX.Element {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -177,6 +177,6 @@ const NavBar = ({}: NavBarProps): JSX.Element => {
       </Container>
     </AppBar>
   );
-};
+}
 
 export default NavBar;
