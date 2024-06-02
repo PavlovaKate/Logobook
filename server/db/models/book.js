@@ -4,7 +4,6 @@ module.exports = (sequelize, DataTypes) => {
   class Book extends Model {
     static associate({
       Author,
-      Category,
       Publisher,
       ShopLine,
       Rate,
@@ -13,17 +12,18 @@ module.exports = (sequelize, DataTypes) => {
       Review,
       TagLine,
       RateLine,
+      Category
     }) {
       this.belongsTo(Author, { foreignKey: 'authorId' });
-      this.belongsTo(Category, { foreignKey: 'categoryId' });
       this.belongsTo(Publisher, { foreignKey: 'publisherId' });
+      this.belongsTo(RateLine, { foreignKey: 'categoryId' });
       this.hasMany(ShopLine, { foreignKey: 'bookId' });
       this.hasOne(Rate, { foreignKey: 'bookId' });
       this.hasMany(CartLine, { foreignKey: 'bookId' });
       this.hasMany(Favourite, { foreignKey: 'bookId' });
       this.hasMany(Review, { foreignKey: 'bookId' });
       this.hasMany(TagLine, { foreignKey: 'bookId' });
-      this.hasMany(RateLine, { foreignKey: 'bookId' });
+      this.hasOne(Category, { foreignKey: 'bookId' });
     }
   }
   Book.init(
