@@ -47,6 +47,7 @@ module.exports = {
           image:
             'http://books.google.com/books/content?id=UrP-AgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
+          pageCount: 344,
           quantity: 381,
           amount: 464,
           authorId: 435,
@@ -80,6 +81,7 @@ module.exports = {
           saleability: false,
           quantity: 304,
           amount: 456,
+          pageCount: 341,
           authorId: 126,
           categoryId: 5,
           publisherId: 31,
@@ -109,6 +111,7 @@ module.exports = {
             'http://books.google.com/books/content?id=EY-jDQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 248,
+          pageCount: 67,
           amount: 50,
           authorId: 41,
           categoryId: 6,
@@ -221,6 +224,7 @@ module.exports = {
             'http://books.google.com/books/content?id=UtRvDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 564,
+          pageCount: 832,
           amount: 25,
           authorId: 152,
           categoryId: 8,
@@ -239,7 +243,7 @@ module.exports = {
           amount: 90,
           authorId: 480,
           categoryId: 54,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Книги розрядныя, по оффициальным оных спискам',
@@ -349,7 +353,7 @@ module.exports = {
           amount: 123.75,
           authorId: 97,
           categoryId: 11,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Саммари книги «Палач любви и другие психотерапевтические истории»',
@@ -735,6 +739,7 @@ module.exports = {
           image:
             'http://books.google.com/books/content?id=FYGZCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
+          pageCount: 322,
           quantity: 927,
           amount: 183.75,
           authorId: 267,
@@ -751,6 +756,7 @@ module.exports = {
             'http://books.google.com/books/content?id=J3gTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: true,
           quantity: 180,
+          pageCount: 320,
           amount: 342.5,
           authorId: 356,
           categoryId: 20,
@@ -782,6 +788,7 @@ module.exports = {
             'http://books.google.com/books/content?id=NRsxDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 256,
+          pageCount: 220,
           amount: 327.5,
           authorId: 481,
           categoryId: 1,
@@ -798,6 +805,7 @@ module.exports = {
             'http://books.google.com/books/content?id=BxptDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 481,
+          pageCount: 520,
           amount: 416.25,
           authorId: 338,
           categoryId: 20,
@@ -830,6 +838,7 @@ module.exports = {
           saleability: false,
           quantity: 383,
           amount: 237.5,
+          pageCount: 325,
           authorId: 413,
           categoryId: 20,
           publisherId: 22,
@@ -844,6 +853,7 @@ module.exports = {
             'http://books.google.com/books/content?id=OpvTCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 670,
+          pageCount: 125,
           amount: 372.5,
           authorId: 347,
           categoryId: 20,
@@ -859,6 +869,7 @@ module.exports = {
             'http://books.google.com/books/content?id=C74UEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 836,
+          pageCount: 720,
           amount: 322.5,
           authorId: 193,
           categoryId: 20,
@@ -905,6 +916,7 @@ module.exports = {
           image:
             'http://books.google.com/books/content?id=S8zRCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
+          pageCount: 228,
           quantity: 697,
           amount: 275,
           authorId: 402,
@@ -967,6 +979,7 @@ module.exports = {
             'http://books.google.com/books/content?id=P8jRCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 350,
+          pageCount: 225,
           amount: 312.5,
           authorId: 223,
           categoryId: 20,
@@ -982,6 +995,7 @@ module.exports = {
             'http://books.google.com/books/content?id=BLUTCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 712,
+          pageCount: 235,
           amount: 268.75,
           authorId: 137,
           categoryId: 20,
@@ -997,6 +1011,7 @@ module.exports = {
             'http://books.google.com/books/content?id=ebcTCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 755,
+          pageCount: 425,
           amount: 476.25,
           authorId: 20,
           categoryId: 20,
@@ -1012,6 +1027,7 @@ module.exports = {
             'http://books.google.com/books/content?id=K3gTEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: true,
           quantity: 633,
+          pageCount: 125,
           amount: 372.5,
           authorId: 113,
           categoryId: 20,
@@ -1027,6 +1043,7 @@ module.exports = {
             'http://books.google.com/books/content?id=gnIgCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 293,
+          pageCount: 925,
           amount: 322.5,
           authorId: 497,
           categoryId: 20,
@@ -1043,6 +1060,7 @@ module.exports = {
           saleability: true,
           quantity: 792,
           amount: 167.5,
+          pageCount: 291,
           authorId: 396,
           categoryId: 20,
           publisherId: 24,
@@ -1073,6 +1091,7 @@ module.exports = {
             'http://books.google.com/books/content?id=JszRCgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 71,
+          pageCount: 444,
           amount: 186.25,
           authorId: 192,
           categoryId: 20,
@@ -1120,6 +1139,7 @@ module.exports = {
             'http://books.google.com/books/content?id=tLITCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 13,
+          pageCount: 190,
           amount: 248.75,
           authorId: 233,
           categoryId: 20,
@@ -1136,6 +1156,7 @@ module.exports = {
           saleability: false,
           quantity: 741,
           amount: 268.75,
+          pageCount: 291,
           authorId: 182,
           categoryId: 20,
           publisherId: 43,
@@ -1150,6 +1171,7 @@ module.exports = {
             'http://books.google.com/books/content?id=j7ITCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 598,
+          pageCount: 378,
           amount: 248.75,
           authorId: 383,
           categoryId: 20,
@@ -1166,6 +1188,7 @@ module.exports = {
           saleability: false,
           quantity: 872,
           amount: 416.25,
+          pageCount: 519,
           authorId: 434,
           categoryId: 20,
           publisherId: 45,
@@ -1182,6 +1205,7 @@ module.exports = {
           quantity: 490,
           amount: 148.75,
           authorId: 185,
+          pageCount: 153,
           categoryId: 20,
           publisherId: 4,
         },
@@ -1196,6 +1220,7 @@ module.exports = {
           saleability: false,
           quantity: 343,
           amount: 372.5,
+          pageCount: 396,
           authorId: 590,
           categoryId: 1,
           publisherId: 32,
@@ -1226,6 +1251,7 @@ module.exports = {
             'http://books.google.com/books/content?id=D74UEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
           saleability: false,
           quantity: 811,
+          pageCount: 225,
           amount: 201.25,
           authorId: 292,
           categoryId: 20,
@@ -1411,7 +1437,7 @@ module.exports = {
           amount: 561.25,
           authorId: 216,
           categoryId: 10,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Маленькая черная ложь',
@@ -1531,7 +1557,7 @@ module.exports = {
           amount: 1279,
           authorId: 292,
           categoryId: 12,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Ежегодник книги СССР',
@@ -1902,7 +1928,7 @@ module.exports = {
           amount: 2972,
           authorId: 404,
           categoryId: 90,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Отчет о пятнадцатом присуждении наград графа Уварова',
@@ -1915,7 +1941,7 @@ module.exports = {
           quantity: 423,
           amount: 3370,
           authorId: 464,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 8,
         },
         {
@@ -2162,7 +2188,7 @@ module.exports = {
           amount: 323.75,
           authorId: 492,
           categoryId: 1,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'О "Золотой книге" Ш. Дамдина',
@@ -2190,7 +2216,7 @@ module.exports = {
           amount: 1922,
           authorId: 356,
           categoryId: 35,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Ukazatelʹ po dělam pečati za ... g',
@@ -2620,7 +2646,7 @@ module.exports = {
           amount: 461.25,
           authorId: 573,
           categoryId: 1,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Три дня Индиго',
@@ -2930,7 +2956,7 @@ module.exports = {
           amount: 2198,
           authorId: 525,
           categoryId: 53,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Мисс Билли',
@@ -3087,7 +3113,7 @@ module.exports = {
           quantity: 926,
           amount: 3327,
           authorId: 160,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 16,
         },
         {
@@ -3273,7 +3299,7 @@ module.exports = {
           quantity: 98,
           amount: 2728,
           authorId: 312,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 24,
         },
         {
@@ -3381,7 +3407,7 @@ module.exports = {
           amount: 523.75,
           authorId: 464,
           categoryId: 28,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Сделай! Твой первый шаг',
@@ -3606,7 +3632,7 @@ module.exports = {
           quantity: 247,
           amount: 678,
           authorId: 11,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 1,
         },
         {
@@ -3833,7 +3859,7 @@ module.exports = {
           amount: 578,
           authorId: 461,
           categoryId: 52,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Монстры Акслин',
@@ -4056,7 +4082,7 @@ module.exports = {
           quantity: 780,
           amount: 2942,
           authorId: 233,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 39,
         },
         {
@@ -4086,7 +4112,7 @@ module.exports = {
           quantity: 311,
           amount: 2573,
           authorId: 592,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 42,
         },
         {
@@ -4129,7 +4155,7 @@ module.exports = {
           saleability: false,
           quantity: 257,
           amount: 547,
-          authorId: 0,
+          authorId: 1,
           categoryId: 27,
           publisherId: 40,
         },
@@ -4261,7 +4287,7 @@ module.exports = {
           quantity: 971,
           amount: 2008,
           authorId: 188,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 40,
         },
         {
@@ -4320,7 +4346,7 @@ module.exports = {
           quantity: 820,
           amount: 1253,
           authorId: 517,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 43,
         },
         {
@@ -4553,7 +4579,7 @@ module.exports = {
           amount: 2902,
           authorId: 545,
           categoryId: 22,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Рождение Богов: НЕВОЗМОЖНОЕ',
@@ -4762,7 +4788,7 @@ module.exports = {
           quantity: 450,
           amount: 2404,
           authorId: 240,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 8,
         },
         {
@@ -4779,7 +4805,7 @@ module.exports = {
           amount: 413,
           authorId: 48,
           categoryId: 1,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Краткій курс исторіи русской литературы для средних учебных заведеній',
@@ -5137,7 +5163,7 @@ module.exports = {
         {
           title: 'Без усилий',
           description: 'продуктивность, тайм-менеджмент, энергия',
-          pageCount: 0,
+          pageCount: 83,
           imageSmall:
             'http://books.google.com/books/content?id=_F1cEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api',
           image:
@@ -5839,7 +5865,7 @@ module.exports = {
           amount: 3069,
           authorId: 467,
           categoryId: 5,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Зов Ктулху',
@@ -6429,7 +6455,7 @@ module.exports = {
           quantity: 643,
           amount: 25,
           authorId: 13,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 28,
         },
         {
@@ -6462,7 +6488,7 @@ module.exports = {
           amount: 523.75,
           authorId: 28,
           categoryId: 28,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Молния на двоих',
@@ -6717,7 +6743,7 @@ module.exports = {
         },
         {
           title: 'Повесть о Ходже Насреддине',
-          pageCount: 0,
+          pageCount: 83,
           imageSmall:
             'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
           image: 'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
@@ -6976,7 +7002,7 @@ module.exports = {
           amount: 99.97,
           authorId: 146,
           categoryId: 12,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Мужской стиль в лидерстве и жизни',
@@ -7556,7 +7582,7 @@ module.exports = {
           quantity: 394,
           amount: 2015,
           authorId: 369,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 42,
         },
         {
@@ -7785,7 +7811,7 @@ module.exports = {
           amount: 248.75,
           authorId: 153,
           categoryId: 92,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Невеста демона',
@@ -7811,7 +7837,7 @@ module.exports = {
           quantity: 202,
           amount: 4286,
           authorId: 257,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 36,
         },
         {
@@ -7827,7 +7853,7 @@ module.exports = {
           quantity: 178,
           amount: 4437,
           authorId: 337,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 2,
         },
         {
@@ -7901,7 +7927,7 @@ module.exports = {
           quantity: 648,
           amount: 2089,
           authorId: 378,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 3,
         },
         {
@@ -7947,7 +7973,7 @@ module.exports = {
           quantity: 927,
           amount: 4684,
           authorId: 56,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 14,
         },
         {
@@ -8037,7 +8063,7 @@ module.exports = {
           quantity: 845,
           amount: 3772,
           authorId: 616,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 26,
         },
         {
@@ -8347,7 +8373,7 @@ module.exports = {
         },
         {
           title: 'Фрикомыслие',
-          pageCount: 0,
+          pageCount: 83,
           imageSmall:
             'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
           image: 'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
@@ -8378,7 +8404,7 @@ module.exports = {
           title: 'Охота на вампира',
           description:
             'Полковники МВД Гуров и Крячко проводят отпуск в отеле, который не только стилизован под средневековый замок, но, как и всякий замок, имеет свою легенду. Прежний хозяин якобы превратился в вампира и по сей день охраняет спрятанные в замке сокровища. В один прекрасный день вдруг умирает одна из горничных, причем смерть искусно обставлена как месть призрака. Конечно, сыщики поняли, что никакой мистикой тут и не пахнет, а они имеют дело с тщательно продуманным убийством, совершенным кем-то из живущих в отеле. Подозрение падает на управляющего, ведущего себя в последнее время довольно странно. Возможно, именно он пытается прикрыть преступление древней легендой? Дело еще больше запутывает известие о нераскрытом убийстве, случившемся в этом же замке год назад',
-          pageCount: 0,
+          pageCount: 83,
           imageSmall:
             'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
           image: 'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
@@ -8494,7 +8520,7 @@ module.exports = {
           quantity: 175,
           amount: 4526,
           authorId: 419,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 38,
         },
         {
@@ -8633,7 +8659,7 @@ module.exports = {
           quantity: 358,
           amount: 1158,
           authorId: 338,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 2,
         },
         {
@@ -8868,7 +8894,7 @@ module.exports = {
           amount: 4262,
           authorId: 410,
           categoryId: 16,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Мальчик - отец мужчины.',
@@ -8884,7 +8910,7 @@ module.exports = {
           amount: 249.99,
           authorId: 451,
           categoryId: 16,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Библия и мировая культура',
@@ -9533,7 +9559,7 @@ module.exports = {
           amount: 4304,
           authorId: 390,
           categoryId: 43,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title:
@@ -9594,7 +9620,7 @@ module.exports = {
           quantity: 491,
           amount: 4690,
           authorId: 121,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 44,
         },
         {
@@ -9835,7 +9861,7 @@ module.exports = {
           quantity: 860,
           amount: 1705,
           authorId: 308,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 9,
         },
         {
@@ -9908,7 +9934,7 @@ module.exports = {
           quantity: 357,
           amount: 2799,
           authorId: 592,
-          categoryId: 0,
+          categoryId: 1,
           publisherId: 40,
         },
         {
@@ -9957,7 +9983,7 @@ module.exports = {
         },
         {
           title: 'Лучшие стихи',
-          pageCount: 0,
+          pageCount: 83,
           imageSmall:
             'http://books.google.com/books/content?id=aelDzQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api',
           image:
@@ -10002,7 +10028,7 @@ module.exports = {
           title: 'Тайный язык симптомов',
           description:
             'Традиция, культура и философская мысль внушили нам представление о том, что разум и тело – это две отдельные и разделенные сущности. Лишь в сравнительно недавнее время представление о том, что разум и тело взаимосвязаны и взаимозависимы, вновь обрело популярность, способствуя развитию современных воззрений на природу болезней и такой научной дисциплины, как PNEI (ПНИ) или психонейроиммунологии. В ходе работы психологом, Марко Пакори отметил для себя один очень важный момент: все люди, которые приходили к нему с психологическими проблемами, часто также жаловались и на телесные расстройства. Автор изучил, почему улучшения или ухудшения эмоционального и физического состояния происходят параллельно друг с другом, а труды медиков, остеопатов, специалистов по акупунктуре, врачей-иридологов и т.д. помогли охватить проблематику работы во всей ее полноте и сложности.',
-          pageCount: 0,
+          pageCount: 83,
           imageSmall:
             'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
           image: 'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
@@ -10197,7 +10223,7 @@ module.exports = {
         },
         {
           title: 'Revizor',
-          pageCount: 0,
+          pageCount: 83,
           imageSmall:
             'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
           image: 'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
@@ -10464,7 +10490,7 @@ module.exports = {
         },
         {
           title: 'Revizor',
-          pageCount: 0,
+          pageCount: 83,
           imageSmall:
             'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
           image: 'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
@@ -10534,7 +10560,7 @@ module.exports = {
           amount: 764,
           authorId: 129,
           categoryId: 127,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Семейное счастье',
@@ -10946,7 +10972,7 @@ module.exports = {
           amount: 3283,
           authorId: 555,
           categoryId: 1,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Der, die, das. Секреты немецких артиклей',
@@ -11040,7 +11066,7 @@ module.exports = {
           amount: 3012,
           authorId: 22,
           categoryId: 80,
-          publisherId: 0,
+          publisherId: 1,
         },
         {
           title: 'Der, die, das. Секреты немецких артиклей',
@@ -11139,7 +11165,7 @@ module.exports = {
         },
         {
           title: "Ispoved'",
-          pageCount: 0,
+          pageCount: 83,
           imageSmall:
             'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
           image: 'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
@@ -11408,7 +11434,7 @@ module.exports = {
         },
         {
           title: 'Маньяк Гуревич',
-          pageCount: 0,
+          pageCount: 83,
           imageSmall:
             'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',
           image: 'https://images.freeimages.com/images/premium/previews/3436/3436408-blank-vintage-book-cover-xxl.jpg',

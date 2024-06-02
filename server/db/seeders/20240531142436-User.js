@@ -34,6 +34,12 @@ module.exports = {
           password: '$2b$10$TucrXRPlbe.C8uq8RNLWL.6WPLRFgSJXSG8JvxWpfLg.YZYUrMwMa',
           image: 'https://pics.craiyon.com/2023-07-07/579e523aca6a48ec8c7729dfed888f87.webp',
         },
+        {
+          name: 'Katya',
+          email: '123@123',
+          password: '$2b$10$TucrXRPlbe.C8uq8RNLWL.6WPLRFgSJXSG8JvxWpfLg.YZYUrMwMa',
+          image: 'https://pics.craiyon.com/2023-07-07/579e523aca6a48ec8c7729dfed888f87.webp',
+        },
       ],
       {},
     );
