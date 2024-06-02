@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(Favourite, { foreignKey: 'bookId' });
       this.hasMany(Review, { foreignKey: 'bookId' });
       this.hasMany(TagLine, { foreignKey: 'bookId' });
-      this.hasOne(RateLine, { foreignKey: 'bookId' });
+      this.hasMany(RateLine, { foreignKey: 'bookId' });
     }
   }
   Book.init(

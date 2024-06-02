@@ -3,12 +3,12 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Image extends Model {
     static associate({ Review }) {
-      this.belongsTo(Review, { foreignKey: 'rewiewId' });
+      this.belongsTo(Review, { foreignKey: 'reviewId' });
     }
   }
   Image.init(
     {
-      rewiewId: {
+      reviewId: {
         type: DataTypes.INTEGER,
         references: {
           model: 'Reviews',

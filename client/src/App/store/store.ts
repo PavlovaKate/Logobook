@@ -12,7 +12,6 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof store.getState>;
 
-// чтобы диспатч был умным
 type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;
 
