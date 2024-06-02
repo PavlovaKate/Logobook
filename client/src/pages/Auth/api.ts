@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import type { AxiosResponse } from 'axios';
 
 import { request, setAccessToken } from '../../services/axiosInstance';
