@@ -7,6 +7,7 @@ import NavBar from '../pages/Navbar/NavBar';
 import { useAppDispatch } from './store/store';
 // import { request } from '../services/axiosInstance';
 import { checkedUser } from '../pages/Auth/authSlice';
+import { loadBooks } from '../pages/Main/mainSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -28,6 +29,7 @@ function App(): JSX.Element {
 
   useEffect(() => {
     axiosCheck().catch(console.log);
+    dispatch(loadBooks()).catch(console.log);
   }, [dispatch]);
 
   return (
