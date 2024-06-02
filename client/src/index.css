@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
@@ -12,6 +12,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+@font-face {
+  font-family: 'Aneliza';
+  src:
+    url('./App/assets/fonts/aneliza/Aneliza-Light.ttf') format('ttf'),
+    url('./App/assets/fonts/aneliza/Aneliza-Medium.ttf') format('ttf'),
+    url('./App/assets/fonts/aneliza/Aneliza-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Felidae';
+  src: url('./App/assets/fonts/felidae/Felidae.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
 a {

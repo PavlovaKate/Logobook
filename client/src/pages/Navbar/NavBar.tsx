@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -15,9 +15,14 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-// import './NavBar.scss';
+// import './NavBar.css';
+import img from '../../App/assets/Logo.svg';
+import ModalWindow from '../../shared/Modal/ModalWindow';
+import RegistrationPage from '../Auth/RegistrationPage';
+import AuthorizationPage from '../Auth/AuthorizationPage';
 
-const pages = ['Buyers', 'Contacts'];
+const pages = ['Покупателям', 'Контакты'];
+// const sorts = ['Каталог', 'Новинки', 'Хиты', 'Скидки', 'Сертификаты'];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -62,6 +67,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 type NavBarProps = {};
 
 function NavBar({}: NavBarProps): JSX.Element {
+  const [showModal, setShowModal] = useState(false);
+  const [showModalA, setShowModalA] = useState(false);
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -71,7 +79,7 @@ function NavBar({}: NavBarProps): JSX.Element {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar position="absolute" sx={{ background: 'none', color: '#F3EECE' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -115,7 +123,7 @@ function NavBar({}: NavBarProps): JSX.Element {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: '#F3EECE', display: 'block' }}
               >
                 {page}
               </Button>
@@ -136,9 +144,9 @@ function NavBar({}: NavBarProps): JSX.Element {
               textDecoration: 'none',
             }}
           >
-            LOGOBOOK
+            <img src={img} alt="logo" />
           </Typography>
-          <Typography
+          {/* <Typography
             variant="h5"
             noWrap
             component="a"
@@ -155,7 +163,7 @@ function NavBar({}: NavBarProps): JSX.Element {
             }}
           >
             LOGOBOOK
-          </Typography>
+          </Typography> */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -163,7 +171,7 @@ function NavBar({}: NavBarProps): JSX.Element {
             <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
           </Search>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton sx={{ p: 0 }} color="inherit">
+            <IconButton sx={{ p: 0 }} color="inherit" onClick={() => setShowModal((prev) => !prev)}>
               <AccountCircleIcon />
             </IconButton>
             <IconButton sx={{ p: 0 }} color="inherit">
@@ -175,6 +183,14 @@ function NavBar({}: NavBarProps): JSX.Element {
           </Box>
         </Toolbar>
       </Container>
+
+      <ModalWindow active={showModal} setActive={setShowModal}>
+        <RegistrationPage setShowModalR={setShowModal} setShowModalA={setShowModalA} />
+      </ModalWindow>
+
+      <ModalWindow active={showModalA} setActive={setShowModalA}>
+        <AuthorizationPage />
+      </ModalWindow>
     </AppBar>
   );
 }

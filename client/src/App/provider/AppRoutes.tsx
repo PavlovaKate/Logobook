@@ -12,7 +12,7 @@ function AppRoutes(): JSX.Element {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/registration" element={<RegistrationPage />} />
-        <Route path="/authorization" element={<AuthorizationPage />} />
+        <Route path="/auth" element={<AuthorizationPage />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

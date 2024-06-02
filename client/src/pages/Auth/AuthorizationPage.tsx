@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable @typescript-eslint/no-misused-promises */
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './auth.css';

@@ -32,7 +32,7 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      <NavBar />
+      {/* <NavBar /> */}
       <AppRoutes />
     </div>
   );

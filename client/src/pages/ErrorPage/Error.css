@@ -1,0 +1,32 @@
+.Error {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url('../../App/assets/404.png');
+  color: #121711;
+}
+
+.Error h1 {
+  font-family: 'Felidae';
+
+  font-weight: 400;
+  font-size: 250px;
+  margin: 0;
+  padding: 0;
+}
+
+.Errortext1 {
+  font-family: 'Aneliza';
+  font-weight: 500;
+  font-size: 35px;
+}
+
+.Errortext2 {
+  font-family: 'Aneliza';
+  font-weight: 400;
+  font-size: 20px;
+}
