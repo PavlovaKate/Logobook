@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './auth.css';
 import { useForm } from 'react-hook-form';
 import { object, ref, string } from 'yup';
@@ -11,8 +11,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import type { UserWithoutId } from './type/type';
 import { useAppDispatch } from '../../App/store/store';
 import { loadUser } from './authSlice';
-import AuthorizationPage from './AuthorizationPage';
-import ModalWindow from '../../shared/Modal/ModalWindow';
 
 const schema = object().shape({
   name: string().trim().required('Необходимо указать имя'),
@@ -54,49 +52,44 @@ function RegistrationPage({
   };
 
   return (
-    <>
-      <form className="registration-form" onSubmit={handleSubmit(submit)}>
-        <label htmlFor="name">
-          Имя:
-          <input type="text" required {...register('name')} />
-          <span>{errors.name?.message}</span>
-        </label>
-        <br />
-        <label htmlFor="email">
-          Email:
-          <input type="email" required {...register('email')} />
-          <span>{errors.email?.message}</span>
-        </label>
-        <br />
-        <label htmlFor="password">
-          Пароль:
-          <input type="password" required {...register('password')} />
-          <span>{errors.password?.message}</span>
-        </label>
-        <br />
-        <label htmlFor="password">
-          Повторный пароль:
-          <input type="password" required {...register('checkPassword')} />
-          <span>{errors.checkPassword?.message}</span>
-        </label>
-        <br />
-        <div className="button-container">
-          <button type="submit">Регистрация</button>
-          <button
-            type="button"
-            onClick={() => {
-              setShowModalA(true);
-              setShowModalR(false);
-            }}
-          >
-            Вход
-          </button>
-        </div>
-      </form>
-      {/* <ModalWindow active={showModalA} setActive={setShowModalA}>
-        <AuthorizationPage />
-      </ModalWindow> */}
-    </>
+    <form className="registration-form" onSubmit={handleSubmit(submit)}>
+      <label htmlFor="name">
+        Имя:
+        <input type="text" {...register('name')} />
+        <span className="errMesage">{errors.name?.message}</span>
+      </label>
+      <br />
+      <label htmlFor="email">
+        Email:
+        <input type="email" {...register('email')} />
+        <span className="errMesage">{errors.email?.message}</span>
+      </label>
+      <br />
+      <label htmlFor="password">
+        Пароль:
+        <input type="password" {...register('password')} />
+        <span className="errMesage">{errors.password?.message}</span>
+      </label>
+      <br />
+      <label htmlFor="password">
+        Повторный пароль:
+        <input type="password" {...register('checkPassword')} />
+        <span className="errMesage">{errors.checkPassword?.message}</span>
+      </label>
+      <br />
+      <div className="button-container">
+        <button type="submit">Регистрация</button>
+        <button
+          type="button"
+          onClick={() => {
+            setShowModalA(true);
+            setShowModalR(false);
+          }}
+        >
+          Вход
+        </button>
+      </div>
+    </form>
   );
 }
 
