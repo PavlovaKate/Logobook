@@ -6,12 +6,12 @@ function generateTokens(payload) {
   return {
     accessToken: jwt.sign(
       payload,
-      process.env.ACCESS_TOKEN_SECRET,
+      'A',
       jwtConfig.access
     ),
     refreshToken: jwt.sign(
       payload,
-      process.env.REFRESH_TOKEN_SECRET,
+      'R',
       jwtConfig.refresh
     ),
   };
