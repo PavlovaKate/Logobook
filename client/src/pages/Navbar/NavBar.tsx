@@ -64,17 +64,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-type NavBarProps = {};
-
-function NavBar({}: NavBarProps): JSX.Element {
+function NavBar(): JSX.Element {
   const [showModal, setShowModal] = useState(false);
   const [showModalA, setShowModalA] = useState(false);
 
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenNavMenu: (e: React.MouseEvent<HTMLElement>) => void = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu: () => void = () => {
     setAnchorElNav(null);
   };
 
@@ -146,24 +144,6 @@ function NavBar({}: NavBarProps): JSX.Element {
           >
             <img src={img} alt="logo" />
           </Typography>
-          {/* <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGOBOOK
-          </Typography> */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

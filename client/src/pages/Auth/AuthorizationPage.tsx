@@ -38,14 +38,14 @@ function AuthorizationPage(): JSX.Element {
     <form className="login-form" onSubmit={handleSubmit(submit)}>
       <label htmlFor="email">
         Email:
-        <input type="email" required {...register('email')} />
-        <span>{errors.email?.message}</span>
+        <input type="email" {...register('email')} />
+        <span className="errMesage">{errors.email?.message}</span>
       </label>
       <br />
       <label htmlFor="password">
         Пароль:
-        <input type="password" required {...register('password')} />
-        <span>{errors.password?.message}</span>
+        <input type="password" {...register('password')} />
+        <span className="errMesage">{errors.password?.message}</span>
       </label>
       <div className="button-container">
         <button type="submit">Вход</button>
