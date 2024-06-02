@@ -16,14 +16,14 @@ module.exports = (sequelize, DataTypes) => {
     }) {
       this.belongsTo(Author, { foreignKey: 'authorId' });
       this.belongsTo(Publisher, { foreignKey: 'publisherId' });
-      this.belongsTo(RateLine, { foreignKey: 'categoryId' });
+      this.belongsTo(Category, { foreignKey: 'categoryId' });
       this.hasMany(ShopLine, { foreignKey: 'bookId' });
       this.hasOne(Rate, { foreignKey: 'bookId' });
       this.hasMany(CartLine, { foreignKey: 'bookId' });
       this.hasMany(Favourite, { foreignKey: 'bookId' });
       this.hasMany(Review, { foreignKey: 'bookId' });
       this.hasMany(TagLine, { foreignKey: 'bookId' });
-      this.hasOne(Category, { foreignKey: 'bookId' });
+      this.hasOne(RateLine, { foreignKey: 'bookId' });
     }
   }
   Book.init(

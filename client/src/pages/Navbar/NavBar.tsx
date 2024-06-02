@@ -21,8 +21,7 @@ import ModalWindow from '../../shared/Modal/ModalWindow';
 import RegistrationPage from '../Auth/RegistrationPage';
 import AuthorizationPage from '../Auth/AuthorizationPage';
 
-const pages = ['Покупателям', 'Контакты'];
-// const sorts = ['Каталог', 'Новинки', 'Хиты', 'Скидки', 'Сертификаты'];
+const pages = ['Каталог', 'Новинки', 'Хиты', 'Скидки', 'Сертификаты'];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -118,30 +117,25 @@ function NavBar(): JSX.Element {
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
+              <Typography
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: '#F3EECE', display: 'block' }}
+                component="a"
+                href="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: 'none', md: 'flex' },
+                  fontFamily: 'monospace',
+                  fontWeight: 700,
+                  letterSpacing: '.3rem',
+                  color: 'inherit',
+                  textDecoration: 'none',
+                }}
               >
                 {page}
-              </Button>
+              </Typography>
             ))}
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
+          <Typography variant="h6" noWrap component="a" href="/" sx={{}}>
             <img src={img} alt="logo" />
           </Typography>
           <Search>
