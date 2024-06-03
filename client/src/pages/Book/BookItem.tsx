@@ -10,9 +10,9 @@ const BookItem = ({ book }: BookItemProps): JSX.Element => {
   return (
     <div className="BookItem">
       <div className="BookItem-top">
-        {book.TagLines.map((tag) => (
-          <span key={tag.id} className={`tag tag-${tag.id} ${tag.Tag.tagName} `}>
-            {tag.Tag.tagName.toLowerCase()}
+        {book.TagLines.map((tagline, idx) => (
+          <span key={tagline.id} className={`tag tag-${idx+1} ${tagline.Tag.tagName} `}>
+            {tagline.Tag.tagName.toLowerCase()}
           </span>
         ))}
         <div className="BookItem-image">

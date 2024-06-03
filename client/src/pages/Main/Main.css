@@ -1,11 +1,34 @@
-.Main {
-  margin: 0 auto;
-  text-align: center;
-}
-
 .BookItems {
   margin: 0 auto;
   flex-wrap: wrap;
   display: flex;
   gap: 30px;
+}
+
+.arrow {
+  width: 70px;
+  height: 40px;
+  background-color: #fff;
+  border-style: none;
+}
+
+.arrow:active {
+  scale: 1.05;
+}
+
+.arrows {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 30px;
+}
+
+.arrows h2 {
+  margin: 0 auto;
+  transform: translate(50%);
+}
+
+.arrows-arrow {
+  display: flex;
+  gap: 10px;
 }
