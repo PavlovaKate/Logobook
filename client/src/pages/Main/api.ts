@@ -5,7 +5,6 @@ import type { Book, BookId } from './type/type';
 export const axiosBooks = async (): Promise<{ message: string; books: Book[] }> => {
   const response: AxiosResponse<{ message: string; books: Book[] }> =
     await request.get('/books');
-    
   return response.data;
 };
 

@@ -15,30 +15,47 @@ export type Book = {
   categoryId: number;
   publisherId: number;
   Favourites: Fav[];
-  RateLine: RateLine;
+
+  RateLines: RateLine[];
   Reviews: Review[];
   ShopLines: ShopLine[];
   TagLines: TagLine[];
 };
-
 export type BookId = Book['id'];
 
 export type Fav = {
   id: number;
   usedId: number;
-  bookId: number;
+  bookId: BookId;
 };
 
 export type RateLine = {
-  Rate: { rateAvg: number };
+  id: number;
+  usedId: number;
+  bookId: BookId;
+  rate: number;
+  reteId: number;
+  Rate: Rate;
+};
+
+export type Rate = {
+  id: number;
+  bookId: BookId;
+  rateAvg: number;
 };
 
 export type Review = {
-  Images: { image: string }[];
-  bookId: number;
+  Images: Image[];
+  bookId: BookId;
   id: number;
   review: string;
   userId: number;
+};
+
+export type Image = {
+  id: number;
+  reviewId: number;
+  image: string;
 };
 
 export type Shop = {
@@ -48,10 +65,11 @@ export type Shop = {
   longitude: number;
   workTime: string;
 };
+
 export type ShopLine = {
   id: number;
   Shop: Shop;
-  bookId: number;
+  bookId: BookId;
   number: number;
   shopId: Shop['id'];
 };
@@ -59,11 +77,11 @@ export type ShopLine = {
 export type TagLine = {
   id: number;
   Tag: Tag;
-  bookId: number;
+  bookId: BookId;
   tagId: number;
 };
 
 export type Tag = {
   id: number;
-  tagname: string;
+  tagName: string;
 };
