@@ -1,7 +1,21 @@
 // controllers/userController.js
 
 const router = require('express').Router();
-const { Category, Publisher, Author, Book, TagLine, Tag, RateLine, Rate, Review, Image, ShopLine, Shop, Favourite } = require('../db/models');
+const {
+  Category,
+  Publisher,
+  Author,
+  Book,
+  TagLine,
+  Tag,
+  RateLine,
+  Rate,
+  Review,
+  Image,
+  ShopLine,
+  Shop,
+  Favourite,
+} = require('../db/models');
 
 exports.getAllBooks = async (req, res) => {
   try {
@@ -12,9 +26,9 @@ exports.getAllBooks = async (req, res) => {
         { model: Review, include: [Image] },
         { model: ShopLine, include: [Shop] },
         Favourite,
-        
       ],
     });
+
     const authors = await Author.findAll();
     const categories = await Category.findAll();
     const publishers = await Publisher.findAll();

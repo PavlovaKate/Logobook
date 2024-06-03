@@ -1,3 +1,11 @@
+.Main {
+  margin: 0 auto;
+  text-align: center;
+}
+
 .BookItems {
+  margin: 0 auto;
+  flex-wrap: wrap;
   display: flex;
+  gap: 30px;
 }

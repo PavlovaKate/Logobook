@@ -7,16 +7,27 @@ import './Main.css';
 
 function Main(): JSX.Element {
   const books = useSelector((store: RootState) => store.book.books);
+  const user = useSelector((store: RootState)=>store.auth.user)
+  const newBooks = books.filter((book)=>book.TagLines.some((tagline) => tagline.Tag.tagName === 'New'))
+  const hitBooks = books.filter((book)=>book.TagLines.some((tagline) => tagline.Tag.tagName === 'Hit'))
 
   return (
-    <div className="App">
+    <div className="Main">
       <NavBar />
       <h1>IMAGES SLIDER</h1>
       <h2>Новинки</h2>
-      <div className="BookItems">
-        {books.map((book, idx) => {
+      <div className="BookItems BookItems-new">
+        {newBooks.map((book, idx) => {
           if (idx < 4) {
-            return <BookItem book={book} />;
+            return <BookItem book={book} key={book.id}/>;
+          }
+        })}
+      </div>
+      <h2>Хиты продаж</h2>
+      <div className="BookItems BookItems-hit">
+        {hitBooks.map((book, idx) => {
+          if (idx < 4) {
+            return <BookItem book={book} key={book.id}/>;
           }
         })}
       </div>
