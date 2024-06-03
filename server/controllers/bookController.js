@@ -15,6 +15,8 @@ const {
   ShopLine,
   Shop,
   Favourite,
+  CartLine,
+  Cart
 } = require('../db/models');
 
 exports.getAllBooks = async (req, res) => {
@@ -25,6 +27,7 @@ exports.getAllBooks = async (req, res) => {
         { model: RateLine, include: [Rate] },
         { model: Review, include: [Image] },
         { model: ShopLine, include: [Shop] },
+        { model: CartLine, include: [Cart] },
         Favourite,
       ],
     });

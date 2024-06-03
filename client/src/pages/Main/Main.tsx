@@ -31,6 +31,7 @@ function Main(): JSX.Element {
 
   const books = useSelector((store: RootState) => store.book.books);
   const user = useSelector((store: RootState) => store.auth.user);
+  
   const newBooks = books.filter((book) =>
     book.TagLines.some((tagline) => tagline.Tag.tagName === 'New'),
   );
@@ -102,7 +103,6 @@ function Main(): JSX.Element {
               return <BookItem book={book} key={book.id} />;
             }
           })}
-
           {activeStepHit === 4 && (
             <div>
               <button className="btn dop">Дополнительно</button>

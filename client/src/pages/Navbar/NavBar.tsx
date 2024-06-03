@@ -20,6 +20,8 @@ import img from '../../App/assets/Logo.svg';
 import ModalWindow from '../../shared/Modal/ModalWindow';
 import RegistrationPage from '../Auth/RegistrationPage';
 import AuthorizationPage from '../Auth/AuthorizationPage';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../App/store/store';
 
 const pages = ['Каталог', 'Новинки', 'Хиты', 'Скидки', 'Сертификаты'];
 
@@ -64,6 +66,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function NavBar(): JSX.Element {
+  const user = useSelector((state: RootState) => state.auth.user);
   const [showModal, setShowModal] = useState(false);
   const [showModalA, setShowModalA] = useState(false);
 
@@ -145,15 +148,19 @@ function NavBar(): JSX.Element {
             <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
           </Search>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton sx={{ p: 0 }} color="inherit" onClick={() => setShowModal((prev) => !prev)}>
+            <IconButton sx={{ p: 0 }} color="inherit" onClick={() => setShowModal((prev) => !prev)} >
               <AccountCircleIcon />
             </IconButton>
-            <IconButton sx={{ p: 0 }} color="inherit">
-              <BookmarkBorderIcon />
-            </IconButton>
-            <IconButton sx={{ p: 0 }} color="inherit">
-              <LocalMallIcon />
-            </IconButton>
+            {user && (
+              <>
+                <IconButton sx={{ p: 0 }} color="inherit" href='/bookmark'>
+                  <BookmarkBorderIcon/>
+                </IconButton>
+                <IconButton sx={{ p: 0 }} color="inherit" href='/cart'>
+                  <LocalMallIcon />
+                </IconButton>
+              </>
+            )}
           </Box>
         </Toolbar>
       </Container>

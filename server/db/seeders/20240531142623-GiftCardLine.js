@@ -14,10 +14,6 @@ module.exports = {
           giftCardId: 2,
           cartId: 2,
         },
-        {
-          giftCardId: 3,
-          cartId: 3,
-        },
       ],
       {},
     );

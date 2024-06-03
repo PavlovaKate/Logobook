@@ -27,11 +27,15 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'Cascade',
         onUpdate: 'Cascade',
       },
+      count: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
     },
     {
       sequelize,
       modelName: 'CartLine',
-    }
+    },
   );
   return CartLine;
 };

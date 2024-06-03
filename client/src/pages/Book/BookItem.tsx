@@ -3,24 +3,29 @@ import { Book } from '../Main/type/type';
 import './BookItem.css';
 import { IconButton, Rating } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../App/store/store';
 
 type BookItemProps = { book: Book };
 
 const BookItem = ({ book }: BookItemProps): JSX.Element => {
+  const user = useSelector((state: RootState) => state.auth.user);
   return (
     <div className="BookItem">
       <div className="BookItem-top">
         {book.TagLines.map((tagline, idx) => (
-          <span key={tagline.id} className={`tag tag-${idx+1} ${tagline.Tag.tagName} `}>
+          <span key={tagline.id} className={`tag tag-${idx + 1} ${tagline.Tag.tagName} `}>
             {tagline.Tag.tagName.toLowerCase()}
           </span>
         ))}
         <div className="BookItem-image">
           <img src={book.image} alt="" />
         </div>
-        <IconButton sx={{ padding: 0, position: 'absolute', right: 0 }} color="inherit">
-          <BookmarkBorderIcon />
-        </IconButton>
+        {user && (
+          <IconButton sx={{ padding: 0, position: 'absolute', right: 0 }} color="inherit">
+            <BookmarkBorderIcon />
+          </IconButton>
+        )}
       </div>
       <div className="BookItem-bottom">
         <p className="BookItem-author">{book.author}</p>
@@ -32,7 +37,7 @@ const BookItem = ({ book }: BookItemProps): JSX.Element => {
           value={book.RateLines[0].Rate.rateAvg}
           readOnly
         />
-        <button className="btn">добавить в корзину</button>
+        {user && <button className="btn">добавить в корзину</button>}
       </div>
     </div>
   );
