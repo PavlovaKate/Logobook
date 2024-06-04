@@ -41,6 +41,7 @@ router.post(
 
 router
   .get('/', verifyAccessToken, userController.checkUser)
-  .get('/logout', userController.logoutUser);
+  .get('/logout', userController.logoutUser)
+  .get('/all', userController.loadUsers);
 
 module.exports = router;

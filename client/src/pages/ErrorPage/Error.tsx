@@ -1,6 +1,5 @@
 import React from 'react';
 import './Error.css';
-// import img from '../../App/assets/img/404.png;
 import { Link } from 'react-router-dom';
 import NavBar from '../Navbar/NavBar';
 

@@ -4,11 +4,11 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
-import { Rating } from '@mui/material';
+import { IconButton, Rating } from '@mui/material';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import { useAppDispatch, type RootState } from '../../App/store/store';
 import Error from '../ErrorPage/Error';
 import NavBar from '../Navbar/NavBar';
-import type { Book } from '../Main/type/type';
 import './Book.css';
 import Loader from '../../shared/Loader/Loader';
 import { stopLoading } from '../Main/mainSlice';
@@ -18,11 +18,14 @@ import arrLeft from '../../App/assets/img/arrow-left.svg';
 import arrLeftDisable from '../../App/assets/img/arrow-left-disable.svg';
 import arrRight from '../../App/assets/img/arrow-right.svg';
 import arrRightDisable from '../../App/assets/img/arrow-right-disable.svg';
+import ScrollToTop from '../../shared/Scroll/Scroll';
+import ReviewItem from './Review';
 
 function BookPage(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { books, isLoading } = useSelector((store: RootState) => store.book);
+  const user = useSelector((state: RootState) => state.auth.user);
   const [activeStep, setActiveStep] = React.useState(0);
   const [activeStepHit, setActiveStepHit] = React.useState(0);
 
@@ -46,7 +49,7 @@ function BookPage(): JSX.Element {
 
   setTimeout(() => {
     dispatch(stopLoading());
-  }, 2000);
+  }, 2500);
 
   if (id) {
     const book = books.find((bk) => bk.id === +id);
@@ -71,6 +74,7 @@ function BookPage(): JSX.Element {
 
       return (
         <>
+          <ScrollToTop />
           <NavBar />
           <div className="BookPage container">
             <div className="BookBlok">
@@ -81,6 +85,14 @@ function BookPage(): JSX.Element {
                     {tagline.Tag.tagName.toLowerCase()}
                   </span>
                 ))}
+                {user && (
+                  <IconButton
+                    sx={{ padding: 0, position: 'absolute', right: 5, top: 5 }}
+                    color="inherit"
+                  >
+                    <BookmarkBorderIcon />
+                  </IconButton>
+                )}
               </div>
               <div className="BookInfo">
                 <h2>{book?.title}</h2>
@@ -91,7 +103,7 @@ function BookPage(): JSX.Element {
                   value={book.RateLines[0].Rate.rateAvg}
                   readOnly
                 />
-                <div>
+                <div className="bookInfoAll">
                   <p>Издательство</p>
                   <p>{book?.publisher}</p>
                   <p>Количество страниц</p>
@@ -111,17 +123,17 @@ function BookPage(): JSX.Element {
                 </button>
               </div>
             </div>
-            <div>
-              <p>Описание</p>
+            <div className="description">
+              <h3>Описание</h3>
               <p>{book?.description}</p>
             </div>
+            <div className="reviews">
+              <h3>Отзывы</h3>
+              {book.Reviews.map((el) => (
+                <ReviewItem review={el} />
+              ))}
+            </div>
 
-            <p>{book.Reviews.map((el) => el.review)}</p>
-            <p>
-              {book.Reviews.map((el) =>
-                el.Images.map((img) => <img src={img.image} alt="фото отзыв" />),
-              )}
-            </p>
             {booksByAuthor.length > 0 && (
               <>
                 <div className="arrows">

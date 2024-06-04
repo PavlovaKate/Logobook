@@ -14,6 +14,7 @@ import type { Book } from '../Main/type/type';
 
 type BookItemProps = { book: Book };
 
+
 const BookItem = ({ book }: BookItemProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
@@ -65,6 +66,7 @@ const BookItem = ({ book }: BookItemProps): JSX.Element => {
           <img src={book.image} alt="" />
         </div>
         {user && (
+
           <IconButton
             sx={{ padding: 0, position: 'absolute', right: 0 }}
             color="inherit"
@@ -89,7 +91,11 @@ const BookItem = ({ book }: BookItemProps): JSX.Element => {
           value={book.RateLines[0].Rate.rateAvg}
           readOnly
         />
-        {user && <button className="btn">добавить в корзину</button>}
+        {user && (
+          <button className="btn" type="button">
+            добавить в корзину
+          </button>
+        )}
       </div>
     </div>
   );

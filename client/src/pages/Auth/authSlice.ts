@@ -4,6 +4,7 @@ import * as api from './api';
 
 const initialState: UsersState = {
   user: undefined,
+  users: [],
   errors: undefined,
 };
 
@@ -13,6 +14,7 @@ export const loginUser = createAsyncThunk('users/login', (user: UserLogo) =>
 );
 export const logoutUser = createAsyncThunk('users/logout', () => api.userLogOutAxios());
 export const checkedUser = createAsyncThunk('users/check', () => api.userCheckAxios());
+export const loadUsers = createAsyncThunk('users/load', () => api.usersAllAxios());
 
 const authSluce = createSlice({
   name: 'auth',
@@ -36,6 +38,12 @@ const authSluce = createSlice({
         state.user = action.payload;
       })
       .addCase(checkedUser.rejected, (state, action) => {
+        state.errors = action.error.message;
+      })
+      .addCase(loadUsers.fulfilled, (state, action) => {
+        state.users = action.payload.users;
+      })
+      .addCase(loadUsers.rejected, (state, action) => {
         state.errors = action.error.message;
       });
   },

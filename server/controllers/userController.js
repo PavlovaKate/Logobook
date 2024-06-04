@@ -81,3 +81,12 @@ exports.checkUser = async (req, res) => {
     res.status(500).json({ message });
   }
 };
+
+exports.loadUsers = async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.status(200).json({message: 'success', users })
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+}
