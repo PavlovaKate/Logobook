@@ -1,3 +1,5 @@
+import { CartLine } from "../../Cart/type/type";
+
 export type Book = {
   id: number;
   title: string;
@@ -15,11 +17,11 @@ export type Book = {
   categoryId: number;
   publisherId: number;
   Favourites: Fav[];
-
   RateLines: RateLine[];
   Reviews: Review[];
   ShopLines: ShopLine[];
   TagLines: TagLine[];
+  CartLines: CartLine[]
 };
 export type BookId = Book['id'];
 

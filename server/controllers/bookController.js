@@ -16,7 +16,7 @@ const {
   Shop,
   Favourite,
   CartLine,
-  Cart
+  Cart,
 } = require('../db/models');
 
 exports.getAllBooks = async (req, res) => {
@@ -49,72 +49,21 @@ exports.getAllBooks = async (req, res) => {
   }
 };
 
-// review, rate, author, category, tag, publisher
-
-// exports.getPlaceById = async (req, res) => {
-//   try {
-//     const place = await prisma.place.findUnique({
-//       where: { id: +req.params.id },
-//     });
-//     if (!place) {
-//       return res.status(404).json({ message: 'Такого места нет' });
-//     }
-//     res.status(200).json({ message: 'success', place });
-//   } catch ({ message }) {
-//     res.status(500).json({ message });
-//   }
-// };
-
-// exports.createPlace = async (req, res) => {
-//   const { name, description, latitude, longitude } = req.body;
-//   try {
-//     const a = parseFloat(latitude);
-//     const b = parseFloat(longitude);
-//     const place = await prisma.place.create({
-//       data: { name, description, latitude: a, longitude: b },
-//     });
-//     res.status(201).json({ message: 'success', place });
-//   } catch ({ message }) {
-//     res.status(400).json({ message });
-//   }
-// };
-
-// exports.updatePlace = async (req, res) => {
-//   const { name, description, latitude, longitude } = req.body;
-//   try {
-//     const placeInDb = await prisma.place.findUnique({
-//       where: { id: +req.params.id },
-//     });
-//     if (!placeInDb) {
-//       return res.status(404).json({ message: 'Место не найдено' });
-//     }
-
-//     const place = await prisma.place.update({
-//       where: { id: placeInDb.id },
-//       data: {
-//         name: name || placeInDb.name,
-//         description: description || placeInDb.description,
-//         latitude: parseFloat(latitude) || placeInDb.latitude,
-//         longitude: parseFloat(longitude) || placeInDb.longitude,
-//       },
-//     });
-//     res.json({ message: 'success', place });
-//   } catch ({ message }) {
-//     res.status(500).json({ message });
-//   }
-// };
-
-// exports.deletePlace = async (req, res) => {
-//   try {
-//     const place = await prisma.place.findUnique({
-//       where: { id: parseInt(req.params.id) },
-//     });
-//     if (!place) {
-//       return res.status(404).json({ message: 'Место не найдено' });
-//     }
-//     await prisma.place.delete({ where: { id: parseInt(req.params.id) } });
-//     res.status(200).json({ message: 'success' });
-//   } catch ({ message }) {
-//     res.status(500).json({ message });
-//   }
-// };
+exports.addToCart = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const cart = await Cart.findOne({ where: { userId: +res.locals.user.id, cartStatus: false }, include: [CartLine] });
+    let cartline = cart.CartLines.find((cartline) => cartline.bookId === +id);
+    if (cartline) {
+      const count = cartline.count + 1;
+      await CartLine.update({ count }, { where: { id: cartline.id } });
+      cartline = cart.CartLines.find((cartline) => cartline.bookId === +id);
+      res.json({ message: 'increase', cartline });
+    } else {
+      cartline = await CartLine.create({ bookId: +id, cartId: cart.id, count: 1 });
+      res.json({ message: 'create', cartline });
+    }
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+};
