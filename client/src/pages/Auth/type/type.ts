@@ -3,6 +3,7 @@ export type User = {
   name: string;
   email: string;
   password: string;
+  image: string;
 };
 
 export type UserWithoutId = Omit<User, 'id'>;
@@ -18,6 +19,7 @@ export type ActionUser =
 
 export type UsersState = {
   user: User | undefined;
+  users: User[];
   errors: string | undefined;
 };
 

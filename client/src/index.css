@@ -1,6 +1,6 @@
 :root {
   --font-family: 'Aneliza', sans-serif;
-  --second-family: "Felidae", sans-serif;
+  --second-family: 'Felidae', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   --deep-green: #121711;
@@ -79,6 +79,7 @@ h1 {
 
 .container {
   max-width: 1242px;
-  margin: 70px 99px;
+  /* margin: 70px 99px; */
+  margin: 0 auto;
   text-align: center;
 }

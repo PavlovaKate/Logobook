@@ -39,3 +39,9 @@ export const userCheckAxios = async (): Promise<User | undefined> => {
     return data.user;
   }
 };
+
+export const usersAllAxios = async (): Promise<{ message: string; users: User[] }> => {
+  const { data }: AxiosResponse<{ message: string; users: User[] }> =
+    await request.get('/users/all');
+  return data;
+};
