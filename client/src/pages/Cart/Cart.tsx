@@ -1,23 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import NavBar from '../Navbar/NavBar';
 import './Cart.css';
 import { Button } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../App/store/store';
-import { deleteCart, loadCarts } from './cartSlice';
+import { deleteCart } from './cartSlice';
 import CartItem from './components/CartItem';
 import { CartLine } from './type/type';
 
 type CartProps = {};
 
 const Cart = ({}: CartProps): JSX.Element => {
-  const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    if (user) dispatch(loadCarts(user.id)).catch(console.log);
-  }, [dispatch, user]);
-
   const userCarts = useSelector((state: RootState) => state.cart.carts);
   const cart = userCarts.filter((cart) => !cart.cartStatus)[0];
   const orders = userCarts.filter((cart) => cart.cartStatus);

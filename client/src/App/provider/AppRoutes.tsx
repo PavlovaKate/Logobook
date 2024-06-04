@@ -6,6 +6,7 @@ import Cart from '../../pages/Cart/Cart';
 import Bookmark from '../../pages/Bookmark/Bookmark';
 import BookPage from '../../pages/Book/BookPage';
 import Sale from '../../pages/Sale/Sale';
+import Catalog from '../../pages/Catalog/Catalog';
 
 function AppRoutes(): JSX.Element {
   return (
@@ -15,6 +16,7 @@ function AppRoutes(): JSX.Element {
         <Route path="/cart" element={<Cart />} />
         <Route path="/bookmark" element={<Bookmark />} />
         <Route path="/books/:id" element={<BookPage />} />
+        <Route path="/catalog" element={<Catalog />} />
         <Route path="/sale" element={<Sale />} />
         <Route path="*" element={<Error />} />
       </Routes>

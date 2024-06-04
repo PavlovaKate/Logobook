@@ -28,6 +28,7 @@ const cartsSlice = createSlice({
   extraReducers: (build) => {
     build
       .addCase(loadCarts.fulfilled, (state, action) => {
+        action.payload.carts.map(cart => cart.CartLines.sort((a,b)=> a.id - b.id));
         state.carts = action.payload.carts;
         state.message = action.payload.message;
       })
