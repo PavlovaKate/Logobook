@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useState } from 'react';
 import './BookItem.css';
 import { IconButton, Rating } from '@mui/material';

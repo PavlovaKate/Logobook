@@ -17,6 +17,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 // import './NavBar.css';
 import img from '../../App/assets/img/Logo.svg';
+import imgGreen from '../../App/assets/img/logo-green.svg';
 import ModalWindow from '../../shared/Modal/ModalWindow';
 import RegistrationPage from '../Auth/RegistrationPage';
 import AuthorizationPage from '../Auth/AuthorizationPage';
@@ -66,7 +67,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function NavBar(): JSX.Element {
+type NavProps = {
+  color: string;
+};
+
+function NavBar({ color }: NavProps): JSX.Element {
   const user = useSelector((state: RootState) => state.auth.user);
   const [showModal, setShowModal] = useState(false);
   const [showModalA, setShowModalA] = useState(false);
@@ -80,7 +85,7 @@ function NavBar(): JSX.Element {
   };
 
   return (
-    <AppBar position="absolute" sx={{ background: 'none', color: '#F3EECE' }}>
+    <AppBar position="absolute" sx={{ background: 'none', color: { color } }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -140,7 +145,7 @@ function NavBar(): JSX.Element {
             ))}
           </Box>
           <Typography variant="h6" noWrap sx={{}} component={Link} to="/">
-            <img src={img} alt="logo" />
+            {color === '#547050' ? <img src={imgGreen} alt="logo" /> : <img src={img} alt="logo" />}
           </Typography>
           <Search>
             <SearchIconWrapper>

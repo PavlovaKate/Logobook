@@ -6,7 +6,7 @@ import NavBar from '../Navbar/NavBar';
 function Error(): JSX.Element {
   return (
     <div className="Error">
-      <NavBar />
+      <NavBar color="#f3eece" />
       <h1>404</h1>
       <p className="Errortext1">К сожалению, этой страницы нет</p>
       <p className="Errortext2">Но есть много интересных книг!</p>
