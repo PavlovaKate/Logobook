@@ -10,7 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../App/store/store';
 import type { RootState } from '../../App/store/store';
-import { updateFavourite } from '../Main/mainSlice';
+import { addToCart, updateFavourite } from '../Main/mainSlice';
 
 import type { Book } from '../Main/type/type';
 
@@ -19,6 +19,7 @@ type BookItemProps = { book: Book };
 function BookItem({ book }: BookItemProps): JSX.Element {
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
   const isFav = user
     ? !!book.Favourites.find((fav) => fav.userId === user.id && fav.bookId === book.id)
@@ -32,13 +33,17 @@ function BookItem({ book }: BookItemProps): JSX.Element {
       return;
     }
     setOpen(false);
+    setOpenCart(false)
   };
   const action = (
     <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
       <CloseIcon fontSize="small" />
     </IconButton>
   );
-
+  const handleAddToCart = () => {
+    dispatch(addToCart(book.id));
+    setOpenCart(true)
+  };
   return (
     <div className="BookItem">
       <Snackbar
@@ -51,6 +56,18 @@ function BookItem({ book }: BookItemProps): JSX.Element {
         autoHideDuration={3000}
         onClose={handleClose}
         message={isFav ? 'Книга добавлена в избранное' : 'Книга удалена из избранного'}
+        action={action}
+      />
+      <Snackbar
+        open={openCart}
+        ContentProps={{
+          sx: {
+            background: '#547050',
+          },
+        }}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        message='Книга добавлена в коризну'
         action={action}
       />
       <div className="BookItem-top">
@@ -88,7 +105,7 @@ function BookItem({ book }: BookItemProps): JSX.Element {
           readOnly
         />
         {user && (
-          <button className="btn" type="button">
+          <button className="btn" type="button" onClick={handleAddToCart}>
             добавить в корзину
           </button>
         )}

@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const bookController = require('../../controllers/bookController');
+const { verifyAccessToken } = require('../../middleware/authMiddleware');
 
 router.get('/', bookController.getAllBooks)
-// .post('/', bookController.createPlace);
-
-// router.put('/:id', bookController.updatePlace).delete('/:id', bookController.deletePlace);
+router.post('/addToCart/:id', verifyAccessToken, bookController.addToCart)
 
 module.exports = router;

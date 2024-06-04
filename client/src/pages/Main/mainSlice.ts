@@ -21,6 +21,7 @@ export const loadBooks = createAsyncThunk('books/load', () => api.axiosBooks());
 export const updateFavourite = createAsyncThunk('favourite/update', (id: BookId) =>
   api.axiosUpdateFavourite(id),
 );
+export const addToCart = createAsyncThunk('books/addToCart', (id: BookId) => api.axiosAddToCart(id));
 
 const booksSlice = createSlice({
   name: 'books',
@@ -46,24 +47,40 @@ const booksSlice = createSlice({
         let books;
         action.payload.message === 'destroy'
           ? (books = state.books.map((book) => {
-              if (book.id === action.payload.favourite.bookId) {
-                console.log(action.payload.favourite.id);
-                book.Favourites = book.Favourites.filter(
-                  (fav) => fav.id !== action.payload.favourite.id,
-                );
-              }
-              return book;
-            }))
+            if (book.id === action.payload.favourite.bookId) {
+              book.Favourites = book.Favourites.filter(
+                (fav) => fav.id !== action.payload.favourite.id,
+              );
+            }
+            return book;
+          }))
           : (books = state.books.map((book) => {
-              if (book.id === action.payload.favourite.bookId) {
-                book.Favourites.push(action.payload.favourite);
-              }
-              return book;
-            }));
+            if (book.id === action.payload.favourite.bookId) {
+              book.Favourites.push(action.payload.favourite);
+            }
+            return book;
+          }));
 
         state.books = books;
         state.message = action.payload.message;
-      });
+      })
+      .addCase(addToCart.fulfilled, (state, action) => {
+        let books;
+        action.payload.message === 'create' ? books = state.books.map((book) => {
+          if (book.id === action.payload.cartline.bookId) {
+            book.CartLines.push(action.payload.cartline)
+          }
+          return book
+        }) : books = state.books.map((book) => {
+          book.CartLines.map((cartline) => {
+            if (cartline.id === action.payload.cartline.id) cartline.count += 1;
+            return cartline
+          })
+          return book
+        })
+        state.books = books;
+        state.message = action.payload.message;
+      })
   },
 });
 
