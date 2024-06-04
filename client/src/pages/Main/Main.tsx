@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -38,7 +39,7 @@ function Main(): JSX.Element {
 
   const books = useSelector((store: RootState) => store.book.books);
   const user = useSelector((store: RootState) => store.auth.user);
-  
+
   const newBooks = books.filter((book) =>
     book.TagLines.some((tagline) => tagline.Tag.tagName === 'New'),
   );
@@ -53,7 +54,7 @@ function Main(): JSX.Element {
 
   return (
     <div className="Main">
-      <NavBar />
+      <NavBar color="#f3eece" />
       <div className="slider">
         <Swiper
           style={{

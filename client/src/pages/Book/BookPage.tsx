@@ -1,17 +1,20 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import { IconButton, Rating } from '@mui/material';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from '@mui/material/Snackbar';
 import { useAppDispatch, type RootState } from '../../App/store/store';
 import Error from '../ErrorPage/Error';
 import NavBar from '../Navbar/NavBar';
 import './Book.css';
 import Loader from '../../shared/Loader/Loader';
-import { stopLoading } from '../Main/mainSlice';
+import { stopLoading, updateFavourite } from '../Main/mainSlice';
 import BookItem from './BookItem';
 
 import arrLeft from '../../App/assets/img/arrow-left.svg';
@@ -28,6 +31,7 @@ function BookPage(): JSX.Element {
   const user = useSelector((state: RootState) => state.auth.user);
   const [activeStep, setActiveStep] = React.useState(0);
   const [activeStepHit, setActiveStepHit] = React.useState(0);
+  const [open, setOpen] = useState(false);
 
   const handleNext = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -55,6 +59,25 @@ function BookPage(): JSX.Element {
     const book = books.find((bk) => bk.id === +id);
 
     if (book) {
+      const isFav = user
+        ? !!book.Favourites.find((fav) => fav.userId === user.id && fav.bookId === book.id)
+        : false;
+      const toggleBookmark = (): void => {
+        dispatch(updateFavourite(book.id)).catch(console.log);
+        setOpen(true);
+      };
+      const handleClose = (event: React.SyntheticEvent | Event, reason?: string): void => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setOpen(false);
+      };
+      const action = (
+        <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+          <CloseIcon fontSize="small" />
+        </IconButton>
+      );
+
       const booksByAuthor = books.filter((bk) => bk.author === book?.author && bk.id !== book.id);
       const newBooksSteps = booksByAuthor.filter((_, idx) => idx < 7);
 
@@ -75,7 +98,19 @@ function BookPage(): JSX.Element {
       return (
         <>
           <ScrollToTop />
-          <NavBar />
+          <NavBar color="#547050" />
+          <Snackbar
+            open={open}
+            ContentProps={{
+              sx: {
+                background: '#547050',
+              },
+            }}
+            autoHideDuration={3000}
+            onClose={handleClose}
+            message={isFav ? 'Книга добавлена в избранное' : 'Книга удалена из избранного'}
+            action={action}
+          />
           <div className="BookPage container">
             <div className="BookBlok">
               <div className="BookCover">
@@ -89,8 +124,9 @@ function BookPage(): JSX.Element {
                   <IconButton
                     sx={{ padding: 0, position: 'absolute', right: 5, top: 5 }}
                     color="inherit"
+                    onClick={toggleBookmark}
                   >
-                    <BookmarkBorderIcon />
+                    {isFav ? <BookmarkIcon /> : <BookmarkBorderIcon />}
                   </IconButton>
                 )}
               </div>
@@ -118,9 +154,11 @@ function BookPage(): JSX.Element {
                   </div>
                 </div>
                 <p className="Price">{book?.amount} ₽</p>
-                <button type="button" className="btn">
-                  добавить в корзину
-                </button>
+                {user && (
+                  <button type="button" className="btn">
+                    добавить в корзину
+                  </button>
+                )}
               </div>
             </div>
             <div className="description">
@@ -200,10 +238,6 @@ function BookPage(): JSX.Element {
                 }
               })}
             </div>
-
-            <button type="button" onClick={() => navigate(-1)}>
-              назад
-            </button>
           </div>
         </>
       );
