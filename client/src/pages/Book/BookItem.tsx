@@ -3,43 +3,39 @@ import './BookItem.css';
 import { IconButton, Rating } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../App/store/store';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import { updateFavourite } from '../Main/mainSlice';
 import Snackbar from '@mui/material/Snackbar';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../App/store/store';
+import type { RootState } from '../../App/store/store';
+import { updateFavourite } from '../Main/mainSlice';
 
 import type { Book } from '../Main/type/type';
 
 type BookItemProps = { book: Book };
 
-
-const BookItem = ({ book }: BookItemProps): JSX.Element => {
+function BookItem({ book }: BookItemProps): JSX.Element {
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
   const isFav = user
-    ? book.Favourites.find((fav) => fav.userId === user.id && fav.bookId === book.id)
-      ? true
-      : false
+    ? !!book.Favourites.find((fav) => fav.userId === user.id && fav.bookId === book.id)
     : false;
-  const toggleBookmark = () => {
-    dispatch(updateFavourite(book.id));
+  const toggleBookmark = (): void => {
+    dispatch(updateFavourite(book.id)).catch(console.log);
     setOpen(true);
   };
-  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: string): void => {
     if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
   };
   const action = (
-    <React.Fragment>
-      <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
+    <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+      <CloseIcon fontSize="small" />
+    </IconButton>
   );
 
   return (
@@ -66,9 +62,8 @@ const BookItem = ({ book }: BookItemProps): JSX.Element => {
           <img src={book.image} alt="" />
         </div>
         {user && (
-
           <IconButton
-            sx={{ padding: 0, position: 'absolute', right: 0 }}
+            sx={{ padding: 0, position: 'absolute', right: 5, top: 5 }}
             color="inherit"
             onClick={toggleBookmark}
           >
@@ -99,6 +94,6 @@ const BookItem = ({ book }: BookItemProps): JSX.Element => {
       </div>
     </div>
   );
-};
+}
 
 export default BookItem;
