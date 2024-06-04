@@ -1,6 +1,11 @@
 :root {
+  --font-family: 'Aneliza', sans-serif;
+  --second-family: "Felidae", sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --deep-green: #121711;
+  --dark-sage: #547050;
+  color: var(--deep-green);
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #fff;
@@ -57,30 +62,6 @@ h1 {
   line-height: 1.1;
 }
 
-/* button {
-  padding: 15px 43px;
-  width: 288px;
-  height: 56px;
-  border: 1px solid #121711;
-  font-weight: 400;
-  font-size: 20px;
-  text-align: center;
-  font-family: inherit;
-  color: #121711;
-  background-color: #fff;
-  cursor: pointer;
-  transition: border-color 0.25s;
-} */
-
-/* button:hover {
-  border-color: #646cff;
-} */
-
-/* button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-} */
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -98,6 +79,6 @@ button:focus-visible {
 
 .container {
   max-width: 1242px;
-  margin: 0 auto;
+  margin: 70px 99px;
   text-align: center;
 }

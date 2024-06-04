@@ -9,20 +9,14 @@ module.exports = {
         {
           userId: 1,
           cartStatus: false,
-          totalAmount: 3501,
+          totalAmount: 5419,
           orderStatus: 'Ожидает получения',
         },
         {
           userId: 1,
           cartStatus: true,
-          totalAmount: 4501,
+          totalAmount: 4870,
           orderStatus: 'Получен',
-        },
-        {
-          userId: 3,
-          cartStatus: false,
-          totalAmount: 5471,
-          orderStatus: 'Ожидает получения',
         },
       ],
       {},

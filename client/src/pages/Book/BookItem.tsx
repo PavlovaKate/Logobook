@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 import './BookItem.css';
 import { IconButton, Rating } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+
+import { useSelector } from 'react-redux';
+import { RootState } from '../../App/store/store';
 import type { Book } from '../Main/type/type';
 
 type BookItemProps = { book: Book };
 
-function BookItem({ book }: BookItemProps): JSX.Element {
+const BookItem = ({ book }: BookItemProps): JSX.Element => {
+  const user = useSelector((state: RootState) => state.auth.user);
   return (
     <div className="BookItem">
       <div className="BookItem-top">
@@ -19,9 +23,11 @@ function BookItem({ book }: BookItemProps): JSX.Element {
         <div className="BookItem-image">
           <img src={book.image} alt="" />
         </div>
-        <IconButton sx={{ padding: 0, position: 'absolute', right: 5, top: 5 }} color="inherit">
-          <BookmarkBorderIcon />
-        </IconButton>
+        {user && (
+          <IconButton sx={{ padding: 0, position: 'absolute', right: 0 }} color="inherit">
+            <BookmarkBorderIcon />
+          </IconButton>
+        )}
       </div>
       <div className="BookItem-bottom">
         <p className="BookItem-author">
@@ -38,9 +44,7 @@ function BookItem({ book }: BookItemProps): JSX.Element {
           value={book.RateLines[0].Rate.rateAvg}
           readOnly
         />
-        <button className="btn" type="button">
-          добавить в корзину
-        </button>
+        {user && <button className="btn">добавить в корзину</button>}
       </div>
     </div>
   );

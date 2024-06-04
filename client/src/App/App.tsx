@@ -4,20 +4,19 @@ import './App.css';
 import { useNavigate } from 'react-router-dom';
 import AppRoutes from './provider/AppRoutes';
 import NavBar from '../pages/Navbar/NavBar';
-import { useAppDispatch } from './store/store';
+import { RootState, useAppDispatch } from './store/store';
 // import { request } from '../services/axiosInstance';
 import { checkedUser } from '../pages/Auth/authSlice';
 import { loadBooks } from '../pages/Main/mainSlice';
+import { useSelector } from 'react-redux';
+import { loadCarts } from '../pages/Cart/cartSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const axiosCheck = async (): Promise<void> => {
-    const action = await dispatch(checkedUser());
-    if (action.type === 'users/login/fulfilled') {
-      navigate('/');
-    }
+    dispatch(checkedUser());
 
     // const { data }: AxiosResponse<UsersResponse> = await request.get('/tokens/refresh');
 
