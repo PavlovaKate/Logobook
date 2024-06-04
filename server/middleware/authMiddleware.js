@@ -21,7 +21,6 @@ function verifyAccessToken(req, res, next) {
     next();
   } catch ({ message }) {
     console.log(message, 'verifyAccessToken');
-    res.status(403).send({ error: message });
   }
 }
 module.exports = { verifyRefreshToken, verifyAccessToken };
