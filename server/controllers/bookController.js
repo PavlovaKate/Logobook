@@ -39,8 +39,15 @@ exports.getAllBooks = async (req, res) => {
     const books = booksInDB.map(({ dataValues }) => {
       const author = authors.find((el) => el.id === dataValues.authorId);
       const category = categories.find((el) => el.id === dataValues.categoryId);
-      const publisher = publishers.find((el) => el.id === dataValues.publisherId);
-      return { ...dataValues, author: author.name, category: category.name, publisher: publisher.name };
+      const publisher = publishers.find(
+        (el) => el.id === dataValues.publisherId
+      );
+      return {
+        ...dataValues,
+        author: author.name,
+        category: category.name,
+        publisher: publisher.name,
+      };
     });
 
     res.json({ message: 'success', books });
@@ -52,7 +59,19 @@ exports.getAllBooks = async (req, res) => {
 exports.addToCart = async (req, res) => {
   try {
     const { id } = req.params;
-    const cart = await Cart.findOne({ where: { userId: +res.locals.user.id, cartStatus: false }, include: [CartLine] });
+
+    let cart = await Cart.findOne({
+      where: { userId: +res.locals.user.id, cartStatus: false },
+      include: [CartLine],
+    });
+    if (!cart) {
+      cart = await Cart.create({
+        userId: +res.locals.user.id,
+        cartStatus: false,
+        totalAmount: 0,
+        orderStatus: 'Не оформлен',
+      });
+    }
     let cartline = cart.CartLines.find((cartline) => cartline.bookId === +id);
     if (cartline) {
       const count = cartline.count + 1;
@@ -60,7 +79,11 @@ exports.addToCart = async (req, res) => {
       cartline = cart.CartLines.find((cartline) => cartline.bookId === +id);
       res.json({ message: 'increase', cartline });
     } else {
-      cartline = await CartLine.create({ bookId: +id, cartId: cart.id, count: 1 });
+      cartline = await CartLine.create({
+        bookId: +id,
+        cartId: cart.id,
+        count: 1,
+      });
       res.json({ message: 'create', cartline });
     }
   } catch ({ message }) {
