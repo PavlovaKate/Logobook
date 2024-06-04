@@ -31,7 +31,7 @@ request.interceptors.response.use(
     const prevRequest: AxiosRequestConfig & { sent?: boolean } = error.config;
     if (error.response && error.response.status === 403 && !prevRequest.sent) {
       const response: AxiosResponse<{ accessToken: string }> =
-        await request.get('/api/tokens/refresh');
+        await request.get('/tokens/refresh');
       accessToken = response.data.accessToken;
       prevRequest.sent = true;
       if (!prevRequest.headers) {
