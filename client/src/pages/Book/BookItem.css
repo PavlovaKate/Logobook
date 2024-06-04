@@ -1,28 +1,25 @@
 .BookItem {
+
   width: 288px;
-  height: 671px;
+  height: 750px;
   font-size: 20px;
   position: relative;
+  font-family: 'Aneliza';
 }
 
 .BookItem-image {
-  position: absolute;
-  margin: auto;
-  /* margin: auto; */
-  left: 0;
-  right: 0;
-  /* top: 0;
-  bottom: 0; */
-  max-width: 190px;
-  max-height: 270px;
+  width: 190px;
+  height: 270px;
+  overflow: hidden;
 }
 
 .BookItem-image img {
-  width: 190px;
-  height: 270px;
+  width: 103%;
+  height: 103%;
 }
 
 .tag {
+  position: absolute;
   width: 35px;
   height: 25px;
   font-weight: 300;
@@ -30,8 +27,11 @@
   text-align: center;
   align-items: center;
   line-height: 25px;
-  position: absolute;
   left: 0;
+}
+
+.tag-1 {
+  top: 0;
 }
 
 .tag-2 {
@@ -63,25 +63,28 @@
 .BookItem-author {
   font-weight: 300;
   height: 39px;
-  overflow: scroll;
+  margin-top: 30px;
 }
 
 .BookItem-title {
   font-weight: 500;
   height: 78px;
-  overflow: scroll;
+  margin: 13px 0;
 }
 
 .BookItem-amount {
+  margin: 26px 0 13px;
   font-weight: 500;
   font-size: 28px;
 }
 
-.BookItem-rate {}
-
 .BookItem-top {
   height: 350px;
   background-color: rgba(241, 241, 241, 0.4);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .BookItem-bottom {
@@ -90,8 +93,8 @@
 
 .btn {
   padding: 15px 43px;
-  width: 288px;
-  height: 56px;
+  max-width: 288px;
+  max-height: 56px;
   border: 1px solid #121711;
   font-weight: 400;
   font-size: 20px;
@@ -100,4 +103,5 @@
   color: #121711;
   background-color: #fff;
   cursor: pointer;
+  margin-top: 20px;
 }
