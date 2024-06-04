@@ -20,7 +20,7 @@ exports.getAllCarts = async (req, res) => {
 exports.deleteCart = async (req, res) => {
   const { id } = req.params;
   try {
-    await Cart.destroy({where: {id}})
+    await Cart.destroy({ where: { id } });
     const cartsInDB = await Cart.findAll({
       where: { userId: id },
       include: [CartLine],
@@ -46,6 +46,7 @@ exports.updateCartLine = async (req, res) => {
       totalAmount = cart.totalAmount - book.amount;
       if (newCount === 0) {
         await CartLine.destroy({ where: { id: cartline.id } });
+        await Cart.update({ totalAmount }, { where: { id: cartline.cartId } });
         const cartsInDB = await Cart.findAll({
           where: { userId: cart.userId },
           include: [CartLine],

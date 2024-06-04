@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios';
 import { request } from '../../services/axiosInstance';
-import type { Book, BookId } from './type/type';
+import type { Book, BookId, Fav } from './type/type';
 
 export const axiosBooks = async (): Promise<{ message: string; books: Book[] }> => {
   const response: AxiosResponse<{ message: string; books: Book[] }> =
@@ -8,6 +8,11 @@ export const axiosBooks = async (): Promise<{ message: string; books: Book[] }> 
   return response.data;
 };
 
+export const axiosUpdateFavourite = async (id: BookId): Promise<{ message: string; favourite: Fav }> => {
+  const response: AxiosResponse<{ message: string; favourite: Fav }> =
+    await request.put(`/favourites/${id}`);
+  return response.data;
+};
 // export const axiosAddPlaces = async (
 //   place: Omit<Place, 'id'>,
 // ): Promise<{ message: string; place: Place }> => {

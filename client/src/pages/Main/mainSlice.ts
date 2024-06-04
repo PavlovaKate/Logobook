@@ -17,6 +17,7 @@ const initialState: BooksReducer = {
 };
 
 export const loadBooks = createAsyncThunk('books/load', () => api.axiosBooks());
+export const updateFavourite = createAsyncThunk('favourite/update', (id: BookId) => api.axiosUpdateFavourite(id));
 
 const booksSlice = createSlice({
   name: 'books',
@@ -37,7 +38,29 @@ const booksSlice = createSlice({
       })
       .addCase(loadBooks.rejected, (state, action) => {
         state.errors = action.error.message;
+<<<<<<< HEAD
+      })
+      .addCase(updateFavourite.fulfilled, (state, action) => {
+        let books;
+        action.payload.message === 'destroy' ? books = state.books.map((book) => {
+          if (book.id === action.payload.favourite.bookId) {
+             console.log(action.payload.favourite.id);
+            book.Favourites = book.Favourites.filter((fav) => fav.id !== action.payload.favourite.id)
+          }
+          return book
+        }) : books = state.books.map((book) => {
+          if (book.id === action.payload.favourite.bookId) {
+            book.Favourites.push(action.payload.favourite)
+          }
+          return book
+        });
+
+        state.books = books;
+        state.message = action.payload.message;
+      })
+=======
       });
+>>>>>>> 2b5c00bb8bbeb7e30c0549a6983bef8abbc5fe02
     // .addCase(addPlaces.fulfilled, (state, action) => {
     //   state.places.push(action.payload.place);
     // })

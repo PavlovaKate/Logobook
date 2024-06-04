@@ -1,0 +1,10 @@
+.Bookmark {
+  font-family: var(--font-family);
+}
+
+.Bookmark h2 {
+  font-weight: 400;
+  font-size: 55px;
+  text-transform: uppercase;
+  text-align: left;
+}

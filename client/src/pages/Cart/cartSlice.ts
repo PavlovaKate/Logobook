@@ -39,7 +39,8 @@ const cartsSlice = createSlice({
         state.message = action.payload.message;
       })
       .addCase(updateCartLine.fulfilled, (state, action) => {
-        state.carts = action.payload.carts;
+        action.payload.carts.map(cart => cart.CartLines.sort((a,b)=> a.id - b.id));
+        state.carts = action.payload.carts
         state.message = action.payload.message;
       })
       .addCase(deleteCartLine.fulfilled, (state, action) => {

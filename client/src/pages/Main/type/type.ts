@@ -25,7 +25,7 @@ export type BookId = Book['id'];
 
 export type Fav = {
   id: number;
-  usedId: number;
+  userId: number;
   bookId: BookId;
 };
 
