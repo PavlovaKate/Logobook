@@ -65,7 +65,7 @@ function Main(): JSX.Element {
             disableOnInteraction: false,
           }}
           loop
-          mousewheel
+          // mousewheel
           pagination={{
             clickable: true,
           }}
