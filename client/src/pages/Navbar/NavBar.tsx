@@ -22,6 +22,7 @@ import RegistrationPage from '../Auth/RegistrationPage';
 import AuthorizationPage from '../Auth/AuthorizationPage';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../App/store/store';
+import { Link } from 'react-router-dom';
 
 const pages = ['Каталог', 'Новинки', 'Хиты', 'Скидки', 'Сертификаты'];
 
@@ -122,8 +123,8 @@ function NavBar(): JSX.Element {
             {pages.map((page) => (
               <Typography
                 key={page}
-                component="a"
-                href="/"
+                component={Link}
+                to="/"
                 sx={{
                   mr: 2,
                   display: { xs: 'none', md: 'flex' },
@@ -138,7 +139,7 @@ function NavBar(): JSX.Element {
               </Typography>
             ))}
           </Box>
-          <Typography variant="h6" noWrap component="a" href="/" sx={{}}>
+          <Typography variant="h6" noWrap sx={{}} component={Link} to="/">
             <img src={img} alt="logo" />
           </Typography>
           <Search>
@@ -148,15 +149,15 @@ function NavBar(): JSX.Element {
             <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
           </Search>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton sx={{ p: 0 }} color="inherit" onClick={() => setShowModal((prev) => !prev)} >
+            <IconButton sx={{ p: 0 }} color="inherit" onClick={() => setShowModal((prev) => !prev)}>
               <AccountCircleIcon />
             </IconButton>
             {user && (
               <>
-                <IconButton sx={{ p: 0 }} color="inherit" href='/bookmark'>
-                  <BookmarkBorderIcon/>
+                <IconButton sx={{ p: 0 }} color="inherit" component={Link} to="/bookmark">
+                  <BookmarkBorderIcon />
                 </IconButton>
-                <IconButton sx={{ p: 0 }} color="inherit" href='/cart'>
+                <IconButton sx={{ p: 0 }} color="inherit" component={Link} to="/cart">
                   <LocalMallIcon />
                 </IconButton>
               </>
