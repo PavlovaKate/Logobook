@@ -183,7 +183,7 @@ function NavBar({ color }: NavProps): JSX.Element {
       </ModalWindow>
 
       <ModalWindow active={showModalA} setActive={setShowModalA}>
-        <AuthorizationPage />
+        <AuthorizationPage setShowModalR={setShowModal} setShowModalA={setShowModalA} />
       </ModalWindow>
     </AppBar>
   );

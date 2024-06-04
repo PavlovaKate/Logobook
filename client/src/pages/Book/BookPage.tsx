@@ -14,7 +14,7 @@ import Error from '../ErrorPage/Error';
 import NavBar from '../Navbar/NavBar';
 import './Book.css';
 import Loader from '../../shared/Loader/Loader';
-import { stopLoading, updateFavourite } from '../Main/mainSlice';
+import { addToCart, stopLoading, updateFavourite } from '../Main/mainSlice';
 import BookItem from './BookItem';
 
 import arrLeft from '../../App/assets/img/arrow-left.svg';
@@ -26,13 +26,13 @@ import ReviewItem from './Review';
 import FormAddReview from './FormAddReview';
 
 function BookPage(): JSX.Element {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { books, isLoading } = useSelector((store: RootState) => store.book);
   const user = useSelector((state: RootState) => state.auth.user);
   const [activeStep, setActiveStep] = React.useState(0);
   const [activeStepHit, setActiveStepHit] = React.useState(0);
   const [open, setOpen] = useState(false);
+  const [openCart, setOpenCart] = useState(false);
 
   const handleNext = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -72,12 +72,17 @@ function BookPage(): JSX.Element {
           return;
         }
         setOpen(false);
+        setOpenCart(false);
       };
       const action = (
         <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
           <CloseIcon fontSize="small" />
         </IconButton>
       );
+      const handleAddToCart = () => {
+        dispatch(addToCart(book.id)).catch(console.log);
+        setOpenCart(true);
+      };
 
       const booksByAuthor = books.filter((bk) => bk.author === book?.author && bk.id !== book.id);
       const newBooksSteps = booksByAuthor.filter((_, idx) => idx < 7);
@@ -110,6 +115,19 @@ function BookPage(): JSX.Element {
             autoHideDuration={3000}
             onClose={handleClose}
             message={isFav ? 'Книга добавлена в избранное' : 'Книга удалена из избранного'}
+            action={action}
+          />
+
+          <Snackbar
+            open={openCart}
+            ContentProps={{
+              sx: {
+                background: '#547050',
+              },
+            }}
+            autoHideDuration={3000}
+            onClose={handleClose}
+            message="Книга добавлена в коризну"
             action={action}
           />
           <div className="BookPage container">
@@ -156,7 +174,7 @@ function BookPage(): JSX.Element {
                 </div>
                 <p className="Price">{book?.amount} ₽</p>
                 {user && (
-                  <button type="button" className="btn">
+                  <button type="button" className="btn" onClick={handleAddToCart}>
                     добавить в корзину
                   </button>
                 )}
