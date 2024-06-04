@@ -23,8 +23,13 @@ import AuthorizationPage from '../Auth/AuthorizationPage';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../App/store/store';
 import { Link } from 'react-router-dom';
-
-const pages = ['Каталог', 'Новинки', 'Хиты', 'Скидки', 'Сертификаты'];
+const pages = [
+  { title: 'Каталог', link: 'catalog' },
+  { title: 'Новинки', link: 'new' },
+  { title: 'Хиты', link: 'hit' },
+  { title: 'Скидки', link: 'sale' },
+  { title: 'Сертификаты', link: 'giftcards' },
+];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -113,8 +118,10 @@ function NavBar(): JSX.Element {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.link} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center" component={Link} to={`/${page.link}`}>
+                    {page.title}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -122,9 +129,9 @@ function NavBar(): JSX.Element {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Typography
-                key={page}
+                key={page.link}
                 component={Link}
-                to="/"
+                to={`/${page.link}`}
                 sx={{
                   mr: 2,
                   display: { xs: 'none', md: 'flex' },
@@ -135,7 +142,7 @@ function NavBar(): JSX.Element {
                   textDecoration: 'none',
                 }}
               >
-                {page}
+                {page.title}
               </Typography>
             ))}
           </Box>
