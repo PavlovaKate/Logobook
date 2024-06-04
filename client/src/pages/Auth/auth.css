@@ -36,8 +36,9 @@ form button {
   margin-top: 15px;
   border: none;
   border-radius: 0;
-  background-color: #547050;
-  color: white;
+  background-color: #fff;
+  color: #121711;
+  border: 1px solid #121711;
   text-decoration: none;
   text-align: center;
   cursor: pointer;
@@ -52,6 +53,11 @@ form button:hover {
   font-weight: 300;
   font-size: 13px;
   color: #f00;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
 }
 
 /* Адаптивные стили для мобильных устройств */

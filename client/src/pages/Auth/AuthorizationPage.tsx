@@ -15,7 +15,13 @@ const schema = object().shape({
   password: string().trim().required('Необходимо указать пароль'),
 });
 
-function AuthorizationPage(): JSX.Element {
+function AuthorizationPage({
+  setShowModalR,
+  setShowModalA,
+}: {
+  setShowModalR: (value: boolean) => void;
+  setShowModalA: (value: boolean) => void;
+}): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -49,6 +55,15 @@ function AuthorizationPage(): JSX.Element {
       </label>
       <div className="button-container">
         <button type="submit">Вход</button>
+        <button
+          type="button"
+          onClick={() => {
+            setShowModalA(false);
+            setShowModalR(true);
+          }}
+        >
+          Регистрация
+        </button>
       </div>
     </form>
   );
