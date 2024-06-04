@@ -9,7 +9,6 @@ type ReviewItemProps = { review: Review };
 function ReviewItem({ review }: ReviewItemProps): JSX.Element {
   const users = useSelector((state: RootState) => state.auth.users);
   const user = users.find((el) => el.id === review.userId);
-  console.log(user);
 
   return (
     <div className="review">

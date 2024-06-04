@@ -1,13 +1,11 @@
 import React from 'react';
 import './Bookmark.css';
-import NavBar from '../Navbar/NavBar';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../App/store/store';
+import NavBar from '../Navbar/NavBar';
+import type { RootState } from '../../App/store/store';
 import BookItem from '../Book/BookItem';
 
-type BookmarkProps = {};
-
-const Bookmark = ({}: BookmarkProps): JSX.Element => {
+function Bookmark(): JSX.Element {
   const books = useSelector((store: RootState) => store.book.books);
   const user = useSelector((store: RootState) => store.auth.user);
   console.log(books);
@@ -27,6 +25,6 @@ const Bookmark = ({}: BookmarkProps): JSX.Element => {
       </div>
     </div>
   );
-};
+}
 
 export default Bookmark;

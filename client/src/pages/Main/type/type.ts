@@ -47,9 +47,9 @@ export type Rate = {
 };
 
 export type Review = {
-  Images: Image[];
+  Images?: Image[];
   bookId: BookId;
-  id: number;
+  id?: number;
   review: string;
   userId: number;
 };
