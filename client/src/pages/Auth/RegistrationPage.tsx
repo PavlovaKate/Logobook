@@ -72,7 +72,7 @@ function RegistrationPage({
       </label>
       <br />
       <label htmlFor="password">
-        Повторный пароль:
+        Повторите пароль:
         <input type="password" {...register('checkPassword')} />
         <span className="errMesage">{errors.checkPassword?.message}</span>
       </label>

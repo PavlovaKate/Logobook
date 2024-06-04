@@ -32,3 +32,130 @@
   display: flex;
   gap: 10px;
 }
+
+.block {
+  height: 220px;
+  width: 100%;
+  margin: 120px 0;
+  background: #f3eece;
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+}
+.block .link {
+  text-align: center;
+  color: #121711;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 55px;
+  font-family: 'Felidae';
+  white-space: nowrap;
+
+  /* animation: text 15s infinite linear; */
+}
+
+.link-1 {
+  animation: marquee1 40s infinite linear;
+  animation-delay: -40s;
+}
+
+.link-2 {
+  animation: marquee2 40s infinite linear;
+  animation-delay: -20s;
+}
+
+.link:after {
+  content: ' РАСПРОДАЖА / УЦЕНЕННЫЕ ТОВАРЫ / ';
+}
+
+@keyframes marquee1 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee2 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+.slider {
+  width: 100%;
+  height: 775px;
+  margin-bottom: 100px;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slides {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slides p {
+  font-family: 'Felidae';
+  font-weight: 400;
+  font-size: 110px;
+  text-align: center;
+  color: #fff;
+  z-index: 3;
+}
+
+.slides a {
+  color: #fff;
+  font-weight: 300;
+  font-size: 20px;
+  text-decoration: underline;
+  font-family: 'Aneliza';
+  z-index: 3;
+}
+
+.slides:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.slide-1 {
+  background-image: url('../../App/assets/img/first.jpeg');
+  background-size: 100%;
+  background-position: 25% 60%;
+}
+
+.slide-2 {
+  background-image: url('../../App/assets/img/second.png');
+  background-size: 100%;
+}
+
+.slide-3 {
+  background-image: url('../../App/assets/img/third.png');
+  background-size: 100%;
+}
+
+.slide-4 {
+  background-image: url('../../App/assets/img/fourth.png');
+  background-size: 100%;
+  background-position: 25% 50%;
+}

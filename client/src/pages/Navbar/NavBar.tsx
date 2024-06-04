@@ -16,7 +16,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 // import './NavBar.css';
-import img from '../../App/assets/Logo.svg';
+import img from '../../App/assets/img/Logo.svg';
 import ModalWindow from '../../shared/Modal/ModalWindow';
 import RegistrationPage from '../Auth/RegistrationPage';
 import AuthorizationPage from '../Auth/AuthorizationPage';

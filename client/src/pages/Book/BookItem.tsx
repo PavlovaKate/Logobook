@@ -1,14 +1,25 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Book } from '../Main/type/type';
+=======
+import React from 'react';
+import { Link } from 'react-router-dom';
+>>>>>>> 2b5c00bb8bbeb7e30c0549a6983bef8abbc5fe02
 import './BookItem.css';
 import { Button, IconButton, Rating } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+
 import { useSelector } from 'react-redux';
+<<<<<<< HEAD
 import { RootState, useAppDispatch } from '../../App/store/store';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { updateFavourite } from '../Main/mainSlice';
 import Snackbar from '@mui/material/Snackbar';
 import CloseIcon from '@mui/icons-material/Close';
+=======
+import { RootState } from '../../App/store/store';
+import type { Book } from '../Main/type/type';
+>>>>>>> 2b5c00bb8bbeb7e30c0549a6983bef8abbc5fe02
 
 type BookItemProps = { book: Book };
 
@@ -73,8 +84,13 @@ const BookItem = ({ book }: BookItemProps): JSX.Element => {
         )}
       </div>
       <div className="BookItem-bottom">
-        <p className="BookItem-author">{book.author}</p>
-        <p className="BookItem-title">{book.title}</p>
+        <p className="BookItem-author">
+          {book.author.length < 25 ? book.author : `${book.author.slice(0, 21)}...`}
+        </p>
+        <p className="BookItem-title">
+          {book.title.length < 40 ? book.title : `${book.title.slice(0, 40)}...`}
+        </p>
+        <Link to={`/books/${book.id}`}>Подробнее...</Link>
         <p className="BookItem-amount">{book.amount} ₽</p>
         <Rating
           name="read-only"
@@ -86,6 +102,6 @@ const BookItem = ({ book }: BookItemProps): JSX.Element => {
       </div>
     </div>
   );
-};
+}
 
 export default BookItem;

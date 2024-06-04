@@ -15,6 +15,7 @@ export type Book = {
   categoryId: number;
   publisherId: number;
   Favourites: Fav[];
+
   RateLines: RateLine[];
   Reviews: Review[];
   ShopLines: ShopLine[];
@@ -41,7 +42,7 @@ export type Rate = {
   id: number;
   bookId: BookId;
   rateAvg: number;
-}
+};
 
 export type Review = {
   Images: Image[];
@@ -55,7 +56,7 @@ export type Image = {
   id: number;
   reviewId: number;
   image: string;
-}
+};
 
 export type Shop = {
   adress: string;
