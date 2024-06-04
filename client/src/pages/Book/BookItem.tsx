@@ -40,7 +40,7 @@ const BookItem = ({ book }: BookItemProps): JSX.Element => {
   );
 
   return (
-    <>
+    <div className="BookItem">
       <Snackbar
         open={open}
         ContentProps={{
@@ -53,40 +53,38 @@ const BookItem = ({ book }: BookItemProps): JSX.Element => {
         message={isFav ? 'Книга добавлена в избранное' : 'Книга удалена из избранного'}
         action={action}
       />
-      <div className="BookItem">
-        <div className="BookItem-top">
-          {book.TagLines.map((tagline, idx) => (
-            <span key={tagline.id} className={`tag tag-${idx + 1} ${tagline.Tag.tagName} `}>
-              {tagline.Tag.tagName.toLowerCase()}
-            </span>
-          ))}
-          <div className="BookItem-image">
-            <img src={book.image} alt="" />
-          </div>
-          {user && (
-            <IconButton
-              sx={{ padding: 0, position: 'absolute', right: 0 }}
-              color="inherit"
-              onClick={toggleBookmark}
-            >
-              {isFav ? <BookmarkIcon /> : <BookmarkBorderIcon />}
-            </IconButton>
-          )}
+      <div className="BookItem-top">
+        {book.TagLines.map((tagline, idx) => (
+          <span key={tagline.id} className={`tag tag-${idx + 1} ${tagline.Tag.tagName} `}>
+            {tagline.Tag.tagName.toLowerCase()}
+          </span>
+        ))}
+        <div className="BookItem-image">
+          <img src={book.image} alt="" />
         </div>
-        <div className="BookItem-bottom">
-          <p className="BookItem-author">{book.author}</p>
-          <p className="BookItem-title">{book.title}</p>
-          <p className="BookItem-amount">{book.amount} ₽</p>
-          <Rating
-            name="read-only"
-            sx={{ color: '#81a67c' }}
-            value={book.RateLines[0].Rate.rateAvg}
-            readOnly
-          />
-          {user && <button className="btn">добавить в корзину</button>}
-        </div>
+        {user && (
+          <IconButton
+            sx={{ padding: 0, position: 'absolute', right: 0 }}
+            color="inherit"
+            onClick={toggleBookmark}
+          >
+            {isFav ? <BookmarkIcon /> : <BookmarkBorderIcon />}
+          </IconButton>
+        )}
       </div>
-    </>
+      <div className="BookItem-bottom">
+        <p className="BookItem-author">{book.author}</p>
+        <p className="BookItem-title">{book.title}</p>
+        <p className="BookItem-amount">{book.amount} ₽</p>
+        <Rating
+          name="read-only"
+          sx={{ color: '#81a67c' }}
+          value={book.RateLines[0].Rate.rateAvg}
+          readOnly
+        />
+        {user && <button className="btn">добавить в корзину</button>}
+      </div>
+    </div>
   );
 };
 
