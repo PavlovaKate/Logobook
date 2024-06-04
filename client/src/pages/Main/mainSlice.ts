@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import * as api from './api';
-import type { Book, BookId } from './type/type';
+import type { Book, BookId, Review } from './type/type';
 
 type BooksReducer = {
   books: Book[];
   message: string | undefined;
   errors: string | undefined;
   isLoading: boolean;
+  review: Review | {};
 };
 
 const initialState: BooksReducer = {
@@ -15,11 +16,15 @@ const initialState: BooksReducer = {
   message: undefined,
   errors: undefined,
   isLoading: true,
+  review: {},
 };
 
 export const loadBooks = createAsyncThunk('books/load', () => api.axiosBooks());
 export const updateFavourite = createAsyncThunk('favourite/update', (id: BookId) =>
   api.axiosUpdateFavourite(id),
+);
+export const loadReview = createAsyncThunk('review/add', (review: Review) =>
+  api.reviewAxios(review),
 );
 
 const booksSlice = createSlice({
@@ -47,7 +52,6 @@ const booksSlice = createSlice({
         action.payload.message === 'destroy'
           ? (books = state.books.map((book) => {
               if (book.id === action.payload.favourite.bookId) {
-                console.log(action.payload.favourite.id);
                 book.Favourites = book.Favourites.filter(
                   (fav) => fav.id !== action.payload.favourite.id,
                 );
@@ -63,6 +67,18 @@ const booksSlice = createSlice({
 
         state.books = books;
         state.message = action.payload.message;
+      })
+      .addCase(loadReview.fulfilled, (state, action) => {
+        state.books = state.books.map((book) => {
+          if (book.id === action.payload.bookId) {
+            book.Reviews.push(action.payload);
+          }
+          return book;
+        });
+        state.review = action.payload.review;
+      })
+      .addCase(loadReview.rejected, (state, action) => {
+        state.errors = action.error.message;
       });
   },
 });

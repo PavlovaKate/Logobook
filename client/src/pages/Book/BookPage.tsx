@@ -23,6 +23,7 @@ import arrRight from '../../App/assets/img/arrow-right.svg';
 import arrRightDisable from '../../App/assets/img/arrow-right-disable.svg';
 import ScrollToTop from '../../shared/Scroll/Scroll';
 import ReviewItem from './Review';
+import FormAddReview from './FormAddReview';
 
 function BookPage(): JSX.Element {
   const navigate = useNavigate();
@@ -171,6 +172,12 @@ function BookPage(): JSX.Element {
                 <ReviewItem review={el} />
               ))}
             </div>
+
+            {user && book.Reviews.findIndex((el) => el.userId === user.id) ? (
+              <FormAddReview id={+id} />
+            ) : (
+              <></>
+            )}
 
             {booksByAuthor.length > 0 && (
               <>

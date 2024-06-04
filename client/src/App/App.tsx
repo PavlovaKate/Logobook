@@ -1,29 +1,16 @@
 import React, { useEffect } from 'react';
 import './App.css';
-// import type { AxiosResponse } from 'axios';
-import { useNavigate } from 'react-router-dom';
+
 import AppRoutes from './provider/AppRoutes';
-import NavBar from '../pages/Navbar/NavBar';
-import { RootState, useAppDispatch } from './store/store';
-// import { request } from '../services/axiosInstance';
+import { useAppDispatch } from './store/store';
 import { checkedUser, loadUsers } from '../pages/Auth/authSlice';
 import { loadBooks } from '../pages/Main/mainSlice';
-import { useSelector } from 'react-redux';
-import { loadCarts } from '../pages/Cart/cartSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const axiosCheck = async (): Promise<void> => {
-    dispatch(checkedUser());
-
-    // const { data }: AxiosResponse<UsersResponse> = await request.get('/tokens/refresh');
-
-    // if (data.message === 'success') {
-    //   setAccessToken(data.accessToken);
-    //   dispatch({ type: 'users/check', payload: data.user });
-    // }
+    dispatch(checkedUser()).catch(console.log);
   };
 
   useEffect(() => {
@@ -34,7 +21,6 @@ function App(): JSX.Element {
 
   return (
     <div className="App">
-      {/* <NavBar /> */}
       <AppRoutes />
     </div>
   );

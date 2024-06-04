@@ -1,6 +1,7 @@
 import type { AxiosResponse } from 'axios';
 import { request } from '../../services/axiosInstance';
-import type { Book, BookId, Fav } from './type/type';
+
+import type { Book, BookId, Fav, Review } from './type/type';
 
 export const axiosBooks = async (): Promise<{ message: string; books: Book[] }> => {
   const response: AxiosResponse<{ message: string; books: Book[] }> = await request.get('/books');
@@ -14,4 +15,12 @@ export const axiosUpdateFavourite = async (
     `/favourites/${id}`,
   );
   return response.data;
+};
+
+export const reviewAxios = async (review: Review): Promise<Review> => {
+  const { data }: AxiosResponse<{ message: string; review: Review }> = await request.post(
+    '/review/add',
+    review,
+  );
+  return data.review;
 };

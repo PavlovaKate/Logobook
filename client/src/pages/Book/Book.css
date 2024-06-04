@@ -109,6 +109,15 @@
 
 .arrows {
   margin-top: 50px;
+  margin-bottom: 30px;
 }
 
-.arrows
+.formReview {
+  display: flex;
+  align-items: center;
+}
+
+.formReview input {
+  width: 800px;
+  height: 90px;
+}
