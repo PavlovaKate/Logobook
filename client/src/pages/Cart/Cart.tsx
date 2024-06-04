@@ -19,7 +19,7 @@ const Cart = ({}: CartProps): JSX.Element => {
   }, [dispatch, user]);
 
   const userCarts = useSelector((state: RootState) => state.cart.carts);
-  const cart = userCarts.filter((cart) => !cart.cartStatus)[0];
+  const cart = userCarts.filter((cart) => !cart.cartStatus)[0]
   const orders = userCarts.filter((cart) => cart.cartStatus);
   const totalQuantity = cart
     ? cart.CartLines.reduce((acc, cartline) => acc + cartline.count, 0)

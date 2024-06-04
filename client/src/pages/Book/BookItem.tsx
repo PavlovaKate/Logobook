@@ -1,19 +1,61 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import './BookItem.css';
 import { IconButton, Rating } from '@mui/material';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../App/store/store';
+import { RootState, useAppDispatch } from '../../App/store/store';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { updateFavourite } from '../Main/mainSlice';
+import Snackbar from '@mui/material/Snackbar';
+import CloseIcon from '@mui/icons-material/Close';
+import { Link } from 'react-router-dom';
+
 import type { Book } from '../Main/type/type';
 
 type BookItemProps = { book: Book };
 
-function BookItem({ book }: BookItemProps): JSX.Element {
+
+const BookItem = ({ book }: BookItemProps): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const [open, setOpen] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
+  const isFav = user
+    ? book.Favourites.find((fav) => fav.userId === user.id && fav.bookId === book.id)
+      ? true
+      : false
+    : false;
+  const toggleBookmark = () => {
+    dispatch(updateFavourite(book.id));
+    setOpen(true);
+  };
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+  const action = (
+    <React.Fragment>
+      <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+
   return (
     <div className="BookItem">
+      <Snackbar
+        open={open}
+        ContentProps={{
+          sx: {
+            background: '#547050',
+          },
+        }}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        message={isFav ? 'Книга добавлена в избранное' : 'Книга удалена из избранного'}
+        action={action}
+      />
       <div className="BookItem-top">
         {book.TagLines.map((tagline, idx) => (
           <span key={tagline.id} className={`tag tag-${idx + 1} ${tagline.Tag.tagName} `}>
@@ -24,8 +66,13 @@ function BookItem({ book }: BookItemProps): JSX.Element {
           <img src={book.image} alt="" />
         </div>
         {user && (
-          <IconButton sx={{ padding: 0, position: 'absolute', right: 5, top: 5 }} color="inherit">
-            <BookmarkBorderIcon />
+
+          <IconButton
+            sx={{ padding: 0, position: 'absolute', right: 0 }}
+            color="inherit"
+            onClick={toggleBookmark}
+          >
+            {isFav ? <BookmarkIcon /> : <BookmarkBorderIcon />}
           </IconButton>
         )}
       </div>
@@ -52,6 +99,6 @@ function BookItem({ book }: BookItemProps): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
 export default BookItem;

@@ -1,13 +1,11 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-
 import Error from '../../pages/ErrorPage/Error';
 import Main from '../../pages/Main/Main';
-
 import Cart from '../../pages/Cart/Cart';
+import Bookmark from '../../pages/Bookmark/Bookmark';
 import BookPage from '../../pages/Book/BookPage';
 import Sale from '../../pages/Sale/Sale';
-
 
 function AppRoutes(): JSX.Element {
   return (
@@ -15,6 +13,7 @@ function AppRoutes(): JSX.Element {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/bookmark" element={<Bookmark />} />
         <Route path="/books/:id" element={<BookPage />} />
         <Route path="/sale" element={<Sale />} />
         <Route path="*" element={<Error />} />
