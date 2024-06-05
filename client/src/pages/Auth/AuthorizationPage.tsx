@@ -37,6 +37,7 @@ function AuthorizationPage({
     const action = await dispatch(loginUser(user));
     if (action.type === 'users/login/fulfilled') {
       navigate('/');
+      setShowModalA(false);
     }
   };
 

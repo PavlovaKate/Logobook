@@ -34,6 +34,9 @@ const authSluce = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.errors = action.error.message;
       })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.user = undefined;
+      })
       .addCase(checkedUser.fulfilled, (state, action) => {
         state.user = action.payload;
       })

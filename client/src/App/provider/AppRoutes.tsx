@@ -9,6 +9,7 @@ import Sale from '../../pages/SalePage/Sale';
 import Catalog from '../../pages/Catalog/Catalog';
 import New from '../../pages/NewPage/New';
 import Hit from '../../pages/HitPage/Hit';
+import User from '../../pages/User/User';
 
 function AppRoutes(): JSX.Element {
   return (
@@ -22,6 +23,7 @@ function AppRoutes(): JSX.Element {
         <Route path="/new" element={<New />} />
         <Route path="/sale" element={<Sale />} />
         <Route path="/hit" element={<Hit />} />
+        <Route path="/user" element={<User />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

@@ -48,6 +48,7 @@ function RegistrationPage({
     const action = await dispatch(loadUser(user));
     if (action.type === 'users/add/fulfilled') {
       navigate('/');
+      setShowModalR(false);
     }
   };
 
