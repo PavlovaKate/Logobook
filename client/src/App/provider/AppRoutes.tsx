@@ -5,7 +5,7 @@ import Main from '../../pages/Main/Main';
 import Cart from '../../pages/Cart/Cart';
 import Bookmark from '../../pages/Bookmark/Bookmark';
 import BookPage from '../../pages/Book/BookPage';
-import Sale from '../../pages/Sale/Sale';
+import Sale from '../../pages/SalePage/Sale';
 import Catalog from '../../pages/Catalog/Catalog';
 import New from '../../pages/NewPage/New';
 
