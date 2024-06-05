@@ -22,9 +22,7 @@ import imgGreen from '../../App/assets/img/logo-green.svg';
 import ModalWindow from '../../shared/Modal/ModalWindow';
 import RegistrationPage from '../Auth/RegistrationPage';
 import AuthorizationPage from '../Auth/AuthorizationPage';
-import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '../../App/store/store';
-import { Link } from 'react-router-dom';
 import { Badge } from '@mui/material';
 import { loadCarts } from '../Cart/cartSlice';
 
@@ -90,9 +88,10 @@ type NavProps = {
 function NavBar({ color }: NavProps): JSX.Element {
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useAppDispatch();
+  const books = useSelector((state: RootState) => state.book.books)
   useEffect(() => {
     if (user) dispatch(loadCarts(user.id)).catch(console.log);
-  }, [dispatch, user]);
+  }, [dispatch, user, books]);
   const carts = useSelector((state: RootState) => state.cart.carts);
   const cart = carts.find((cart) => cart.userId === user?.id && !cart.cartStatus);
   const count = cart?.CartLines?.reduce((acc, cartline) => acc + cartline.count, 0);

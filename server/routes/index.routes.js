@@ -11,7 +11,7 @@ const { verifyAccessToken } = require('../middleware/authMiddleware');
 router.use('/tokens', tokenRoutes);
 router.use('/users', userRoutes);
 router.use('/books', booksRoutes);
-router.use('/carts', cartsRoutes);
+router.use('/carts',verifyAccessToken, cartsRoutes);
 router.use('/review', reviewRoutes);
 router.use('/favourites', verifyAccessToken, favouritesRoutes);
 
