@@ -191,7 +191,7 @@ function BookPage(): JSX.Element {
               ))}
             </div>
 
-            {user && book.Reviews.findIndex((el) => el.userId === user.id) ? (
+            {user && !book.Reviews.find((el) => el.userId === user.id) ? (
               <FormAddReview id={+id} />
             ) : (
               <></>
