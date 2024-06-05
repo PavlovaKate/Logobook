@@ -141,21 +141,25 @@
 .slide-1 {
   background-image: url('../../App/assets/img/first.jpeg');
   background-size: 100%;
+  background-repeat: no-repeat;
   background-position: 25% 60%;
 }
 
 .slide-2 {
   background-image: url('../../App/assets/img/second.png');
-  background-size: 100%;
+  background-size: 100% 100% contain;
+  background-repeat: no-repeat;
 }
 
 .slide-3 {
   background-image: url('../../App/assets/img/third.png');
-  background-size: 100%;
+  background-size: 100% 100% contain;
+  background-repeat: no-repeat;
 }
 
 .slide-4 {
   background-image: url('../../App/assets/img/fourth.png');
-  background-size: 100%;
+  background-size: 100% 100% contain;
+  background-repeat: no-repeat;
   background-position: 25% 50%;
 }
