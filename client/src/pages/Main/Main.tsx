@@ -130,7 +130,7 @@ function Main(): JSX.Element {
           {activeStep === 4 && (
             <div>
               <button className="btn dop" type="button">
-                Дополнительно
+                <Link to="/new">Дополнительно</Link>
               </button>
             </div>
           )}
@@ -179,7 +179,7 @@ function Main(): JSX.Element {
           {activeStepHit === 4 && (
             <div>
               <button className="btn dop" type="button">
-                Дополнительно
+                <Link to="/hit">Дополнительно</Link>
               </button>
             </div>
           )}
