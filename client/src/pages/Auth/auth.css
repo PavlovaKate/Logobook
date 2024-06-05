@@ -23,6 +23,7 @@ form input {
   border-radius: 0;
   box-sizing: border-box;
   font-family: 'Aneliza';
+  background-color: #fff;
 }
 
 form input:focus {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { BottomNavigation, Box, Container, Grid, Typography } from '@mui/material';
 
 import { Link } from 'react-router-dom';
 import img from '../../App/assets/img/Logo.svg';
@@ -8,16 +8,14 @@ import imgGreen from '../../App/assets/img/logo-green.svg';
 
 function Footer(): JSX.Element {
   return (
-    <Box
+    <BottomNavigation
       sx={{
         width: '100%',
-        height: 'auto',
+        height: '6vh',
         backgroundColor: '#f3eece',
         paddingTop: '5rem',
         paddingBottom: '5rem',
         marginTop: '50px',
-        // position: 'absolute',
-        // bottom: '0',
       }}
     >
       <Container maxWidth="lg">
@@ -34,7 +32,7 @@ function Footer(): JSX.Element {
           </Grid>
         </Grid>
       </Container>
-    </Box>
+    </BottomNavigation>
   );
 }
 

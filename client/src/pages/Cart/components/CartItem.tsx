@@ -1,11 +1,12 @@
 import React from 'react';
-import { CartLine } from '../type/type';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../../App/store/store';
 import { Button, ButtonGroup } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import { useAppDispatch } from '../../../App/store/store';
+import type { RootState } from '../../../App/store/store';
+import type { CartLine } from '../type/type';
 import './CartItem.css';
 import { deleteCartLine, updateCartLine } from '../cartSlice';
 
@@ -13,7 +14,7 @@ type CartItemProps = {
   cartline: CartLine;
 };
 
-const CartItem = ({ cartline }: CartItemProps): JSX.Element => {
+function CartItem({ cartline }: CartItemProps): JSX.Element {
   const dispatch = useAppDispatch();
   const books = useSelector((state: RootState) => state.book.books);
   const book = books.find((book) => book.id === cartline.bookId);
@@ -31,22 +32,30 @@ const CartItem = ({ cartline }: CartItemProps): JSX.Element => {
     <>
       {book && (
         <div className="CartItem">
-          <div>
+          <div className="CartItem-image">
             <img src={book.image} alt="book" />
           </div>
-          <div>
-            <div>
+          <div className="CartItem-book">
+            <div className="bookInfo">
               <h3>{book.title}</h3>
               <p>{book.author}</p>
             </div>
-            <div>
-              <div>
+            <div className="bookOrder">
+              <div className="bookBtnGroup">
                 <ButtonGroup>
-                  <Button sx={{ p: 0, color: '#547050' }} onClick={handleDecreaseCartLine}>
+                  <Button
+                    sx={{ p: 0, color: '#547050', borderColor: '#121711' }}
+                    onClick={handleDecreaseCartLine}
+                  >
                     <RemoveIcon />
                   </Button>
-                  <Button sx={{ p: 0, color: '#547050' }}>{cartline.count}</Button>
-                  <Button sx={{ p: 0, color: '#547050' }} onClick={handleIncreaseCartLine}>
+                  <Button sx={{ p: 0, color: '#547050', borderColor: '#121711' }}>
+                    {cartline.count}
+                  </Button>
+                  <Button
+                    sx={{ p: 0, color: '#547050', borderColor: '#121711' }}
+                    onClick={handleIncreaseCartLine}
+                  >
                     <AddIcon />
                   </Button>
                 </ButtonGroup>
@@ -54,16 +63,13 @@ const CartItem = ({ cartline }: CartItemProps): JSX.Element => {
                   <ClearIcon sx={{ p: 0, width: '15px', height: '15px' }} />
                 </Button>
               </div>
-              <div>
-                <p>{book.amount} ₽</p>
-                <p>{book.amount} ₽</p>
-              </div>
+              <p>{book.amount} ₽</p>
             </div>
           </div>
         </div>
       )}
     </>
   );
-};
+}
 
 export default CartItem;
