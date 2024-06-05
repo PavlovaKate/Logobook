@@ -6,9 +6,11 @@ import BookItem from '../Book/BookItem';
 import './New.css';
 import ScrollToTopFab from './ScrollToTop';
 import ScrollToTop from '../../shared/Scroll/Scroll';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 function New(): JSX.Element {
   const [count, setCount] = useState(16);
+  const [sort, setSort] = React.useState('');
   const handleScroll = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
@@ -20,6 +22,9 @@ function New(): JSX.Element {
   const handleGoTop = () => {
     setTimeout(() => setCount(8), 1000);
   };
+  const handleChange = (event: SelectChangeEvent) => {
+    setSort(event.target.value as string);
+  };
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -28,7 +33,36 @@ function New(): JSX.Element {
   const newBook = allBooks.filter((book) =>
     book.TagLines.some((tagline) => tagline.Tag.tagName === 'New'),
   );
-  const books = newBook.filter((book, index) => index + 1 <= count);
+  let sortedBooks = newBook;
+  switch (sort) {
+    case 'ratingUp':
+      sortedBooks = [...newBook].sort((a, b) => a.Rate.rateAvg - b.Rate.rateAvg);
+      break;
+    case 'ratingDown':
+      sortedBooks = [...newBook].sort((a, b) => b.Rate.rateAvg - a.Rate.rateAvg);
+      break;
+    case 'priceUp':
+      sortedBooks = [...newBook].sort((a, b) => a.amount - b.amount);
+      break;
+    case 'priceDown':
+      sortedBooks = [...newBook].sort((a, b) => b.amount - a.amount);
+      break;
+    case 'titleA':
+      sortedBooks = [...newBook].sort((a, b) => a.title.charCodeAt(0) - b.title.charCodeAt(0));
+      break;
+    case 'titleZ':
+      sortedBooks = [...newBook].sort((a, b) => b.title.charCodeAt(0) - a.title.charCodeAt(0));
+      break;
+    case 'authorA':
+      sortedBooks = [...newBook].sort((a, b) => a.author.charCodeAt(0) - b.author.charCodeAt(0));
+      break;
+    case 'authorZ':
+      sortedBooks = [...newBook].sort((a, b) => b.author.charCodeAt(0) - a.author.charCodeAt(0));
+      break;
+    default:
+      break;
+  }
+  const books = sortedBooks.filter((_, index) => index + 1 <= count);
   return (
     <>
       <ScrollToTop />
@@ -36,7 +70,28 @@ function New(): JSX.Element {
         <NavBar color="#547050" />
         <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px' }}>
           <h2>новинки</h2>
-
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Сортировка</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={sort}
+              label="Сортировка"
+              onChange={handleChange}
+            >
+              <MenuItem value="">
+                <em>все</em>
+              </MenuItem>
+              <MenuItem value={'ratingDown'}>по рейтингу ↓</MenuItem>
+              <MenuItem value={'ratingUp'}>по рейтингу ↑</MenuItem>
+              <MenuItem value={'priceUp'}>по цене ↑</MenuItem>
+              <MenuItem value={'priceDown'}>по цене ↓</MenuItem>
+              <MenuItem value={'titleA'}>по названию (А-я)</MenuItem>
+              <MenuItem value={'titleZ'}>по названию (Я-а)</MenuItem>
+              <MenuItem value={'authorA'}>по автору (А-я)</MenuItem>
+              <MenuItem value={'authorZ'}>по автору (Я-а)</MenuItem>
+            </Select>
+          </FormControl>
           <div className="books">
             {books && books.map((book) => <BookItem key={book.id} book={book} />)}
           </div>

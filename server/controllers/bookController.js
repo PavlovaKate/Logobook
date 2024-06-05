@@ -30,6 +30,7 @@ exports.getAllBooks = async (req, res) => {
         { model: ShopLine, include: [Shop] },
         { model: CartLine, include: [Cart] },
         Favourite,
+        Rate
       ],
     });
 
