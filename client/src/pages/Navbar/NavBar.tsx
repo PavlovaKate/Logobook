@@ -66,7 +66,6 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledAutoComplete = styled(Autocomplete)(({ theme }) => ({
-
   color: '#121711',
   width: '100%',
   fontFamily: 'Aneliza',
@@ -74,6 +73,9 @@ const StyledAutoComplete = styled(Autocomplete)(({ theme }) => ({
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
+  },
+  '& .Mui-focused fieldset': {
+    borderColor: '#f3eece !important',
   },
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
@@ -210,14 +212,17 @@ function NavBar({ color }: NavProps): JSX.Element {
               onInputChange={(_, value) => {
                 if (value.length === 0) {
                   if (open) setOpen(false);
-                } else {
-                  if (!open) setOpen(true);
-                }
+                } else if (!open) setOpen(true);
               }}
               onClose={() => setOpen(false)}
+              onChange={(e, value) => changePage(e, value)}
               freeSolo
               id="free-solo-2-demo"
               disableClearable
+              renderOption={(props, option, state) => {
+                props.key = props.id;
+                return <li {...props}>{option}</li>;
+              }}
               options={books.map((book) => book.title)}
               renderInput={(params) => (
                 <TextField

@@ -4,14 +4,16 @@ import './Cart.css';
 import { Button } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../App/store/store';
+import type { RootState } from '../../App/store/store';
+import { useAppDispatch } from '../../App/store/store';
 import { deleteCart } from './cartSlice';
 import CartItem from './components/CartItem';
-import { CartLine } from './type/type';
+import type { CartLine } from './type/type';
+import { Link } from 'react-router-dom';
 
 type CartProps = {};
 
-const Cart = ({}: CartProps): JSX.Element => {
+function Cart({}: CartProps): JSX.Element {
   const dispatch = useAppDispatch();
   const userCarts = useSelector((state: RootState) => state.cart.carts);
   const cart = userCarts.filter((cart) => !cart.cartStatus)[0];
@@ -39,6 +41,7 @@ const Cart = ({}: CartProps): JSX.Element => {
                 fontSize: '15px',
                 lineHeight: '150%',
                 textTransform: 'none',
+                margin: '40px 0',
               }}
               startIcon={<DeleteForeverIcon />}
             >
@@ -47,28 +50,37 @@ const Cart = ({}: CartProps): JSX.Element => {
           </div>
         )}
 
-        <div className="cart-box">
-          <div className="cart-box-left">
-            {cart &&
-              cart.CartLines.map((cartline: CartLine) => (
+        {cart && (
+          <div className="cart-box">
+            <div className="cart-box-left">
+              {cart.CartLines.map((cartline: CartLine) => (
                 <CartItem cartline={cartline} key={cartline.id} />
               ))}
-          </div>
-          <div className="cart-box-right">
-            <div>
-              <h3>Количество товаров</h3>
-              <p>{totalQuantity || 0}</p>
             </div>
-            <div>
-              <h3>Сумма заказа</h3>
-              <p>{cart ? cart.totalAmount : 0} ₽</p>
+            <div className="cart-box-right">
+              <div>
+                <h3>Количество товаров</h3>
+                <p>{totalQuantity || 0}</p>
+              </div>
+              <div>
+                <h3>Сумма заказа</h3>
+                <p> {cart.totalAmount} ₽</p>
+              </div>
+              <button className="btn" type="button">
+                Оформить заказ
+              </button>
             </div>
-            <button className="btn">Оформить заказ</button>
           </div>
-        </div>
+        )}
+        {!cart && (
+          <div className="message">
+            <p>Пока ничего нет</p>
+            <Link to="/catalog">Подобрать что-то интересное</Link>
+          </div>
+        )}
       </div>
     </div>
   );
-};
+}
 
 export default Cart;

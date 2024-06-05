@@ -1,6 +1,7 @@
 import React from 'react';
 import './Bookmark.css';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import NavBar from '../Navbar/NavBar';
 import type { RootState } from '../../App/store/store';
 import BookItem from '../Book/BookItem';
@@ -16,9 +17,17 @@ function Bookmark(): JSX.Element {
       <NavBar color="#547050" />
       <div className="container">
         <h2>Избранное</h2>
-        {favBooks.map((book) => (
-          <BookItem key={book.id} book={book} />
-        ))}
+        <div className="bookContainer">
+          {favBooks.length > 0 && favBooks.map((book) => <BookItem key={book.id} book={book} />)}
+        </div>
+        <div className="message">
+          {favBooks.length === 0 && (
+            <>
+              <p>Пока ничего нет</p>
+              <Link to="/catalog">Подобрать что-то интересное</Link>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
