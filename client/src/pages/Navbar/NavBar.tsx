@@ -89,7 +89,7 @@ type NavProps = {
 function NavBar({ color }: NavProps): JSX.Element {
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useAppDispatch();
-  const books = useSelector((state: RootState) => state.book.books)
+  const books = useSelector((state: RootState) => state.book.books);
   useEffect(() => {
     if (user) dispatch(loadCarts(user.id)).catch(console.log);
   }, [dispatch, user, books]);
@@ -119,7 +119,7 @@ function NavBar({ color }: NavProps): JSX.Element {
       }}
     >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{ display: { xs: 'flex' }, justifyContent: 'space-between' }}>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -158,7 +158,13 @@ function NavBar({ color }: NavProps): JSX.Element {
               ))}
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex' },
+              maxWidth: '600px',
+            }}
+          >
             {pages.map((page) => (
               <Typography
                 key={page.link}
@@ -181,19 +187,32 @@ function NavBar({ color }: NavProps): JSX.Element {
           <Typography variant="h6" noWrap sx={{}} component={Link} to="/">
             {color === '#547050' ? <img src={imgGreen} alt="logo" /> : <img src={img} alt="logo" />}
           </Typography>
-          <Search>
+          <Search
+            sx={{
+              width: '100px',
+            }}
+          >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
           </Search>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton sx={{ p: 0 }} color="inherit" onClick={() => setShowModal((prev) => !prev)}>
+            <IconButton
+              sx={{ p: 0, margin: '0 10px' }}
+              color="inherit"
+              onClick={() => setShowModal((prev) => !prev)}
+            >
               <AccountCircleIcon />
             </IconButton>
             {user && (
               <>
-                <IconButton sx={{ p: 0 }} color="inherit" component={Link} to="/bookmark">
+                <IconButton
+                  sx={{ p: 0, marginRight: '10px' }}
+                  color="inherit"
+                  component={Link}
+                  to="/bookmark"
+                >
                   <BookmarkBorderIcon />
                 </IconButton>
                 <Badge

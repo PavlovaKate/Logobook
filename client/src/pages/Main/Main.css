@@ -2,7 +2,7 @@
   margin: 0 auto;
   flex-wrap: wrap;
   display: flex;
-  gap: 30px;
+  gap: 42px;
 }
 
 .arrow {
@@ -20,12 +20,13 @@
   display: flex;
   align-items: center;
   justify-content: end;
-  padding: 30px;
+  padding-bottom: 30px;
 }
 
 .arrows h2 {
   margin: 0 auto;
   transform: translate(50%);
+  font-family: 'Aneliza';
 }
 
 .arrows-arrow {
@@ -147,7 +148,7 @@
 
 .slide-2 {
   background-image: url('../../App/assets/img/second.png');
-  background-size: 100% 100% contain;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
@@ -162,4 +163,8 @@
   background-size: 100% 100% contain;
   background-repeat: no-repeat;
   background-position: 25% 50%;
+}
+
+.btn-dop {
+  margin-top: 150px;
 }

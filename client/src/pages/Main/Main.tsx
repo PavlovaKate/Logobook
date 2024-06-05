@@ -128,10 +128,12 @@ function Main(): JSX.Element {
               return <BookItem book={book} key={book.id} />;
           })}
           {activeStep === 4 && (
-            <div>
-              <button className="btn dop" type="button">
-                <Link to="/new">Дополнительно</Link>
-              </button>
+            <div className="btn-dop">
+              <Link to="/new">
+                <button className="btn dop" type="button">
+                  дополнительно
+                </button>
+              </Link>
             </div>
           )}
         </div>
@@ -177,10 +179,12 @@ function Main(): JSX.Element {
             }
           })}
           {activeStepHit === 4 && (
-            <div>
-              <button className="btn dop" type="button">
-                <Link to="/hit">Дополнительно</Link>
-              </button>
+            <div className="btn-dop">
+              <Link to="/hit">
+                <button className="btn dop" type="button">
+                  дополнительно
+                </button>
+              </Link>
             </div>
           )}
         </div>
