@@ -16,6 +16,8 @@ function Footer(): JSX.Element {
         paddingTop: '5rem',
         paddingBottom: '5rem',
         marginTop: '50px',
+        // position: 'absolute',
+        // bottom: '0',
       }}
     >
       <Container maxWidth="lg">

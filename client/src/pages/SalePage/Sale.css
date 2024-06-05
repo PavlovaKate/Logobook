@@ -1,6 +1,6 @@
 .books {
   display: flex;
-  gap: 30px;
+  gap: 42px;
   flex-wrap: wrap;
   margin: 0 auto;
   font-family: var(--font-family);
@@ -11,4 +11,5 @@
   font-size: 55px;
   text-transform: uppercase;
   text-align: left;
+  font-family: 'Felidae';
 }

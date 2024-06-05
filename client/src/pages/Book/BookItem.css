@@ -4,6 +4,7 @@
   font-size: 20px;
   position: relative;
   font-family: 'Aneliza';
+  margin-bottom: 20px;
 }
 
 .BookItem-image {
@@ -88,6 +89,8 @@
 
 .BookItem-bottom {
   text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .btn {

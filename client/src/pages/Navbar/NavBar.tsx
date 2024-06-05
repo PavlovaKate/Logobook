@@ -16,7 +16,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete, Badge, TextField } from '@mui/material';
 // import './NavBar.css';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../App/store/store';
 import type { RootState } from '../../App/store/store';
 import { loadCarts } from '../Cart/cartSlice';
@@ -66,8 +66,10 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledAutoComplete = styled(Autocomplete)(({ theme }) => ({
-  color: 'inherit',
+
+  color: '#121711',
   width: '100%',
+  fontFamily: 'Aneliza',
   '& .MuiInputBase-root ': {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
@@ -111,6 +113,13 @@ function NavBar({ color }: NavProps): JSX.Element {
 
   const [open, setOpen] = React.useState(false);
 
+  const navigate = useNavigate();
+
+  function changePage(e: React.SyntheticEvent<Element, Event>, value: unknown): void {
+    const book = books.filter((el) => el.title === value);
+    navigate(`/books/${book[0].id}`);
+  }
+
   return (
     <AppBar
       position="fixed"
@@ -123,7 +132,7 @@ function NavBar({ color }: NavProps): JSX.Element {
       }}
     >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{ display: { xs: 'flex' }, justifyContent: 'space-between' }}>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -162,7 +171,13 @@ function NavBar({ color }: NavProps): JSX.Element {
               ))}
             </Menu>
           </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex' },
+              maxWidth: '500px',
+            }}
+          >
             {pages.map((page) => (
               <Typography
                 key={page.link}
@@ -171,7 +186,7 @@ function NavBar({ color }: NavProps): JSX.Element {
                 sx={{
                   mr: 2,
                   display: { xs: 'none', md: 'flex' },
-                  fontFamily: 'monospace',
+                  fontFamily: 'Aneliza',
                   fontWeight: 700,
                   letterSpacing: '.3rem',
                   color: 'inherit',
@@ -216,12 +231,21 @@ function NavBar({ color }: NavProps): JSX.Element {
             />
           </Search>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton sx={{ p: 0 }} color="inherit" onClick={() => setShowModal((prev) => !prev)}>
+            <IconButton
+              sx={{ p: 0, margin: '0 10px' }}
+              color="inherit"
+              onClick={() => setShowModal((prev) => !prev)}
+            >
               <AccountCircleIcon />
             </IconButton>
             {user && (
               <>
-                <IconButton sx={{ p: 0 }} color="inherit" component={Link} to="/bookmark">
+                <IconButton
+                  sx={{ p: 0, marginRight: '10px' }}
+                  color="inherit"
+                  component={Link}
+                  to="/bookmark"
+                >
                   <BookmarkBorderIcon />
                 </IconButton>
                 <Badge
