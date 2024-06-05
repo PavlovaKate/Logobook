@@ -1,0 +1,14 @@
+.books {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  font-family: var(--font-family);
+}
+
+.Catalog h2 {
+  font-weight: 400;
+  font-size: 55px;
+  text-transform: uppercase;
+  text-align: left;
+}

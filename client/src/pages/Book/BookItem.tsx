@@ -33,7 +33,7 @@ function BookItem({ book }: BookItemProps): JSX.Element {
       return;
     }
     setOpen(false);
-    setOpenCart(false)
+    setOpenCart(false);
   };
   const action = (
     <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
@@ -42,7 +42,7 @@ function BookItem({ book }: BookItemProps): JSX.Element {
   );
   const handleAddToCart = () => {
     dispatch(addToCart(book.id));
-    setOpenCart(true)
+    setOpenCart(true);
   };
   return (
     <div className="BookItem">
@@ -67,7 +67,7 @@ function BookItem({ book }: BookItemProps): JSX.Element {
         }}
         autoHideDuration={3000}
         onClose={handleClose}
-        message='Книга добавлена в коризну'
+        message="Книга добавлена в коризну"
         action={action}
       />
       <div className="BookItem-top">

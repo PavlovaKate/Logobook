@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import MenuItem from '@mui/material/MenuItem';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
@@ -23,7 +22,11 @@ import imgGreen from '../../App/assets/img/logo-green.svg';
 import ModalWindow from '../../shared/Modal/ModalWindow';
 import RegistrationPage from '../Auth/RegistrationPage';
 import AuthorizationPage from '../Auth/AuthorizationPage';
-import type { RootState } from '../../App/store/store';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '../../App/store/store';
+import { Link } from 'react-router-dom';
+import { Badge } from '@mui/material';
+import { loadCarts } from '../Cart/cartSlice';
 
 const pages = [
   { title: 'Каталог', link: 'catalog' },
@@ -86,6 +89,13 @@ type NavProps = {
 
 function NavBar({ color }: NavProps): JSX.Element {
   const user = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (user) dispatch(loadCarts(user.id)).catch(console.log);
+  }, [dispatch, user]);
+  const carts = useSelector((state: RootState) => state.cart.carts);
+  const cart = carts.find((cart) => cart.userId === user?.id && !cart.cartStatus);
+  const count = cart?.CartLines?.reduce((acc, cartline) => acc + cartline.count, 0);
   const [showModal, setShowModal] = useState(false);
   const [showModalA, setShowModalA] = useState(false);
 
@@ -186,9 +196,20 @@ function NavBar({ color }: NavProps): JSX.Element {
                 <IconButton sx={{ p: 0 }} color="inherit" component={Link} to="/bookmark">
                   <BookmarkBorderIcon />
                 </IconButton>
-                <IconButton sx={{ p: 0 }} color="inherit" component={Link} to="/cart">
-                  <LocalMallIcon />
-                </IconButton>
+                <Badge
+                  badgeContent={count ? count : 0}
+                  color="primary"
+                  sx={{
+                    '& .MuiBadge-badge': {
+                      color: 'white',
+                      backgroundColor: '#81a67c',
+                    },
+                  }}
+                >
+                  <IconButton sx={{ p: 0 }} color="inherit" component={Link} to="/cart">
+                    <LocalMallIcon />
+                  </IconButton>
+                </Badge>
               </>
             )}
           </Box>
