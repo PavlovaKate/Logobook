@@ -12,9 +12,8 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import MenuItem from '@mui/material/MenuItem';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { Badge } from '@mui/material';
+import { Autocomplete, Badge, TextField } from '@mui/material';
 // import './NavBar.css';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -66,18 +65,21 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledAutoComplete = styled(Autocomplete)(({ theme }) => ({
   color: 'inherit',
   width: '100%',
-  '& .MuiInputBase-input': {
+  '& .MuiInputBase-root ': {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    [theme.breakpoints.up('sm')]: {
-      width: '0ch',
-      '&:focus': {
-        width: '20ch',
-      },
+  },
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    minWidth: '0 !important',
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    '&:focus': {
+      width: '30ch',
     },
   },
 }));
@@ -89,7 +91,7 @@ type NavProps = {
 function NavBar({ color }: NavProps): JSX.Element {
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useAppDispatch();
-  const books = useSelector((state: RootState) => state.book.books)
+  const books = useSelector((state: RootState) => state.book.books);
   useEffect(() => {
     if (user) dispatch(loadCarts(user.id)).catch(console.log);
   }, [dispatch, user, books]);
@@ -106,6 +108,8 @@ function NavBar({ color }: NavProps): JSX.Element {
   const handleCloseNavMenu: () => void = () => {
     setAnchorElNav(null);
   };
+
+  const [open, setOpen] = React.useState(false);
 
   return (
     <AppBar
@@ -181,11 +185,35 @@ function NavBar({ color }: NavProps): JSX.Element {
           <Typography variant="h6" noWrap sx={{}} component={Link} to="/">
             {color === '#547050' ? <img src={imgGreen} alt="logo" /> : <img src={img} alt="logo" />}
           </Typography>
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
+            <StyledAutoComplete
+              open={open}
+              onInputChange={(_, value) => {
+                if (value.length === 0) {
+                  if (open) setOpen(false);
+                } else {
+                  if (!open) setOpen(true);
+                }
+              }}
+              onClose={() => setOpen(false)}
+              freeSolo
+              id="free-solo-2-demo"
+              disableClearable
+              options={books.map((book) => book.title)}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  InputProps={{
+                    ...params.InputProps,
+                    type: 'search',
+                  }}
+                />
+              )}
+            />
           </Search>
           <Box sx={{ flexGrow: 0 }}>
             <IconButton sx={{ p: 0 }} color="inherit" onClick={() => setShowModal((prev) => !prev)}>
