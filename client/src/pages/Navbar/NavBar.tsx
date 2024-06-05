@@ -66,10 +66,10 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 const StyledAutoComplete = styled(Autocomplete)(({ theme }) => ({
+
   color: '#121711',
   width: '100%',
   fontFamily: 'Aneliza',
-
   '& .MuiInputBase-root ': {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
@@ -82,9 +82,6 @@ const StyledAutoComplete = styled(Autocomplete)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     '&:focus': {
       width: '30ch',
-    },
-    '& MuiOutlinedInput-notchedOutline': {
-      borderColor: '#121711 !important',
     },
   },
 }));
@@ -115,6 +112,7 @@ function NavBar({ color }: NavProps): JSX.Element {
   };
 
   const [open, setOpen] = React.useState(false);
+
   const navigate = useNavigate();
 
   function changePage(e: React.SyntheticEvent<Element, Event>, value: unknown): void {
@@ -212,10 +210,11 @@ function NavBar({ color }: NavProps): JSX.Element {
               onInputChange={(_, value) => {
                 if (value.length === 0) {
                   if (open) setOpen(false);
-                } else if (!open) setOpen(true);
+                } else {
+                  if (!open) setOpen(true);
+                }
               }}
               onClose={() => setOpen(false)}
-              onChange={(e, value) => changePage(e, value)}
               freeSolo
               id="free-solo-2-demo"
               disableClearable
