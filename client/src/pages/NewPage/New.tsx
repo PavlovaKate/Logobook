@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import NavBar from '../Navbar/NavBar';
 import type { RootState } from '../../App/store/store';
 import BookItem from '../Book/BookItem';
-import './Catalog.css';
+import './New.css';
 import ScrollToTopFab from './ScrollToTop';
 import ScrollToTop from '../../shared/Scroll/Scroll';
 
-function Catalog(): JSX.Element {
+function New(): JSX.Element {
   const [count, setCount] = useState(16);
   const handleScroll = () => {
     if (
@@ -25,14 +25,17 @@ function Catalog(): JSX.Element {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   const allBooks = useSelector((state: RootState) => state.book.books);
-  const books = allBooks.filter((book) => book.id <= count);
+  const newBook = allBooks.filter((book) =>
+    book.TagLines.some((tagline) => tagline.Tag.tagName === 'New'),
+  );
+  const books = newBook.filter((book, index) => index + 1 <= count);
   return (
     <>
       <ScrollToTop />
       <div className="Catalog">
         <NavBar color="#547050" />
         <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px' }}>
-          <h2>каталог</h2>
+          <h2>новинки</h2>
 
           <div className="books">
             {books && books.map((book) => <BookItem key={book.id} book={book} />)}
@@ -46,4 +49,4 @@ function Catalog(): JSX.Element {
   );
 }
 
-export default Catalog;
+export default New;
