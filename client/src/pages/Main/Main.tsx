@@ -10,8 +10,6 @@ import NavBar from '../Navbar/NavBar';
 import type { RootState } from '../../App/store/store';
 import BookItem from '../Book/BookItem';
 import './Main.css';
-
-import first from '../../App/assets/img/first.jpeg';
 import arrLeft from '../../App/assets/img/arrow-left.svg';
 import arrLeftDisable from '../../App/assets/img/arrow-left-disable.svg';
 import arrRight from '../../App/assets/img/arrow-right.svg';

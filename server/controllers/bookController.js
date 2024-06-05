@@ -1,7 +1,6 @@
 // controllers/userController.js
 
 const router = require('express').Router();
-const { where } = require('sequelize');
 const {
   Category,
   Publisher,
