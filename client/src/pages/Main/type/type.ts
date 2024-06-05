@@ -17,6 +17,7 @@ export type Book = {
   categoryId: number;
   publisherId: number;
   Favourites: Fav[];
+  Rate: Rate;
   RateLines: RateLine[];
   Reviews: Review[];
   ShopLines: ShopLine[];
