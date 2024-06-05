@@ -89,9 +89,10 @@ type NavProps = {
 function NavBar({ color }: NavProps): JSX.Element {
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useAppDispatch();
+  const books = useSelector((state: RootState) => state.book.books)
   useEffect(() => {
     if (user) dispatch(loadCarts(user.id)).catch(console.log);
-  }, [dispatch, user]);
+  }, [dispatch, user, books]);
   const carts = useSelector((state: RootState) => state.cart.carts);
   const cart = carts.find((cart) => cart.userId === user?.id && !cart.cartStatus);
   const count = cart?.CartLines?.reduce((acc, cartline) => acc + cartline.count, 0);

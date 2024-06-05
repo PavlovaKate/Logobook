@@ -8,12 +8,9 @@ import BookItem from '../Book/BookItem';
 function Bookmark(): JSX.Element {
   const books = useSelector((store: RootState) => store.book.books);
   const user = useSelector((store: RootState) => store.auth.user);
-  console.log(books);
   const favBooks = user
     ? books.filter((book) => book.Favourites.find((favorite) => favorite.userId === user.id))
     : [];
-  console.log(favBooks);
-
   return (
     <div className="Bookmark">
       <NavBar color="#547050" />

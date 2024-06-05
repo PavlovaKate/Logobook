@@ -61,7 +61,7 @@ const Cart = ({}: CartProps): JSX.Element => {
             </div>
             <div>
               <h3>Сумма заказа</h3>
-              <p>{(cart && cart.totalAmount) || 0} ₽</p>
+              <p>{cart ? cart.totalAmount : 0} ₽</p>
             </div>
             <button className="btn">Оформить заказ</button>
           </div>

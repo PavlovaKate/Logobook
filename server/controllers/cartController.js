@@ -71,15 +71,16 @@ exports.deleteCartLine = async (req, res) => {
   const { id } = req.params;
   try {
     const cartLine = await CartLine.findOne({ where: { id } });
-    const cart = await Cart.findOne({ where: { id: cartLine.cartId } });
     const book = await Book.findOne({ where: { id: cartLine.bookId } });
-    const totalAmount = book.amount * cartLine.count;
+    const cart = await Cart.findOne({ where: { userId: +res.locals.user.id, cartStatus: false }, include: [CartLine] });
     await CartLine.destroy({ where: { id } });
-    await Cart.update({ totalAmount }, { where: { id: cart.id } });
-    const cartsInDB = await Cart.findAll({
-      where: { userId: cart.userId },
-      include: [CartLine],
-    });
+    if (cart.CartLines.length) {
+      const totalAmount = book.amount * cartLine.count;
+      await Cart.update({ totalAmount: cart.totalAmount - totalAmount }, { where: { id: cart.id } });
+    } else {
+      await Cart.destroy({ where: { userId: +res.locals.user.id, cartStatus: false } });
+    }
+    const cartsInDB = await Cart.findAll({ where: { userId: cart.userId }, include: [CartLine] });
     res.json({ message: 'success', carts: cartsInDB });
   } catch ({ message }) {
     res.status(500).json({ message });

@@ -1,6 +1,7 @@
 // controllers/userController.js
 
 const router = require('express').Router();
+const { where } = require('sequelize');
 const {
   Category,
   Publisher,
@@ -39,9 +40,7 @@ exports.getAllBooks = async (req, res) => {
     const books = booksInDB.map(({ dataValues }) => {
       const author = authors.find((el) => el.id === dataValues.authorId);
       const category = categories.find((el) => el.id === dataValues.categoryId);
-      const publisher = publishers.find(
-        (el) => el.id === dataValues.publisherId
-      );
+      const publisher = publishers.find((el) => el.id === dataValues.publisherId);
       return {
         ...dataValues,
         author: author.name,
@@ -60,6 +59,7 @@ exports.addToCart = async (req, res) => {
   try {
     const { id } = req.params;
 
+    const book = await Book.findOne({ where: { id } });
     let cart = await Cart.findOne({
       where: { userId: +res.locals.user.id, cartStatus: false },
       include: [CartLine],
@@ -72,20 +72,25 @@ exports.addToCart = async (req, res) => {
         orderStatus: 'Не оформлен',
       });
     }
-    let cartline = cart.CartLines.find((cartline) => cartline.bookId === +id);
-    if (cartline) {
-      const count = cartline.count + 1;
-      await CartLine.update({ count }, { where: { id: cartline.id } });
+    let cartline;
+    if (cart.CartLines) {
       cartline = cart.CartLines.find((cartline) => cartline.bookId === +id);
-      res.json({ message: 'increase', cartline });
-    } else {
-      cartline = await CartLine.create({
-        bookId: +id,
-        cartId: cart.id,
-        count: 1,
-      });
-      res.json({ message: 'create', cartline });
+      if (cartline) {
+        const count = cartline.count + 1;
+        await CartLine.update({ count }, { where: { id: cartline.id } });
+        cartline = cart.CartLines.find((cartline) => cartline.bookId === +id);
+        await Cart.update({ totalAmount: +book.amount + +cart.totalAmount }, { where: { id: cart.id } });
+        res.json({ message: 'increase', cartline });
+        return;
+      }
     }
+    cartline = await CartLine.create({
+      bookId: +id,
+      cartId: cart.id,
+      count: 1,
+    });
+    await Cart.update({ totalAmount: +book.amount + +cart.totalAmount }, { where: { id: cart.id } });
+    res.json({ message: 'create', cartline });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
