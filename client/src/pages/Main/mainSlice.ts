@@ -23,7 +23,6 @@ export const loadBooks = createAsyncThunk('books/load', () => api.axiosBooks());
 export const updateFavourite = createAsyncThunk('favourite/update', (id: BookId) =>
   api.axiosUpdateFavourite(id),
 );
-
 export const loadReview = createAsyncThunk('review/add', (review: Review) =>
   api.reviewAxios(review),
 );

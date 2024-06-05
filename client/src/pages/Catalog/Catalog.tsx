@@ -11,6 +11,11 @@ import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@m
 function Catalog(): JSX.Element {
   const [count, setCount] = useState(16);
   const [sort, setSort] = React.useState('');
+  const [category, setCategory] = React.useState('');
+  const allCategories = useSelector((state: RootState) => state.category.categories);
+  const categories = [...allCategories]
+    .sort((a, b) => b.Books.length - a.Books.length)
+    .filter((_, idx) => idx < 8);
   const handleScroll = () => {
     if (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
@@ -25,13 +30,15 @@ function Catalog(): JSX.Element {
   const handleChange = (event: SelectChangeEvent) => {
     setSort(event.target.value as string);
   };
+  const handleChangeCategory = (event: SelectChangeEvent) => {
+    setCategory(event.target.value as string);
+  };
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const allBooks = useSelector((state: RootState) => state.book.books);
-
   let sortedBooks = allBooks;
   switch (sort) {
     case 'ratingUp':
@@ -61,8 +68,11 @@ function Catalog(): JSX.Element {
     default:
       break;
   }
-  const books = sortedBooks.filter((book, idx) => idx + 1 <= count);
+  if (category !== '') {
+    sortedBooks = sortedBooks.filter((book) => book.category === category);
+  }
 
+  const books = sortedBooks.filter((_, idx) => idx + 1 <= count);
   return (
     <>
       <ScrollToTop />
@@ -90,6 +100,25 @@ function Catalog(): JSX.Element {
               <MenuItem value={'titleZ'}>по названию (Я-а)</MenuItem>
               <MenuItem value={'authorA'}>по автору (А-я)</MenuItem>
               <MenuItem value={'authorZ'}>по автору (Я-а)</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label-1">Сортировка по категориям</InputLabel>
+            <Select
+              labelId="demo-simple-select-label-1"
+              id="demo-simple-select"
+              value={category}
+              label="Сортировка по категориям"
+              onChange={handleChangeCategory}
+            >
+              <MenuItem value="">
+                <em>все</em>
+              </MenuItem>
+              {categories.map((category) => (
+                <MenuItem key={category.id} value={category.name}>
+                  {category.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <div className="books">
