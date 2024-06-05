@@ -14,19 +14,18 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { Badge } from '@mui/material';
 // import './NavBar.css';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../App/store/store';
+import type { RootState } from '../../App/store/store';
+import { loadCarts } from '../Cart/cartSlice';
 import img from '../../App/assets/img/Logo.svg';
 import imgGreen from '../../App/assets/img/logo-green.svg';
 import ModalWindow from '../../shared/Modal/ModalWindow';
 import RegistrationPage from '../Auth/RegistrationPage';
 import AuthorizationPage from '../Auth/AuthorizationPage';
-import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../../App/store/store';
-import { Link } from 'react-router-dom';
-import { Badge } from '@mui/material';
-import { loadCarts } from '../Cart/cartSlice';
 
 const pages = [
   { title: 'Каталог', link: 'catalog' },
@@ -197,7 +196,7 @@ function NavBar({ color }: NavProps): JSX.Element {
                   <BookmarkBorderIcon />
                 </IconButton>
                 <Badge
-                  badgeContent={count ? count : 0}
+                  badgeContent={count || 0}
                   color="primary"
                   sx={{
                     '& .MuiBadge-badge': {
