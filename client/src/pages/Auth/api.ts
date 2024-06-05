@@ -8,7 +8,6 @@ export const userAxios = async (user: UserWithoutId): Promise<User | undefined> 
   const { data }: AxiosResponse<UsersResponse> = await request.post('/users', user);
 
   if (data.message === 'success') {
-    window.location.href = '/';
     setAccessToken(data.accessToken);
     return data.user;
   }
@@ -18,7 +17,6 @@ export const userLoginAxios = async (user: UserLogo): Promise<User | undefined> 
   const { data }: AxiosResponse<UsersResponse> = await request.post('/users/login', user);
 
   if (data.message === 'success') {
-    window.location.href = '/';
     setAccessToken(data.accessToken);
     return data.user;
   }
@@ -27,7 +25,7 @@ export const userLoginAxios = async (user: UserLogo): Promise<User | undefined> 
 export const userLogOutAxios = async (): Promise<void> => {
   const { data }: AxiosResponse<{ message: string }> = await request.get('/users/logout');
   if (data.message === 'success') {
-    window.location.href = '/';
+    // window.location.href = '/';
   }
 };
 

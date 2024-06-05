@@ -236,13 +236,25 @@ function NavBar({ color }: NavProps): JSX.Element {
             />
           </Search>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton
-              sx={{ p: 0, margin: '0 10px' }}
-              color="inherit"
-              onClick={() => setShowModal((prev) => !prev)}
-            >
-              <AccountCircleIcon />
-            </IconButton>
+            {user ? (
+              <IconButton
+                sx={{ p: 0, margin: '0 10px' }}
+                color="inherit"
+                component={Link}
+                to="/user"
+              >
+                <AccountCircleIcon />
+              </IconButton>
+            ) : (
+              <IconButton
+                sx={{ p: 0, margin: '0 10px' }}
+                color="inherit"
+                onClick={() => setShowModal((prev) => !prev)}
+              >
+                <AccountCircleIcon />
+              </IconButton>
+            )}
+
             {user && (
               <>
                 <IconButton
