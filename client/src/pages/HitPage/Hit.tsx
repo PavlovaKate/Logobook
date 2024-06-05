@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import NavBar from '../Navbar/NavBar';
 import type { RootState } from '../../App/store/store';
 import BookItem from '../Book/BookItem';
-import './New.css';
+import './Hit.css';
 import ScrollToTopFab from './ScrollToTop';
 import ScrollToTop from '../../shared/Scroll/Scroll';
 
-function New(): JSX.Element {
+function Hit(): JSX.Element {
   const [count, setCount] = useState(16);
   const handleScroll = () => {
     if (
@@ -26,7 +26,7 @@ function New(): JSX.Element {
   }, []);
   const allBooks = useSelector((state: RootState) => state.book.books);
   const newBook = allBooks.filter((book) =>
-    book.TagLines.some((tagline) => tagline.Tag.tagName === 'New'),
+    book.TagLines.some((tagline) => tagline.Tag.tagName === 'Hit'),
   );
   const books = newBook.filter((book, index) => index + 1 <= count);
   return (
@@ -35,7 +35,7 @@ function New(): JSX.Element {
       <div className="Catalog">
         <NavBar color="#547050" />
         <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px' }}>
-          <h2>новинки</h2>
+          <h2>хиты</h2>
 
           <div className="books">
             {books && books.map((book) => <BookItem key={book.id} book={book} />)}
@@ -49,4 +49,4 @@ function New(): JSX.Element {
   );
 }
 
-export default New;
+export default Hit;

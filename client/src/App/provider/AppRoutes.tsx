@@ -8,6 +8,7 @@ import BookPage from '../../pages/Book/BookPage';
 import Sale from '../../pages/SalePage/Sale';
 import Catalog from '../../pages/Catalog/Catalog';
 import New from '../../pages/NewPage/New';
+import Hit from '../../pages/HitPage/Hit';
 
 function AppRoutes(): JSX.Element {
   return (
@@ -20,6 +21,7 @@ function AppRoutes(): JSX.Element {
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/new" element={<New />} />
         <Route path="/sale" element={<Sale />} />
+        <Route path="/hit" element={<Hit />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>
