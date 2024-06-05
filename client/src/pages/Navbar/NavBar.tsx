@@ -84,8 +84,6 @@ function NavBar({ color }: NavProps): JSX.Element {
     if (user) dispatch(loadCarts(user.id)).catch(console.log);
   }, [dispatch, user]);
   const carts = useSelector((state: RootState) => state.cart.carts);
-  console.log(carts);
-
   const cart = carts.find((cart) => cart.userId === user?.id && !cart.cartStatus);
   const count = cart?.CartLines?.reduce((acc, cartline) => acc + cartline.count, 0);
   const [showModal, setShowModal] = useState(false);
