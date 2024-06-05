@@ -15,6 +15,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 // import './NavBar.css';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import img from '../../App/assets/img/Logo.svg';
 import imgGreen from '../../App/assets/img/logo-green.svg';
 import ModalWindow from '../../shared/Modal/ModalWindow';
@@ -25,13 +27,21 @@ import { RootState, useAppDispatch } from '../../App/store/store';
 import { Link } from 'react-router-dom';
 import { Badge } from '@mui/material';
 import { loadCarts } from '../Cart/cartSlice';
+
 const pages = [
   { title: 'Каталог', link: 'catalog' },
   { title: 'Новинки', link: 'new' },
   { title: 'Хиты', link: 'hit' },
   { title: 'Скидки', link: 'sale' },
-  { title: 'Сертификаты', link: 'giftcards' },
 ];
+
+// const pages = [
+//   { title: 'Каталог', link: 'catalog' },
+//   { title: 'Новинки', link: 'new' },
+//   { title: 'Хиты', link: 'hit' },
+//   { title: 'Скидки', link: 'sale' },
+//   { title: 'Сертификаты', link: 'giftcards' },
+// ];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -98,7 +108,16 @@ function NavBar({ color }: NavProps): JSX.Element {
   };
 
   return (
-    <AppBar position="absolute" sx={{ background: 'none', color: { color } }}>
+    <AppBar
+      position="fixed"
+      sx={{
+        background: 'none',
+        color: { color },
+        paddingTop: '1rem',
+        paddingBottom: '1rem',
+        backdropFilter: 'blur(10px)',
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
