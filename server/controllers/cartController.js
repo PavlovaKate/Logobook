@@ -34,7 +34,10 @@ exports.deleteCart = async (req, res) => {
 exports.updateCart = async (req, res) => {
   const { id } = req.params;
   try {
-    await Cart.update({ cartStatus: true, orderStatus: 'Оформлен' }, { where: { id } });
+    await Cart.update(
+      { cartStatus: true, orderStatus: 'Оформлен' },
+      { where: { id } }
+    );
     const cartsInDB = await Cart.findAll({
       where: { userId: id },
       include: [CartLine],
@@ -86,15 +89,26 @@ exports.deleteCartLine = async (req, res) => {
   try {
     const cartLine = await CartLine.findOne({ where: { id } });
     const book = await Book.findOne({ where: { id: cartLine.bookId } });
-    const cart = await Cart.findOne({ where: { userId: +res.locals.user.id, cartStatus: false }, include: [CartLine] });
+    const cart = await Cart.findOne({
+      where: { userId: +res.locals.user.id, cartStatus: false },
+      include: [CartLine],
+    });
     await CartLine.destroy({ where: { id } });
     if (cart.CartLines.length) {
       const totalAmount = book.amount * cartLine.count;
-      await Cart.update({ totalAmount: cart.totalAmount - totalAmount }, { where: { id: cart.id } });
+      await Cart.update(
+        { totalAmount: cart.totalAmount - totalAmount },
+        { where: { id: cart.id } }
+      );
     } else {
-      await Cart.destroy({ where: { userId: +res.locals.user.id, cartStatus: false } });
+      await Cart.destroy({
+        where: { userId: +res.locals.user.id, cartStatus: false },
+      });
     }
-    const cartsInDB = await Cart.findAll({ where: { userId: cart.userId }, include: [CartLine] });
+    const cartsInDB = await Cart.findAll({
+      where: { userId: cart.userId },
+      include: [CartLine],
+    });
     res.json({ message: 'success', carts: cartsInDB });
   } catch ({ message }) {
     res.status(500).json({ message });

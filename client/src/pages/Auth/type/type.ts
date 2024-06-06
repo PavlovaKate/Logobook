@@ -4,11 +4,19 @@ export type User = {
   email: string;
   password: string;
   tgUsername: string;
-  image: string;
+  image?: string;
 };
 
 export type UserWithoutId = Omit<User, 'id'>;
 export type UserLogo = Omit<UserWithoutId, 'name'>;
+
+export type UserEdit = {
+  id: number;
+  name: string;
+  email: string;
+  tgUsername: string;
+  image?: string;
+};
 
 export type UserId = User['id'];
 

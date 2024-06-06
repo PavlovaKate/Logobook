@@ -4,13 +4,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../App/store/store';
 import { YMaps, Map, Placemark, ZoomControl } from 'react-yandex-maps';
 
-type ContactsProps = {};
-
 const Contacts = ({}: ContactsProps): JSX.Element => {
   const books = useSelector((state: RootState) => state.book.books);
+
   let shops;
   if (books && books[0]) shops = books[0].ShopLines.map((shopline) => shopline.Shop);
-  console.log(shops);
 
   return (
     <div className="Contacts">

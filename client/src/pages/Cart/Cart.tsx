@@ -25,16 +25,14 @@ function Cart({}: CartProps): JSX.Element {
     dispatch(deleteCart(cart.id));
   };
   const handleOrder = async () => {
-    const result = (
-      await (
-        await fetch(
-          'https://api.telegram.org/bot7351330290:AAGH0_kCrAvJRofQoE9yacRnhA_axJPVZRg/getUpdates',
-          {
-            method: 'GET',
-          },
-        )
-      ).json()
-    ).result;
+    const { result } = await (
+      await fetch(
+        'https://api.telegram.org/bot7351330290:AAGH0_kCrAvJRofQoE9yacRnhA_axJPVZRg/getUpdates',
+        {
+          method: 'GET',
+        },
+      )
+    ).json();
     if (user && user.tgUsername !== '') {
       const chat_id = result.filter(
         (res: { message: { chat: { username: string } } }) =>

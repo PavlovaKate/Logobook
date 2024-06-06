@@ -42,6 +42,7 @@ router.post(
 router
   .get('/', verifyAccessToken, userController.checkUser)
   .get('/logout', userController.logoutUser)
-  .get('/all', userController.loadUsers);
+  .get('/all', userController.loadUsers)
+  .put('/update/:id', userController.updateUser);
 
 module.exports = router;

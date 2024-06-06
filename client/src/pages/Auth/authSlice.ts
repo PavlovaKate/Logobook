@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { UserLogo, UserWithoutId, UsersState } from './type/type';
+import type { UserEdit, UserLogo, UserWithoutId, UsersState } from './type/type';
 import * as api from './api';
 
 const initialState: UsersState = {
@@ -15,6 +15,9 @@ export const loginUser = createAsyncThunk('users/login', (user: UserLogo) =>
 export const logoutUser = createAsyncThunk('users/logout', () => api.userLogOutAxios());
 export const checkedUser = createAsyncThunk('users/check', () => api.userCheckAxios());
 export const loadUsers = createAsyncThunk('users/load', () => api.usersAllAxios());
+export const updateUser = createAsyncThunk('users/update', (user: UserEdit) =>
+  api.userUpdateAxios(user),
+);
 
 const authSluce = createSlice({
   name: 'auth',
@@ -47,6 +50,12 @@ const authSluce = createSlice({
         state.users = action.payload.users;
       })
       .addCase(loadUsers.rejected, (state, action) => {
+        state.errors = action.error.message;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
         state.errors = action.error.message;
       });
   },
