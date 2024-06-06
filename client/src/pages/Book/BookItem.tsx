@@ -67,7 +67,7 @@ function BookItem({ book }: BookItemProps): JSX.Element {
         }}
         autoHideDuration={3000}
         onClose={handleClose}
-        message="Книга добавлена в коризну"
+        message="Книга добавлена в корзину"
         action={action}
       />
       <div className="BookItem-top">

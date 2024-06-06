@@ -57,6 +57,7 @@ function AuthorizationPage({
       <div className="button-container">
         <button type="submit">Вход</button>
         <button
+          className="btn-link"
           type="button"
           onClick={() => {
             setShowModalA(false);

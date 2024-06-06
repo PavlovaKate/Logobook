@@ -24,6 +24,7 @@ form input {
   box-sizing: border-box;
   font-family: 'Aneliza';
   background-color: #fff;
+  color: #121711;
 }
 
 form input:focus {
@@ -71,4 +72,13 @@ form button:hover {
     width: 100%;
     margin-top: 10px;
   }
+}
+
+.btn-link {
+  border: none;
+  background-color: #f3eece00;
+}
+
+.btn-link:hover {
+  background-color: #f3eece00;
 }

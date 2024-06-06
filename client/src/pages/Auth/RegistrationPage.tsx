@@ -15,6 +15,7 @@ import { loadUser } from './authSlice';
 const schema = object().shape({
   name: string().trim().required('Необходимо указать имя'),
   email: string().trim().required('Необходимо указать электронную почту'),
+  tgUsername: string().trim().required('Необходимо указать Telegram username'),
   password: string()
     .trim()
     .required('Необходимо указать пароль')
@@ -66,6 +67,12 @@ function RegistrationPage({
         <span className="errMesage">{errors.email?.message}</span>
       </label>
       <br />
+      <label htmlFor="tgUsername">
+        Telegram:
+        <input type="string" {...register('tgUsername')} />
+        <span className="errMesage">{errors.email?.message}</span>
+      </label>
+      <br />
       <label htmlFor="password">
         Пароль:
         <input type="password" {...register('password')} />
@@ -81,6 +88,7 @@ function RegistrationPage({
       <div className="button-container">
         <button type="submit">Регистрация</button>
         <button
+          className="btn-link"
           type="button"
           onClick={() => {
             setShowModalA(true);
