@@ -15,6 +15,12 @@ export const axiosDeleteCart = async (id: Cart['id']): Promise<{ message: string
   return response.data;
 };
 
+export const axiosUpdateCart = async (id: Cart['id']): Promise<{ message: string, carts: Cart[] }> => {
+  const response: AxiosResponse<{ message: string, carts: Cart[] }> =
+    await request.put(`/carts/${id}`);
+  return response.data;
+};
+
 export const axiosUpdateCartLine = async ({ cartline, action }: { cartline: CartLine, action: string }): Promise<{ message: string, carts: Cart[] }> => {
   const response: AxiosResponse<{ message: string, carts: Cart[] }> =
     await request.put(`/carts/cartLine/${cartline.id}`, { cartline, action });
@@ -26,9 +32,3 @@ export const axiosDeleteCartLine = async (id: CartLine['id']): Promise<{ message
     await request.delete(`/carts/cartLine/${id}`);
   return response.data;
 };
-
-// export const axiosDecreaseCartLine = async (cartline: CartLine): Promise<{ message: string, carts: Cart[] }> => {
-//   const response: AxiosResponse<{ message: string, carts: Cart[] }> =
-//     await request.delete(`/carts/cartLine/${cartline.id}`, cartline);
-//   return response.data;
-// };

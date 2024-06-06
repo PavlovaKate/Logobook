@@ -18,6 +18,7 @@ const initialState: CartsReducer = {
 
 export const loadCarts = createAsyncThunk('carts/load', (id: UserId) => api.axiosCarts(id));
 export const deleteCart = createAsyncThunk('cart/delete', (id: Cart['id']) => api.axiosDeleteCart(id));
+export const updateCart = createAsyncThunk('cart/update', (id: Cart['id']) => api.axiosUpdateCart(id));
 export const updateCartLine = createAsyncThunk('cartLine/update', ({ cartline, action }: { cartline: CartLine, action: string }) => api.axiosUpdateCartLine({ cartline, action }));
 export const deleteCartLine = createAsyncThunk('cartLine/delete', (id: CartLine['id']) => api.axiosDeleteCartLine(id));
 
@@ -45,6 +46,10 @@ const cartsSlice = createSlice({
         state.message = action.payload.message;
       })
       .addCase(deleteCartLine.fulfilled, (state, action) => {
+        state.carts = action.payload.carts;
+        state.message = action.payload.message;
+      })
+      .addCase(updateCart.fulfilled, (state, action) => {
         state.carts = action.payload.carts;
         state.message = action.payload.message;
       })

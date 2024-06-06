@@ -31,6 +31,20 @@ exports.deleteCart = async (req, res) => {
   }
 };
 
+exports.updateCart = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Cart.update({cartStatus:true},{ where: { id } });
+    const cartsInDB = await Cart.findAll({
+      where: { userId: id },
+      include: [CartLine],
+    });
+    res.json({ message: 'success', carts: cartsInDB });
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+};
+
 exports.updateCartLine = async (req, res) => {
   const { cartline, action } = req.body;
   try {
