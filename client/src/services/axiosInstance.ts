@@ -1,10 +1,10 @@
-import type { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import type { AxiosRequestConfig, AxiosResponse, AxiosError, } from 'axios';
 import axios from 'axios';
 
 export const request = axios.create({
   baseURL: '/api',
   withCredentials: true,
-  // headers: {}
+  headers :{}
 });
 
 let accessToken: string = '';
@@ -14,14 +14,14 @@ function setAccessToken(token: string): void {
 }
 
 // перехватчик ответа
-request.interceptors.request.use((config: AxiosRequestConfig<>): AxiosRequestConfig => {
+request.interceptors.request.use((config: AxiosRequestConfig): AxiosRequestConfig => {
   if (!config.headers) {
     config.headers = {};
   }
   if (!config.headers.Authorization) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
-  return config;
+  return config
 });
 
 // перехватчик запроса

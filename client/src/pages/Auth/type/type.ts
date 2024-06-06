@@ -14,7 +14,6 @@ export type UserLogo = {
 };
 
 export type UserEdit = {
-  id: number;
   name: string;
   email: string;
   tgUsername: string;
