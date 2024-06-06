@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
@@ -32,7 +32,6 @@ function BookPage(): JSX.Element {
   const [activeStepHit, setActiveStepHit] = React.useState(0);
   const [open, setOpen] = useState(false);
   const [openCart, setOpenCart] = useState(false);
-  // const [rateAvg, setRateAvg] = useState(0);
 
   const handleNext = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -58,7 +57,6 @@ function BookPage(): JSX.Element {
         rateline = book.RateLines.find((rateline) => rateline.userId === user.id);
       }
       const userRate = rateline ? rateline.rate : 0;
-      // if (book.RateLines[0].Rate) setRateAvg(book.RateLines[0].Rate.rateAvg);
       const isFav = user
         ? !!book.Favourites.find((fav) => fav.userId === user.id && fav.bookId === book.id)
         : false;
@@ -205,15 +203,17 @@ function BookPage(): JSX.Element {
             ) : (
               <></>
             )}
+            {user && (
+              <Rating
+                name="simple-controlled"
+                value={userRate}
+                onChange={(event, newValue) => {
+                  handleChangeRate(newValue);
+                }}
+                sx={{ color: '#81a67c' }}
+              />
+            )}
 
-            <Rating
-              name="simple-controlled"
-              value={userRate}
-              onChange={(event, newValue) => {
-                handleChangeRate(newValue);
-              }}
-              sx={{ color: '#81a67c' }}
-            />
             {booksByAuthor.length > 0 && (
               <>
                 <div className="arrows">
