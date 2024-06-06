@@ -67,6 +67,7 @@ export type Shop = {
   latitude: number;
   longitude: number;
   workTime: string;
+  shopName: string;
 };
 
 export type ShopLine = {

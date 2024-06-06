@@ -28,7 +28,7 @@ exports.createUser = async (req, res) => {
 
     const user = await User.findOne({
       where: { id: userWithPass.id },
-      attributes: ['id', 'name', 'email'],
+      attributes: ['id', 'name', 'email', 'tgUsername'],
     });
 
     const { accessToken, refreshToken } = generateTokens({ user });
@@ -87,6 +87,19 @@ exports.loadUsers = async (req, res) => {
   try {
     const users = await User.findAll();
     res.status(200).json({ message: 'success', users });
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+};
+
+exports.updateUser = async (req, res) => {
+  try {
+    const { name, email, tgUsername } = req.body;
+    const { id } = req.params;
+    console.log(name, email, tgUsername);
+    await User.update({ name, email, tgUsername }, { where: { id } });
+    const user = await User.findOne({ where: { id } });
+    res.json({ message: 'success', user });
   } catch ({ message }) {
     res.status(500).json({ message });
   }

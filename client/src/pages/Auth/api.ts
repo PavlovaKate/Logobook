@@ -2,7 +2,7 @@
 import type { AxiosResponse } from 'axios';
 
 import { request, setAccessToken } from '../../services/axiosInstance';
-import type { User, UserLogo, UserWithoutId, UsersResponse } from './type/type';
+import type { User, UserEdit, UserLogo, UserWithoutId, UsersResponse } from './type/type';
 
 export const userAxios = async (user: UserWithoutId): Promise<User | undefined> => {
   const { data }: AxiosResponse<UsersResponse> = await request.post('/users', user);
@@ -42,4 +42,14 @@ export const usersAllAxios = async (): Promise<{ message: string; users: User[] 
   const { data }: AxiosResponse<{ message: string; users: User[] }> =
     await request.get('/users/all');
   return data;
+};
+
+export const userUpdateAxios = async (user: UserEdit): Promise<User | undefined> => {
+  const { data }: AxiosResponse<{ message: string; user: User }> = await request.put(
+    `/users/update/${user.id}`,
+    user,
+  );
+  if (data.message === 'success') {
+    return data.user;
+  }
 };

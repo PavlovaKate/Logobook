@@ -14,9 +14,8 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete, Badge, TextField } from '@mui/material';
-// import './NavBar.css';
 import { useSelector } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../App/store/store';
 import type { RootState } from '../../App/store/store';
 import { loadCarts } from '../Cart/cartSlice';
@@ -31,15 +30,8 @@ const pages = [
   { title: 'Новинки', link: 'new' },
   { title: 'Хиты', link: 'hit' },
   { title: 'Скидки', link: 'sale' },
+  { title: 'Контакты', link: 'contacts' },
 ];
-
-// const pages = [
-//   { title: 'Каталог', link: 'catalog' },
-//   { title: 'Новинки', link: 'new' },
-//   { title: 'Хиты', link: 'hit' },
-//   { title: 'Скидки', link: 'sale' },
-//   { title: 'Сертификаты', link: 'giftcards' },
-// ];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
