@@ -11,7 +11,7 @@ import CartItem from './components/CartItem';
 import type { CartLine } from './type/type';
 import { Link } from 'react-router-dom';
 
-function Cart({}: CartProps): JSX.Element {
+function Cart(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
   const userCarts = useSelector((state: RootState) => state.cart.carts);
