@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { UserEdit, UserLogo, UserWithoutId, UsersState } from './type/type';
+import type { UserLogo, UserWithoutId, UsersState } from './type/type';
 import * as api from './api';
 
 const initialState: UsersState = {

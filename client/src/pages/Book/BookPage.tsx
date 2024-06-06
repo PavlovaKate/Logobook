@@ -64,6 +64,7 @@ function BookPage(): JSX.Element {
         setOpen(true);
       };
       const handleClose = (event: React.SyntheticEvent | Event, reason?: string): void => {
+        event.preventDefault();
         if (reason === 'clickaway') {
           return;
         }
@@ -206,7 +207,7 @@ function BookPage(): JSX.Element {
               <Rating
                 name="simple-controlled"
                 value={userRate}
-                onChange={(event, newValue) => {
+                onChange={(_, newValue) => {
                   handleChangeRate(newValue);
                 }}
                 sx={{ color: '#81a67c' }}

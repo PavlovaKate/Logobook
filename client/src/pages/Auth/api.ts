@@ -2,7 +2,7 @@
 import type { AxiosResponse } from 'axios';
 
 import { request, setAccessToken } from '../../services/axiosInstance';
-import type { User, UserEdit, UserLogo, UserWithoutId, UsersResponse } from './type/type';
+import type { User, UserLogo, UserWithoutId, UsersResponse } from './type/type';
 
 export const userAxios = async (user: UserWithoutId): Promise<User | undefined> => {
   const { data }: AxiosResponse<UsersResponse> = await request.post('/users', user);

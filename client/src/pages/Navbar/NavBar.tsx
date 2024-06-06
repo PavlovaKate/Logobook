@@ -110,6 +110,7 @@ function NavBar({ color }: NavProps): JSX.Element {
   const navigate = useNavigate();
 
   function changePage(e: React.SyntheticEvent<Element, Event>, value: unknown): void {
+    e.preventDefault()
     const book = books.filter((el) => el.title === value);
     navigate(`/books/${book[0].id}`);
   }
@@ -211,7 +212,7 @@ function NavBar({ color }: NavProps): JSX.Element {
               freeSolo
               id="free-solo-2-demo"
               disableClearable
-              renderOption={(props, option, state) => {
+              renderOption={(props, option) => {
                 props.key = props.id;
                 return <li {...props}>{option}</li>;
               }}

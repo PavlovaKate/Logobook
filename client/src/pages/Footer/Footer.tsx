@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { BottomNavigation, Box, Container, Grid, Typography } from '@mui/material';
+import { BottomNavigation, Container, Grid, Typography } from '@mui/material';
 
-import { Link } from 'react-router-dom';
-import img from '../../App/assets/img/Logo.svg';
 import imgGreen from '../../App/assets/img/logo-green.svg';
 
 function Footer(): JSX.Element {

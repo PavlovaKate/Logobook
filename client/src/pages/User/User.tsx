@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import './User.css';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { object, string } from 'yup';
+import { useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
 import NavBar from '../Navbar/NavBar';
@@ -11,7 +10,7 @@ import { useAppDispatch, type RootState } from '../../App/store/store';
 import { logoutUser, updateUser } from '../Auth/authSlice';
 import avatar from '../../App/assets/img/avatar.png';
 
-function User(): JSX.Element {
+function User(): JSX.Element | undefined {
   const user = useSelector((store: RootState) => store.auth.user);
   const userCarts = useSelector((store: RootState) => store.cart.carts);
   const books = useSelector((store: RootState) => store.book.books);
@@ -138,7 +137,7 @@ function User(): JSX.Element {
                 Выйти
               </button>
             </div>
-            {/* <div>
+            <div>
               <p className="name">Заказы</p>
               <div>
                 {orders &&
@@ -165,7 +164,7 @@ function User(): JSX.Element {
                     </div>
                   ))}
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

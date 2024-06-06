@@ -12,7 +12,7 @@ function ReviewItem({ review }: ReviewItemProps): JSX.Element {
 
   return (
     <div className="review">
-      {user && user.image.length > 0 ? (
+      {user && user.image && user.image.length > 0 ? (
         <img src={user.image} alt="avatar" />
       ) : (
         <img src={img} alt="avatar" />
