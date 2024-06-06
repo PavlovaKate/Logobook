@@ -36,8 +36,10 @@ function Cart({}: CartProps): JSX.Element {
       ).json()
     ).result;
     if (user && user.tgUsername !== '') {
-      const chat_id = result.filter((res:{message:{chat:{username:string}}}) => res.message.chat.username === user?.tgUsername)[0]
-        .message.chat.id;
+      const chat_id = result.filter(
+        (res: { message: { chat: { username: string } } }) =>
+          res.message.chat.username === user?.tgUsername,
+      )[0].message.chat.id;
       const text = `
       Заказ на ${cart.totalAmount} рублей оформлен!%0AВсего книг в заказе: ${totalQuantity}%0A%0AСкидывайте донаты выпускной +79110224246💜
       `;
