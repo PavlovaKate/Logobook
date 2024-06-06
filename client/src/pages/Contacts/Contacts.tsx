@@ -5,7 +5,7 @@ import { RootState } from '../../App/store/store';
 import { YMaps, Map, Placemark, ZoomControl } from 'react-yandex-maps';
 import NavBar from '../Navbar/NavBar';
 
-const Contacts = ({}: ContactsProps): JSX.Element => {
+const Contacts = (): JSX.Element => {
   const books = useSelector((state: RootState) => state.book.books);
 
   let shops;
