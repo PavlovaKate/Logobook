@@ -11,12 +11,6 @@ import { useAppDispatch, type RootState } from '../../App/store/store';
 import { logoutUser, updateUser } from '../Auth/authSlice';
 import avatar from '../../App/assets/img/avatar.png';
 
-const schema = object().shape({
-  name: string().trim().required('Необходимо указать имя'),
-  email: string().trim().required('Необходимо указать электронную почту'),
-  tgUsername: string().trim().required('Необходимо указать Telegram username'),
-});
-
 function User(): JSX.Element {
   const user = useSelector((store: RootState) => store.auth.user);
   const userCarts = useSelector((store: RootState) => store.cart.carts);
@@ -42,6 +36,8 @@ function User(): JSX.Element {
 
     const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
+      console.log();
+
       const action = await dispatch(updateUser({ name, email, tgUsername, id: user?.id }));
 
       if (action.type === 'users/update/fulfilled') {
@@ -114,6 +110,7 @@ function User(): JSX.Element {
                     </div>
                   </div>
                 </div>
+
                 <button
                   type="submit"
                   onClick={() => setEdit((prev) => !prev)}

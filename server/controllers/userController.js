@@ -96,10 +96,15 @@ exports.updateUser = async (req, res) => {
   try {
     const { name, email, tgUsername } = req.body;
     const { id } = req.params;
-    console.log(name, email, tgUsername);
     await User.update({ name, email, tgUsername }, { where: { id } });
     const user = await User.findOne({ where: { id } });
-    res.json({ message: 'success', user });
+
+    const { accessToken, refreshToken } = generateTokens({ user });
+
+    res
+      .status(201)
+      .cookie('refreshToken', refreshToken, cookiesConfig)
+      .json({ message: 'success', user });
   } catch ({ message }) {
     res.status(500).json({ message });
   }

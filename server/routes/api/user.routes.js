@@ -43,6 +43,6 @@ router
   .get('/', verifyAccessToken, userController.checkUser)
   .get('/logout', userController.logoutUser)
   .get('/all', userController.loadUsers)
-  .put('/update/:id', userController.updateUser);
+  .put('/update/:id', verifyAccessToken, userController.updateUser);
 
 module.exports = router;

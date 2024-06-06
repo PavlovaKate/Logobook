@@ -17,10 +17,12 @@ function verifyAccessToken(req, res, next) {
   try {
     const accessToken = req.headers.authorization.split(' ')[1];
     const { user } = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+    console.log(user, 111);
     res.locals.user = user;
     next();
   } catch ({ message }) {
-    res.status(403).json('');
+    console.log(message);
+    res.status(403).json(message);
   }
 }
 module.exports = { verifyRefreshToken, verifyAccessToken };

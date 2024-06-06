@@ -45,6 +45,8 @@ export const usersAllAxios = async (): Promise<{ message: string; users: User[] 
 };
 
 export const userUpdateAxios = async (user: UserEdit): Promise<User | undefined> => {
+  console.log(user);
+
   const { data }: AxiosResponse<{ message: string; user: User }> = await request.put(
     `/users/update/${user.id}`,
     user,
