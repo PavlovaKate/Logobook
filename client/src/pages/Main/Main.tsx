@@ -36,7 +36,6 @@ function Main(): JSX.Element {
   };
 
   const books = useSelector((store: RootState) => store.book.books);
-  // const user = useSelector((store: RootState) => store.auth.user);
 
   const newBooks = books.filter((book) =>
     book.TagLines.some((tagline) => tagline.Tag.tagName === 'New'),
@@ -49,15 +48,15 @@ function Main(): JSX.Element {
   );
   const hitBooksSteps = hitBooks.filter((_, idx) => idx < 7);
   const maxHitSteps = hitBooksSteps.length - 2;
-
+  const style: React.CSSProperties & { [key: string]: any } = {
+    '--swiper-pagination-color': '#fff',
+  };
   return (
     <div className="Main">
       <NavBar color="#f3eece" />
       <div className="slider">
         <Swiper
-          style={{
-            '--swiper-pagination-color': '#fff',
-          }}
+          style={style}
           slidesPerView={1}
           spaceBetween={30}
           autoplay={{
@@ -65,7 +64,6 @@ function Main(): JSX.Element {
             disableOnInteraction: false,
           }}
           loop
-          // mousewheel
           pagination={{
             clickable: true,
           }}

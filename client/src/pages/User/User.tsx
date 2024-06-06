@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './User.css';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
 import NavBar from '../Navbar/NavBar';
@@ -36,21 +36,21 @@ function User(): JSX.Element | undefined {
 
     const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
-      console.log(img[0]);
-
       const formData = new FormData();
-
-      formData.append('name', name);
-      formData.append('image', img[0]);
-      formData.append('email', email);
-      formData.append('tgUsername', tgUsername);
-      formData.append('id', user.id);
-
+      if (img) {
+        formData.append('name', name);
+        formData.append('image', img);
+        formData.append('email', email);
+        formData.append('tgUsername', tgUsername);
+      }
       const action = await dispatch(updateUser({ user: formData, id: user.id }));
 
       if (action.type === 'users/update/fulfilled') {
         navigate('/user');
       }
+    };
+    const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files) setImg(e.target.files[0]);
     };
 
     return (
@@ -83,7 +83,7 @@ function User(): JSX.Element | undefined {
                       <img src={user?.image} alt="avatar" className="avatar" />
                     </div>
                   )}
-                  <input type="file" onChange={(e) => setImg(e.target.files)} />
+                  <input type="file" onChange={(e) => handleChangeImg(e)} />
                   <div>
                     <div className="name">
                       <p>имя:</p>
