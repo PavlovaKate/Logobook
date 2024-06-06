@@ -37,6 +37,7 @@ const Contacts = ({}: ContactsProps): JSX.Element => {
             </Map>
           </YMaps>
         </div>
+        <div className='map-description'></div>
       </div>
     </div>
   );
