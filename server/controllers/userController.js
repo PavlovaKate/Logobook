@@ -5,7 +5,7 @@ const generateTokens = require('../utils/authUtils');
 const cookiesConfig = require('../config/cookiesConfig');
 
 exports.createUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, tgUsername } = req.body;
 
   try {
     const userInDb = await User.findOne({ where: { email } });
@@ -23,6 +23,7 @@ exports.createUser = async (req, res) => {
       password: hashedPassword,
       isAdmin: false,
       image: '',
+      tgUsername,
     });
 
     const user = await User.findOne({
@@ -85,8 +86,8 @@ exports.checkUser = async (req, res) => {
 exports.loadUsers = async (req, res) => {
   try {
     const users = await User.findAll();
-    res.status(200).json({message: 'success', users })
+    res.status(200).json({ message: 'success', users });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
-}
+};

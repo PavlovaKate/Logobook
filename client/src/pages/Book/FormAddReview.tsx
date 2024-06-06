@@ -1,16 +1,12 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { number, object, string } from 'yup';
+import { object, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSelector } from 'react-redux';
-// import type { UserLogo } from './type/type';
 import { useAppDispatch } from '../../App/store/store';
 import type { RootState } from '../../App/store/store';
 import { loadReview } from '../Main/mainSlice';
-// import { RootState } from '@reduxjs/toolkit/query';
-// import { loginUser } from './authSlice';
 
 const schema = object().shape({
   review: string().trim().required('Отзыв не может быть пустым'),

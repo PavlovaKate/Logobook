@@ -6,7 +6,14 @@ import BookItem from '../Book/BookItem';
 import './New.css';
 import ScrollToTopFab from './ScrollToTop';
 import ScrollToTop from '../../shared/Scroll/Scroll';
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  styled,
+} from '@mui/material';
 
 function New(): JSX.Element {
   const [count, setCount] = useState(16);
@@ -74,54 +81,67 @@ function New(): JSX.Element {
     sortedBooks = sortedBooks.filter((book) => book.category === category);
   }
   const books = sortedBooks.filter((_, index) => index + 1 <= count);
+
+  const StyledFormControl = styled(FormControl)(({ theme }) => ({
+    width: '20vw',
+    '& label': {
+      color: '#547050 !important',
+    },
+    '& .Mui-focused fieldset': {
+      borderColor: '#547050 !important',
+    },
+  }));
+
   return (
     <>
       <ScrollToTop />
       <div className="Catalog">
         <NavBar color="#547050" />
-        <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '30px' }}>
+        <div className="container">
           <h2>новинки</h2>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Сортировка</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={sort}
-              label="Сортировка"
-              onChange={handleChange}
-            >
-              <MenuItem value="">
-                <em>все</em>
-              </MenuItem>
-              <MenuItem value={'ratingDown'}>по рейтингу ↓</MenuItem>
-              <MenuItem value={'ratingUp'}>по рейтингу ↑</MenuItem>
-              <MenuItem value={'priceUp'}>по цене ↑</MenuItem>
-              <MenuItem value={'priceDown'}>по цене ↓</MenuItem>
-              <MenuItem value={'titleA'}>по названию (А-я)</MenuItem>
-              <MenuItem value={'titleZ'}>по названию (Я-а)</MenuItem>
-              <MenuItem value={'authorA'}>по автору (А-я)</MenuItem>
-              <MenuItem value={'authorZ'}>по автору (Я-а)</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label-1">Сортировка по категориям</InputLabel>
-            <Select
-              labelId="demo-simple-select-label-1"
-              id="demo-simple-select"
-              value={category}
-              label="Сортировка по категориям"
-              onChange={handleChangeCategory}
-            >
-              <MenuItem value="">
-                <em>все</em>
-              </MenuItem>
-              {categories.map((category) => (
-                <MenuItem key={category.id} value={category.name}>
-                  {category.name}
+          <div className="filter">
+            <StyledFormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Сортировка</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={sort}
+                label="Сортировка"
+                onChange={handleChange}
+              >
+                <MenuItem value="">
+                  <em>все</em>
                 </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+                <MenuItem value="ratingDown">по рейтингу ↓</MenuItem>
+                <MenuItem value="ratingUp">по рейтингу ↑</MenuItem>
+                <MenuItem value="priceUp">по цене ↑</MenuItem>
+                <MenuItem value="priceDown">по цене ↓</MenuItem>
+                <MenuItem value="titleA">по названию (А-я)</MenuItem>
+                <MenuItem value="titleZ">по названию (Я-а)</MenuItem>
+                <MenuItem value="authorA">по автору (А-я)</MenuItem>
+                <MenuItem value="authorZ">по автору (Я-а)</MenuItem>
+              </Select>
+            </StyledFormControl>
+            <StyledFormControl fullWidth>
+              <InputLabel id="demo-simple-select-label-1">Сортировка по категориям</InputLabel>
+              <Select
+                labelId="demo-simple-select-label-1"
+                id="demo-simple-select"
+                value={category}
+                label="Сортировка по категориям"
+                onChange={handleChangeCategory}
+              >
+                <MenuItem value="">
+                  <em>все</em>
+                </MenuItem>
+                {categories.map((category) => (
+                  <MenuItem key={category.id} value={category.name}>
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </StyledFormControl>
+          </div>
           <div className="books">
             {books && books.map((book) => <BookItem key={book.id} book={book} />)}
           </div>
