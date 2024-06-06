@@ -61,6 +61,7 @@ function User(): JSX.Element | undefined {
           <div className="userContainer">
             <div>
               <form
+                className="userForm"
                 style={{ display: 'flex', alignItems: 'start', flexDirection: 'row' }}
                 onSubmit={(e) => onHandleSubmit(e)}
               >

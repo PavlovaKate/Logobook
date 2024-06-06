@@ -100,7 +100,7 @@
   background-color: #fff;
 }
 
-form input {
+.userForm input {
   width: 300px;
   padding: 10px;
   margin-top: 5px;
@@ -112,7 +112,7 @@ form input {
   color: #121711;
 }
 
-form input:focus {
+.userForm input:focus {
   border-color: #547050;
   outline: none;
 }
