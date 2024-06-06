@@ -75,7 +75,7 @@ function Catalog(): JSX.Element {
 
   const books = sortedBooks.filter((_, idx) => idx + 1 <= count);
 
-  const StyledFormControl = styled(FormControl)(({ theme }) => ({
+  const StyledFormControl = styled(FormControl)(() => ({
     width: '20vw',
     '& label': {
       color: '#547050 !important',

@@ -8,7 +8,7 @@ export type User = {
 };
 
 export type UserWithoutId = Omit<User, 'id'>;
-export type UserLogo = Omit<UserWithoutId, 'name'>;
+export type UserLogo = Omit<UserWithoutId, 'name', 'tgUsername', 'image'>;
 
 export type UserEdit = {
   id: number;

@@ -2,8 +2,7 @@
 import React, { useState } from 'react';
 import './User.css';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { object, string } from 'yup';
+import { useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DoneIcon from '@mui/icons-material/Done';
 import NavBar from '../Navbar/NavBar';

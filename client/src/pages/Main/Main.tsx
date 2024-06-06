@@ -36,12 +36,12 @@ function Main(): JSX.Element {
   };
 
   const books = useSelector((store: RootState) => store.book.books);
-  const user = useSelector((store: RootState) => store.auth.user);
+  // const user = useSelector((store: RootState) => store.auth.user);
 
   const newBooks = books.filter((book) =>
     book.TagLines.some((tagline) => tagline.Tag.tagName === 'New'),
   );
-  const newBooksSteps = newBooks.filter((book, idx) => idx < 7);
+  const newBooksSteps = newBooks.filter((_, idx) => idx < 7);
   const maxNewSteps = newBooksSteps.length - 2;
 
   const hitBooks = books.filter((book) =>

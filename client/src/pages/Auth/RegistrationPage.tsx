@@ -70,7 +70,7 @@ function RegistrationPage({
       <label htmlFor="tgUsername">
         Telegram:
         <input type="string" {...register('tgUsername')} />
-        <span className="errMesage">{errors.email?.message}</span>
+        <span className="errMesage">{errors.tgUsername?.message}</span>
       </label>
       <br />
       <label htmlFor="password">

@@ -64,6 +64,7 @@ function BookPage(): JSX.Element {
         setOpen(true);
       };
       const handleClose = (event: React.SyntheticEvent | Event, reason?: string): void => {
+        event.preventDefault();
         if (reason === 'clickaway') {
           return;
         }

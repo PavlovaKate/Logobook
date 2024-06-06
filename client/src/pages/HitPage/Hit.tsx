@@ -82,7 +82,7 @@ function Hit(): JSX.Element {
   }
   const books = sortedBooks.filter((_, index) => index + 1 <= count);
 
-  const StyledFormControl = styled(FormControl)(({ theme }) => ({
+  const StyledFormControl = styled(FormControl)(() => ({
     width: '20vw',
     '& label': {
       color: '#547050 !important',

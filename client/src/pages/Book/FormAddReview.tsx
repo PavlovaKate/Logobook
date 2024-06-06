@@ -33,7 +33,7 @@ function FormAddReview({ id }: FormParams): JSX.Element {
   };
 
   const submit = async ({ review }: Form): Promise<void> => {
-    const action = await dispatch(loadReview({ userId: user.id, review, bookId: id }));
+    if (user) await dispatch(loadReview({ userId: user.id, review, bookId: id }));
   };
 
   return (
