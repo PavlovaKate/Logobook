@@ -44,6 +44,12 @@ function BookItem({ book }: BookItemProps): JSX.Element {
     dispatch(addToCart(book.id));
     setOpenCart(true);
   };
+
+  let rateline;
+  if (user && book.RateLines) {
+    rateline = book.RateLines.find((rateline) => rateline.userId === user.id);
+  }
+
   return (
     <div className="BookItem">
       <Snackbar
@@ -101,7 +107,7 @@ function BookItem({ book }: BookItemProps): JSX.Element {
         <Rating
           name="read-only"
           sx={{ color: '#81a67c' }}
-          value={book.RateLines[0].Rate.rateAvg}
+          value={rateline ? rateline.Rate.rateAvg : book.RateLines[0].Rate.rateAvg}
           readOnly
         />
         {user && (

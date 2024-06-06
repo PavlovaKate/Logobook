@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import { IconButton, Rating } from '@mui/material';
@@ -14,9 +14,8 @@ import Error from '../ErrorPage/Error';
 import NavBar from '../Navbar/NavBar';
 import './Book.css';
 import Loader from '../../shared/Loader/Loader';
-import { addToCart, stopLoading, updateFavourite } from '../Main/mainSlice';
+import { addRate, addToCart, stopLoading, updateFavourite } from '../Main/mainSlice';
 import BookItem from './BookItem';
-
 import arrLeft from '../../App/assets/img/arrow-left.svg';
 import arrLeftDisable from '../../App/assets/img/arrow-left-disable.svg';
 import arrRight from '../../App/assets/img/arrow-right.svg';
@@ -33,33 +32,33 @@ function BookPage(): JSX.Element {
   const [activeStepHit, setActiveStepHit] = React.useState(0);
   const [open, setOpen] = useState(false);
   const [openCart, setOpenCart] = useState(false);
+  // const [rateAvg, setRateAvg] = useState(0);
 
   const handleNext = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
-
   const handleNextHit = (): void => {
     setActiveStepHit((prevActiveStep) => prevActiveStep + 1);
   };
-
   const handleBack = (): void => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
   const handleBackHit = (): void => {
     setActiveStepHit((prevActiveStep) => prevActiveStep - 1);
   };
-
   const { id } = useParams();
-
   setTimeout(() => {
     dispatch(stopLoading());
   }, 2500);
-
   if (id) {
     const book = books.find((bk) => bk.id === +id);
-
     if (book) {
+      let rateline;
+      if (user && book.RateLines) {
+        rateline = book.RateLines.find((rateline) => rateline.userId === user.id);
+      }
+      const userRate = rateline ? rateline.rate : 0;
+      // if (book.RateLines[0].Rate) setRateAvg(book.RateLines[0].Rate.rateAvg);
       const isFav = user
         ? !!book.Favourites.find((fav) => fav.userId === user.id && fav.bookId === book.id)
         : false;
@@ -83,15 +82,15 @@ function BookPage(): JSX.Element {
         dispatch(addToCart(book.id)).catch(console.log);
         setOpenCart(true);
       };
-
+      const handleChangeRate = (newValue: number | null) => {
+        dispatch(addRate({ id: book.id, rate: newValue }));
+      };
       const booksByAuthor = books.filter((bk) => bk.author === book?.author && bk.id !== book.id);
       const newBooksSteps = booksByAuthor.filter((_, idx) => idx < 7);
-
       let maxNewSteps = 1;
       if (newBooksSteps.length > 4) {
         maxNewSteps = newBooksSteps.length - 3;
       }
-
       const booksByCategory = books.filter(
         (bk) => bk.category === book.category && bk.id !== book.id,
       );
@@ -152,12 +151,22 @@ function BookPage(): JSX.Element {
               <div className="BookInfo">
                 <h2>{book?.title}</h2>
                 <h3>{book?.author}</h3>
-                <Rating
-                  name="read-only"
-                  sx={{ color: '#81a67c' }}
-                  value={book.RateLines[0].Rate.rateAvg}
-                  readOnly
-                />
+                {rateline ? (
+                  <Rating
+                    name="simple-controlled"
+                    sx={{ color: '#81a67c' }}
+                    value={rateline?.Rate.rateAvg}
+                    readOnly
+                  />
+                ) : (
+                  <Rating
+                    name="simple-controlled"
+                    sx={{ color: '#81a67c' }}
+                    value={book.RateLines[0].Rate.rateAvg}
+                    readOnly
+                  />
+                )}
+
                 <div className="bookInfoAll">
                   <p>Издательство</p>
                   <p>{book?.publisher}</p>
@@ -187,7 +196,7 @@ function BookPage(): JSX.Element {
             <div className="reviews">
               <h3>Отзывы</h3>
               {book.Reviews.map((el) => (
-                <ReviewItem review={el} />
+                <ReviewItem review={el} key={el.id} />
               ))}
             </div>
 
@@ -197,6 +206,14 @@ function BookPage(): JSX.Element {
               <></>
             )}
 
+            <Rating
+              name="simple-controlled"
+              value={userRate}
+              onChange={(event, newValue) => {
+                handleChangeRate(newValue);
+              }}
+              sx={{ color: '#81a67c' }}
+            />
             {booksByAuthor.length > 0 && (
               <>
                 <div className="arrows">

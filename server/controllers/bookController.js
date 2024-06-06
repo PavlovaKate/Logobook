@@ -29,7 +29,7 @@ exports.getAllBooks = async (req, res) => {
         { model: ShopLine, include: [Shop] },
         { model: CartLine, include: [Cart] },
         Favourite,
-        Rate
+        Rate,
       ],
     });
 
@@ -91,6 +91,29 @@ exports.addToCart = async (req, res) => {
     });
     await Cart.update({ totalAmount: +book.amount + +cart.totalAmount }, { where: { id: cart.id } });
     res.json({ message: 'create', cartline });
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+};
+
+exports.addRate = async (req, res) => {
+  try {
+    const { id } = req.params;
+    let { rate } = req.body;
+    const currentRate = await Rate.findOne({ where: { bookId: id }, include: [RateLine] });
+    let rateline = currentRate.RateLines.find((rateline) => rateline.userId === +res.locals.user.id);
+    if (!rate) {
+      rate = rateline.rate;
+    }
+    if (rateline) {
+      await RateLine.update({ rate }, { where: { id: rateline.id, userId: +res.locals.user.id } });
+    } else {
+      rateline = await RateLine.create({ bookId: id, userId: +res.locals.user.id, rate, rateId: currentRate.id });
+    }
+    const rateAvg = Math.ceil((currentRate.rateAvg + rate) / (currentRate.RateLines.length + 1));
+    await Rate.update({ rateAvg }, { where: { id: currentRate.id } });
+    const currRateline = await RateLine.findOne({ where: { id: rateline.id }, include: [Rate] });
+    res.json({ message: 'success', rateLine: currRateline });
   } catch ({ message }) {
     res.status(500).json({ message });
   }

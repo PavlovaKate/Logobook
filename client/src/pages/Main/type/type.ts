@@ -34,7 +34,7 @@ export type Fav = {
 
 export type RateLine = {
   id: number;
-  usedId: number;
+  userId: number;
   bookId: BookId;
   rate: number;
   reteId: number;
