@@ -1,0 +1,24 @@
+.Contacts {
+  font-family: var(--font-family);
+  min-height: 60vh;
+}
+
+.Contacts h2 {
+  font-weight: 400;
+  font-size: 55px;
+  text-transform: uppercase;
+  text-align: left;
+  font-family: 'Felidae';
+}
+
+.map-container {
+  display: flex;
+  gap: 50px;
+  text-align: left;
+}
+
+.map-description {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
