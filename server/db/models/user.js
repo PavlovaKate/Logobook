@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      tgUsername: {
+        type: DataTypes.STRING,
+      },
       image: {
         type: DataTypes.STRING,
       },
@@ -34,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'User',
-    }
+    },
   );
   return User;
 };

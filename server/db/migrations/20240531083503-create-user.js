@@ -25,6 +25,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      tgUsername: {
+        type: Sequelize.STRING,
+      },
       image: {
         type: Sequelize.STRING,
       },
