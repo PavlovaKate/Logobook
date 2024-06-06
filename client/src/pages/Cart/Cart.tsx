@@ -25,19 +25,19 @@ function Cart({}: CartProps): JSX.Element {
     dispatch(deleteCart(cart.id));
   };
   const handleOrder = async () => {
-    const result = (
-      await (
-        await fetch(
-          'https://api.telegram.org/bot7351330290:AAGH0_kCrAvJRofQoE9yacRnhA_axJPVZRg/getUpdates',
-          {
-            method: 'GET',
-          },
-        )
-      ).json()
-    ).result;
+    const { result } = await (
+      await fetch(
+        'https://api.telegram.org/bot7351330290:AAGH0_kCrAvJRofQoE9yacRnhA_axJPVZRg/getUpdates',
+        {
+          method: 'GET',
+        },
+      )
+    ).json();
     if (user && user.tgUsername !== '') {
-      const chat_id = result.filter((res:{message:{chat:{username:string}}}) => res.message.chat.username === user?.tgUsername)[0]
-        .message.chat.id;
+      const chat_id = result.filter(
+        (res: { message: { chat: { username: string } } }) =>
+          res.message.chat.username === user?.tgUsername,
+      )[0].message.chat.id;
       const text = `
       Заказ на ${cart.totalAmount} рублей оформлен!%0AВсего книг в заказе: ${totalQuantity}%0A%0AСкидывайте донаты выпускной +79110224246💜
       `;

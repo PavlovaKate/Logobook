@@ -4,10 +4,8 @@ import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../App/store/store';
 
-type ContactsProps = {};
-
 const Contacts = ({}: ContactsProps): JSX.Element => {
-  const books = useSelector((state:RootState) => state.book.books)
+  const books = useSelector((state: RootState) => state.book.books);
   return (
     <div className="Contacts">
       <div className="map">
