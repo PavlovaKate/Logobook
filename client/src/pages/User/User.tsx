@@ -25,6 +25,7 @@ function User(): JSX.Element {
     const [name, setName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
     const [tgUsername, setTg] = useState(user.tgUsername);
+    const [img, setImg] = useState<File | null>();
 
     const onHandleLogout = async (): Promise<void> => {
       const action = await dispatch(logoutUser());
@@ -36,9 +37,17 @@ function User(): JSX.Element {
 
     const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
-      console.log();
+      console.log(img[0]);
 
-      const action = await dispatch(updateUser({ name, email, tgUsername, id: user?.id }));
+      const formData = new FormData();
+
+      formData.append('name', name);
+      formData.append('image', img[0]);
+      formData.append('email', email);
+      formData.append('tgUsername', tgUsername);
+      formData.append('id', user.id);
+
+      const action = await dispatch(updateUser({ user: formData, id: user.id }));
 
       if (action.type === 'users/update/fulfilled') {
         navigate('/user');
@@ -75,6 +84,7 @@ function User(): JSX.Element {
                       <img src={user?.image} alt="avatar" className="avatar" />
                     </div>
                   )}
+                  <input type="file" onChange={(e) => setImg(e.target.files)} />
                   <div>
                     <div className="name">
                       <p>имя:</p>
@@ -128,7 +138,7 @@ function User(): JSX.Element {
                 Выйти
               </button>
             </div>
-            <div>
+            {/* <div>
               <p className="name">Заказы</p>
               <div>
                 {orders &&
@@ -155,7 +165,7 @@ function User(): JSX.Element {
                     </div>
                   ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

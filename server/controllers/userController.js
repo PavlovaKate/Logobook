@@ -96,7 +96,13 @@ exports.updateUser = async (req, res) => {
   try {
     const { name, email, tgUsername } = req.body;
     const { id } = req.params;
-    await User.update({ name, email, tgUsername }, { where: { id } });
+
+    const newImg = `/img/${req.file.originalname}`;
+
+    await User.update(
+      { name, email, tgUsername, image: newImg },
+      { where: { id } }
+    );
     const user = await User.findOne({ where: { id } });
 
     const { accessToken, refreshToken } = generateTokens({ user });

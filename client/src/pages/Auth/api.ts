@@ -44,12 +44,14 @@ export const usersAllAxios = async (): Promise<{ message: string; users: User[] 
   return data;
 };
 
-export const userUpdateAxios = async (user: UserEdit): Promise<User | undefined> => {
-  console.log(user);
-
+export const userUpdateAxios = async (resp: {
+  user: FormData;
+  id: number;
+}): Promise<User | undefined> => {
   const { data }: AxiosResponse<{ message: string; user: User }> = await request.put(
-    `/users/update/${user.id}`,
-    user,
+    `/users/update/${resp.id}`,
+    resp.user,
+    { headers: { 'Content-Type': 'multipart/form-data' } },
   );
   if (data.message === 'success') {
     return data.user;

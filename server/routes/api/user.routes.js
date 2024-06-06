@@ -1,7 +1,9 @@
 const router = require('express').Router();
-const { body, validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
 const userController = require('../../controllers/userController');
 const { verifyAccessToken } = require('../../middleware/authMiddleware');
+const multer = require('multer');
+
 router.post(
   '/',
   // [
@@ -39,10 +41,26 @@ router.post(
   userController.loginUser
 );
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/img');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage });
+
 router
   .get('/', verifyAccessToken, userController.checkUser)
   .get('/logout', userController.logoutUser)
   .get('/all', userController.loadUsers)
-  .put('/update/:id', verifyAccessToken, userController.updateUser);
+  .put(
+    '/update/:id',
+    verifyAccessToken,
+    upload.single('image'),
+    userController.updateUser
+  );
 
 module.exports = router;
