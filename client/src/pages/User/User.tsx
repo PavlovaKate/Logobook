@@ -11,12 +11,6 @@ import { useAppDispatch, type RootState } from '../../App/store/store';
 import { logoutUser, updateUser } from '../Auth/authSlice';
 import avatar from '../../App/assets/img/avatar.png';
 
-const schema = object().shape({
-  name: string().trim().required('Необходимо указать имя'),
-  email: string().trim().required('Необходимо указать электронную почту'),
-  tgUsername: string().trim().required('Необходимо указать Telegram username'),
-});
-
 function User(): JSX.Element {
   const user = useSelector((store: RootState) => store.auth.user);
   const userCarts = useSelector((store: RootState) => store.cart.carts);
@@ -31,6 +25,7 @@ function User(): JSX.Element {
     const [name, setName] = useState(user.name);
     const [email, setEmail] = useState(user.email);
     const [tgUsername, setTg] = useState(user.tgUsername);
+    const [img, setImg] = useState<File | null>();
 
     const onHandleLogout = async (): Promise<void> => {
       const action = await dispatch(logoutUser());
@@ -42,7 +37,17 @@ function User(): JSX.Element {
 
     const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
-      const action = await dispatch(updateUser({ name, email, tgUsername, id: user?.id }));
+      console.log(img[0]);
+
+      const formData = new FormData();
+
+      formData.append('name', name);
+      formData.append('image', img[0]);
+      formData.append('email', email);
+      formData.append('tgUsername', tgUsername);
+      formData.append('id', user.id);
+
+      const action = await dispatch(updateUser({ user: formData, id: user.id }));
 
       if (action.type === 'users/update/fulfilled') {
         navigate('/user');
@@ -79,6 +84,7 @@ function User(): JSX.Element {
                       <img src={user?.image} alt="avatar" className="avatar" />
                     </div>
                   )}
+                  <input type="file" onChange={(e) => setImg(e.target.files)} />
                   <div>
                     <div className="name">
                       <p>имя:</p>
@@ -114,6 +120,7 @@ function User(): JSX.Element {
                     </div>
                   </div>
                 </div>
+
                 <button
                   type="submit"
                   onClick={() => setEdit((prev) => !prev)}
@@ -131,7 +138,7 @@ function User(): JSX.Element {
                 Выйти
               </button>
             </div>
-            <div>
+            {/* <div>
               <p className="name">Заказы</p>
               <div>
                 {orders &&
@@ -158,7 +165,7 @@ function User(): JSX.Element {
                     </div>
                   ))}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

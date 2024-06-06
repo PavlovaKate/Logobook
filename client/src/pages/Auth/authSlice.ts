@@ -15,8 +15,9 @@ export const loginUser = createAsyncThunk('users/login', (user: UserLogo) =>
 export const logoutUser = createAsyncThunk('users/logout', () => api.userLogOutAxios());
 export const checkedUser = createAsyncThunk('users/check', () => api.userCheckAxios());
 export const loadUsers = createAsyncThunk('users/load', () => api.usersAllAxios());
-export const updateUser = createAsyncThunk('users/update', (user: UserEdit) =>
-  api.userUpdateAxios(user),
+export const updateUser = createAsyncThunk(
+  'users/update',
+  (response: { user: FormData; id: number }) => api.userUpdateAxios(response),
 );
 
 const authSluce = createSlice({

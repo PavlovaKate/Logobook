@@ -20,7 +20,8 @@ function verifyAccessToken(req, res, next) {
     res.locals.user = user;
     next();
   } catch ({ message }) {
-    res.status(403).json('');
+    console.log(message);
+    res.status(403).json(message);
   }
 }
 module.exports = { verifyRefreshToken, verifyAccessToken };

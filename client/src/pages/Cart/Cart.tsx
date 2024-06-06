@@ -32,6 +32,7 @@ function Cart(): JSX.Element {
         },
       )
     ).json();
+
     if (user && user.tgUsername !== '') {
       const chat_id = result.filter(
         (res: { message: { chat: { username: string } } }) =>
