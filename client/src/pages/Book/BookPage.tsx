@@ -207,7 +207,7 @@ function BookPage(): JSX.Element {
               <Rating
                 name="simple-controlled"
                 value={userRate}
-                onChange={(event, newValue) => {
+                onChange={(_, newValue) => {
                   handleChangeRate(newValue);
                 }}
                 sx={{ color: '#81a67c' }}

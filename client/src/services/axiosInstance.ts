@@ -14,7 +14,7 @@ function setAccessToken(token: string): void {
 }
 
 // перехватчик ответа
-request.interceptors.request.use((config: AxiosRequestConfig): AxiosRequestConfig => {
+request.interceptors.request.use((config: AxiosRequestConfig<>): AxiosRequestConfig => {
   if (!config.headers) {
     config.headers = {};
   }
@@ -30,8 +30,7 @@ request.interceptors.response.use(
   async (error: AxiosError): Promise<AxiosResponse | Promise<never>> => {
     const prevRequest: AxiosRequestConfig & { sent?: boolean } = error.config;
     if (error.response && error.response.status === 403 && !prevRequest.sent) {
-      const response: AxiosResponse<{ accessToken: string }> =
-        await request.get('/tokens/refresh');
+      const response: AxiosResponse<{ accessToken: string }> = await request.get('/tokens/refresh');
       accessToken = response.data.accessToken;
       prevRequest.sent = true;
       if (!prevRequest.headers) {

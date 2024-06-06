@@ -47,7 +47,7 @@ function Main(): JSX.Element {
   const hitBooks = books.filter((book) =>
     book.TagLines.some((tagline) => tagline.Tag.tagName === 'Hit'),
   );
-  const hitBooksSteps = hitBooks.filter((book, idx) => idx < 7);
+  const hitBooksSteps = hitBooks.filter((_, idx) => idx < 7);
   const maxHitSteps = hitBooksSteps.length - 2;
 
   return (
@@ -122,8 +122,10 @@ function Main(): JSX.Element {
 
         <div className="BookItems BookItems-new">
           {newBooksSteps.map((book, idx) => {
-            if (idx >= activeStep && idx <= activeStep + 3)
+            if (idx >= activeStep && idx <= activeStep + 3) {
               return <BookItem book={book} key={book.id} />;
+            }
+            return <></>;
           })}
           {activeStep === 4 && (
             <div className="btn-dop">
