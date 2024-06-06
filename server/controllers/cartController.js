@@ -34,7 +34,7 @@ exports.deleteCart = async (req, res) => {
 exports.updateCart = async (req, res) => {
   const { id } = req.params;
   try {
-    await Cart.update({cartStatus:true},{ where: { id } });
+    await Cart.update({ cartStatus: true, orderStatus: 'Оформлен' }, { where: { id } });
     const cartsInDB = await Cart.findAll({
       where: { userId: id },
       include: [CartLine],
