@@ -2,7 +2,6 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-
 import { useSelector } from 'react-redux';
 import { IconButton, Rating } from '@mui/material';
 import BookmarkIcon from '@mui/icons-material/Bookmark';

@@ -16,6 +16,7 @@ function Cart(): JSX.Element {
   const user = useSelector((state: RootState) => state.auth.user);
   const userCarts = useSelector((state: RootState) => state.cart.carts);
   const cart = userCarts.filter((cart) => !cart.cartStatus)[0];
+  
   const totalQuantity = cart
     ? cart.CartLines.reduce((acc, cartline) => acc + cartline.count, 0)
     : 0;

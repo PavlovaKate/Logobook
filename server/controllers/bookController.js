@@ -105,12 +105,20 @@ exports.addRate = async (req, res) => {
     if (!rate) {
       rate = rateline.rate;
     }
+    let rateAvg;
     if (rateline) {
       await RateLine.update({ rate }, { where: { id: rateline.id, userId: +res.locals.user.id } });
+      const currentRate = await Rate.findOne({ where: { bookId: id }, include: [RateLine] });
+      rateAvg = Math.ceil(
+        (currentRate.RateLines.reduce((acc, rateline) => acc + rateline.rate, 0)) / currentRate.RateLines.length,
+      );
     } else {
       rateline = await RateLine.create({ bookId: id, userId: +res.locals.user.id, rate, rateId: currentRate.id });
+      rateAvg = Math.ceil(
+        (currentRate.RateLines.reduce((acc, rateline) => acc + rateline.rate, 0) + rate) /
+          (currentRate.RateLines.length + 1),
+      );
     }
-    const rateAvg = Math.ceil((currentRate.rateAvg + rate) / (currentRate.RateLines.length + 1));
     await Rate.update({ rateAvg }, { where: { id: currentRate.id } });
     const currRateline = await RateLine.findOne({ where: { id: rateline.id }, include: [Rate] });
     res.json({ message: 'success', rateLine: currRateline });
