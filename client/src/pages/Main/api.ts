@@ -1,7 +1,7 @@
 import type { AxiosResponse } from 'axios';
 import { request } from '../../services/axiosInstance';
 
-import type { Book, BookId, Fav, Review } from './type/type';
+import type { Book, BookId, Fav, Rate, RateLine, Review } from './type/type';
 import { CartLine } from '../Cart/type/type';
 
 export const axiosBooks = async (): Promise<{ message: string; books: Book[] }> => {
@@ -30,5 +30,11 @@ export const reviewAxios = async (review: Review): Promise<Review> => {
 export const axiosAddToCart = async (id: BookId): Promise<{ message: string, cartline: CartLine }> => {
   const response: AxiosResponse<{ message: string, cartline: CartLine }> =
     await request.post(`/books/addToCart/${id}`);
+  return response.data;
+};
+
+export const axiosAddRate = async (id: BookId, rate: number | null): Promise<{ message: string, rateLine: RateLine }> => {
+  const response: AxiosResponse<{ message: string; rateLine: RateLine }> = await request.put(
+    `/books/addRate/${id}`, { rate })
   return response.data;
 };
