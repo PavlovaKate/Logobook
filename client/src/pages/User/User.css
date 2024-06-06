@@ -15,12 +15,12 @@
 .userContainer {
   display: flex;
   justify-content: space-between;
+  /* width: 100vw; */
 }
 
 .userInfo {
   display: flex;
   justify-content: space-between;
-  gap: 40px;
   font-family: 'Aneliza';
   text-align: left;
   margin-bottom: 30px;
@@ -34,18 +34,8 @@
   border: 1px solid #121711;
 }
 
+.email,
 .name {
-  font-size: 20px;
-  font-weight: 400;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  width: 300px;
-}
-
-.email {
   font-size: 20px;
   font-weight: 400;
   display: flex;
@@ -60,7 +50,7 @@
   background-color: rgba(241, 241, 241, 0.4);
   padding: 20px;
   margin: 30px 0;
-  width: 400px;
+  width: 550px;
 }
 
 .status {
@@ -85,9 +75,29 @@
   margin-bottom: 20px;
 }
 
-.imgBox {
-  display: flex;
-  align-items: start;
+.avatarInput {
+  width: 0;
+  height: 0;
+  padding: 0;
+  border: none;
+}
+
+.hide {
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: #fff;
+}
+
+.view {
+  border: none;
+  background-color: #fff;
+}
+
+.view:hover {
+  background-color: #fff;
 }
 
 form input {

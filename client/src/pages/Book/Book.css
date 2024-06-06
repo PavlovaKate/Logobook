@@ -97,12 +97,12 @@
   margin: 5px 20px;
 }
 
-.name p:first-child {
-  font-size: 22px;
-  font-weight: 600;
+.userNameRev {
+  font-size: 26px;
+  font-weight: 600 !important;
 }
 
-.name {
+.nameRev {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
@@ -123,4 +123,11 @@
   height: 90px;
   background-color: #fff;
   color: #121711;
+}
+
+.whitePage {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
