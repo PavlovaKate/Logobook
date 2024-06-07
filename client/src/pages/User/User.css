@@ -116,3 +116,10 @@
   border-color: #547050;
   outline: none;
 }
+
+.whitePage {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
