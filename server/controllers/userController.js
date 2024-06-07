@@ -10,9 +10,7 @@ exports.createUser = async (req, res) => {
   try {
     const userInDb = await User.findOne({ where: { email } });
     if (userInDb) {
-      return res
-        .status(400)
-        .json({ message: 'Пользователь с таким email уже существует' });
+      return res.status(400).json({ message: 'Пользователь с таким email уже существует' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -33,10 +31,7 @@ exports.createUser = async (req, res) => {
 
     const { accessToken, refreshToken } = generateTokens({ user });
 
-    res
-      .status(201)
-      .cookie('refreshToken', refreshToken, cookiesConfig)
-      .json({ message: 'success', user, accessToken });
+    res.status(201).cookie('refreshToken', refreshToken, cookiesConfig).json({ message: 'success', user, accessToken });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
@@ -96,21 +91,14 @@ exports.updateUser = async (req, res) => {
   try {
     const { name, email, tgUsername } = req.body;
     const { id } = req.params;
+    const newImg = `/img/${req.file.filename}`;
 
-    const newImg = `/img/${req.file.originalname}`;
-
-    await User.update(
-      { name, email, tgUsername, image: newImg },
-      { where: { id } }
-    );
+    await User.update({ name, email, tgUsername, image: newImg }, { where: { id } });
     const user = await User.findOne({ where: { id } });
 
     const { accessToken, refreshToken } = generateTokens({ user });
 
-    res
-      .status(201)
-      .cookie('refreshToken', refreshToken, cookiesConfig)
-      .json({ message: 'success', user });
+    res.status(201).cookie('refreshToken', refreshToken, cookiesConfig).json({ message: 'success', user });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
