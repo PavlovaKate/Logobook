@@ -3,6 +3,7 @@ const { validationResult } = require('express-validator');
 const userController = require('../../controllers/userController');
 const { verifyAccessToken } = require('../../middleware/authMiddleware');
 const multer = require('multer');
+const path = require('path');
 
 router.post(
   '/',
@@ -40,13 +41,22 @@ router.post(
   },
   userController.loginUser
 );
+function generateUniqueFilename(originalName) {
+  const timestamp = Date.now(); // Получение текущего времени в миллисекундах
+  const ext = path.extname(originalName); // Получение расширения файла
+  const basename = path.basename(originalName, ext); // Получение имени файла без расширения
+
+  return `${basename}-${timestamp}${ext}`; // Возвращение нового уникального имени файла
+}
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'public/img');
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    const uniqueName = generateUniqueFilename(file.originalname);
+    console.log(uniqueName);
+    cb(null, uniqueName);
   },
 });
 
