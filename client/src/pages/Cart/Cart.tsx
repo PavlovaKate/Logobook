@@ -16,7 +16,7 @@ function Cart(): JSX.Element {
   const user = useSelector((state: RootState) => state.auth.user);
   const userCarts = useSelector((state: RootState) => state.cart.carts);
   const cart = userCarts.filter((cart) => !cart.cartStatus)[0];
-  
+
   const totalQuantity = cart
     ? cart.CartLines.reduce((acc, cartline) => acc + cartline.count, 0)
     : 0;
@@ -39,7 +39,7 @@ function Cart(): JSX.Element {
           res.message.chat.username === user?.tgUsername,
       )[0].message.chat.id;
       const text = `
-      Заказ на ${cart.totalAmount} рублей оформлен!%0AВсего книг в заказе: ${totalQuantity}%0A%0AСкидывайте донаты выпускной +79110224246💜
+      Заказ на ${cart.totalAmount} рублей оформлен!%0AВсего книг в заказе: ${totalQuantity}%0A%0AСкидывайте донаты на выпускной +79110224246💜
       `;
       await fetch(
         `https://api.telegram.org/bot7351330290:AAGH0_kCrAvJRofQoE9yacRnhA_axJPVZRg/sendMessage?chat_id=${chat_id}&text=${text}`,

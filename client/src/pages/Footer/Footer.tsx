@@ -13,7 +13,6 @@ function Footer(): JSX.Element {
         backgroundColor: '#f3eece',
         paddingTop: '5rem',
         paddingBottom: '5rem',
-        marginTop: '50px',
       }}
     >
       <Container maxWidth="lg">

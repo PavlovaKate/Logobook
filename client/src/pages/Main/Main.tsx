@@ -58,7 +58,7 @@ function Main(): JSX.Element {
         <Swiper
           style={style}
           slidesPerView={1}
-          spaceBetween={30}
+          spaceBetween={0}
           autoplay={{
             delay: 6000,
             disableOnInteraction: false,

@@ -54,7 +54,7 @@ function RegistrationPage({
   };
 
   return (
-    <form className="registration-form" onSubmit={handleSubmit(submit)}>
+    <form className="registration-form authForm" onSubmit={handleSubmit(submit)}>
       <label htmlFor="name">
         Имя:
         <input type="text" {...register('name')} />

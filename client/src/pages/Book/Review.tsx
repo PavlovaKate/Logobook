@@ -1,15 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import type { Review } from '../Main/type/type';
 import img from '../../App/assets/img/pedro.gif';
-import type { RootState } from '../../App/store/store';
+import type { User } from '../Auth/type/type';
 
-type ReviewItemProps = { review: Review };
-
-function ReviewItem({ review }: ReviewItemProps): JSX.Element {
-  const users = useSelector((state: RootState) => state.auth.users);
-  const user = users.find((el) => el.id === review.userId);
-
+type ReviewItemProps = { review: Review; user: User };
+function ReviewItem({ review, user }: ReviewItemProps): JSX.Element {
   return (
     <div className="review">
       {user && user.image && user.image.length > 0 ? (

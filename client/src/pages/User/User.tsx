@@ -33,6 +33,15 @@ function User(): JSX.Element | undefined {
       navigate('/');
     }
   };
+  if (!user)
+    return (
+      <>
+        <NavBar color="#547050" />
+        <div className="whitePage">
+          <Loader />
+        </div>
+      </>
+    );
 
   const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
@@ -50,19 +59,9 @@ function User(): JSX.Element | undefined {
       navigate('/user');
     }
   };
-  const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (e.target.files) setImg(e.target.files[0]);
   };
-
-  if (!user)
-    return (
-      <>
-        <NavBar color="#547050" />
-        <div className="whitePage">
-          <Loader />
-        </div>
-      </>
-    );
 
   return (
     <div className="User">

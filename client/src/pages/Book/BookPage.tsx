@@ -98,6 +98,8 @@ function BookPage(): JSX.Element {
         maxHitSteps = hitBooksSteps.length - 3;
       }
 
+      const shopLines = book.ShopLines.filter((el) => el.number > 0);
+
       return (
         <>
           <ScrollToTop />
@@ -172,7 +174,7 @@ function BookPage(): JSX.Element {
                   <p>{book?.pageCount}</p>
                   <p>Наличие</p>{' '}
                   <div>
-                    {book.ShopLines.map((sh) => (
+                    {shopLines.map((sh) => (
                       <p key={sh.id}>
                         {sh.number} шт. - {sh.Shop.adress}
                       </p>
@@ -193,8 +195,8 @@ function BookPage(): JSX.Element {
             </div>
             <div className="reviews">
               <h3>Отзывы</h3>
-              {book.Reviews.map((el) => (
-                <ReviewItem review={el} key={el.id} />
+              {user && book.Reviews.map((el) => (
+                <ReviewItem review={el} key={el.id} user={user} />
               ))}
             </div>
 

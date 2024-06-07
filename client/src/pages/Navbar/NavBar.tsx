@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore
+// @ts-nocheck
+
 import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import { styled, alpha } from '@mui/material/styles';
@@ -57,8 +61,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-
-const StyledAutoComplete = styled(Autocomplete)(({ theme } ) => ({
+const StyledAutoComplete = styled(Autocomplete)(({ theme }) => ({
   color: '#121711',
   width: '100%',
   fontFamily: 'Aneliza',
@@ -84,7 +87,6 @@ const StyledAutoComplete = styled(Autocomplete)(({ theme } ) => ({
 type NavProps = {
   color: string;
 };
-
 
 function NavBar({ color }: NavProps): JSX.Element {
   const user = useSelector((state: RootState) => state.auth.user);
@@ -112,12 +114,10 @@ function NavBar({ color }: NavProps): JSX.Element {
   const navigate = useNavigate();
 
   function changePage(e: React.SyntheticEvent<Element, Event>, value: unknown): void {
-    e.preventDefault()
+    e.preventDefault();
     const book = books.filter((el) => el.title === value);
     navigate(`/books/${book[0].id}`);
   }
-
-  
 
   return (
     <AppBar
@@ -216,10 +216,12 @@ function NavBar({ color }: NavProps): JSX.Element {
               freeSolo
               id="free-solo-2-demo"
               disableClearable
-              renderOption={(props, option) => {
+              renderOption={(props, option) => (
                 // props.key = props.id;
-                return <li {...props} key={option}>{option}</li>;
-              }}
+                <li {...props} key={option}>
+                  {option}
+                </li>
+              )}
               options={books.map((book) => book.title)}
               renderInput={(params) => (
                 <TextField
