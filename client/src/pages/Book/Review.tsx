@@ -18,8 +18,8 @@ function ReviewItem({ review }: ReviewItemProps): JSX.Element {
         <img src={img} alt="avatar" />
       )}
       {user && (
-        <div className="name">
-          <p>{user.name}</p>
+        <div className="nameRev">
+          <p className="userNameRev">{user.name}</p>
           <p>{review.review}</p>
         </div>
       )}

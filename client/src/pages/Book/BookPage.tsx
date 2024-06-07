@@ -47,7 +47,7 @@ function BookPage(): JSX.Element {
   const { id } = useParams();
   setTimeout(() => {
     dispatch(stopLoading());
-  }, 2500);
+  }, 3000);
   if (id) {
     const book = books.find((bk) => bk.id === +id);
     if (book) {
@@ -285,7 +285,16 @@ function BookPage(): JSX.Element {
       );
     }
   }
-  return isLoading ? <Loader /> : <Error />;
+  return isLoading ? (
+    <>
+      <NavBar color="#547050" />
+      <div className="whitePage">
+        <Loader />
+      </div>
+    </>
+  ) : (
+    <Error />
+  );
 }
 
 export default BookPage;

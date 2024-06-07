@@ -13,7 +13,7 @@ import avatar from '../../App/assets/img/avatar.png';
 function User(): JSX.Element | undefined {
   const user = useSelector((store: RootState) => store.auth.user);
   const userCarts = useSelector((store: RootState) => store.cart.carts);
-  const books = useSelector((store: RootState) => store.book.books);
+  const { books } = useSelector((store: RootState) => store.book);
   const orders = userCarts.filter((cart) => cart.cartStatus);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -37,6 +37,7 @@ function User(): JSX.Element | undefined {
     const onHandleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
       const formData = new FormData();
+
       if (img) {
         formData.append('name', name);
         formData.append('image', img);
@@ -52,7 +53,6 @@ function User(): JSX.Element | undefined {
     const handleChangeImg = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files) setImg(e.target.files[0]);
     };
-
     return (
       <div className="User">
         <NavBar color="#547050" />
@@ -61,6 +61,7 @@ function User(): JSX.Element | undefined {
           <div className="userContainer">
             <div>
               <form
+                className="userForm"
                 style={{ display: 'flex', alignItems: 'start', flexDirection: 'row' }}
                 onSubmit={(e) => onHandleSubmit(e)}
               >
@@ -73,17 +74,34 @@ function User(): JSX.Element | undefined {
                     <EditIcon />
                   </button>
                 )}
+                <button
+                  type="submit"
+                  onClick={() => setEdit((prev) => !prev)}
+                  className={!edit ? 'hide' : 'view'}
+                >
+                  {edit && <DoneIcon />}
+                </button>
                 <div className="userInfo">
-                  {!user?.image ? (
-                    <div className="imgBox">
-                      <img src={avatar} alt="" className="avatar" />
-                    </div>
+                  {!edit && !user.image ? (
+                    <img src={avatar} alt="" className={!edit ? 'avatar' : 'hide'} />
                   ) : (
-                    <div className="imgBox">
-                      <img src={user?.image} alt="avatar" className="avatar" />
-                    </div>
+                    <img src={user.image} alt="avatar" className={!edit ? 'avatar' : 'hide'} />
                   )}
-                  <input type="file" onChange={(e) => handleChangeImg(e)} />
+                  {edit && (
+                    <label htmlFor="avatar">
+                      {!user?.image ? (
+                        <img src={avatar} alt="" className="avatar" />
+                      ) : (
+                        <img src={user.image} alt="avatar" className="avatar" />
+                      )}
+                    </label>
+                  )}
+                  <input
+                    type="file"
+                    id="avatar"
+                    className="avatarInput"
+                    onChange={(e) => handleChangeImg(e)}
+                  />
                   <div>
                     <div className="name">
                       <p>имя:</p>
@@ -119,14 +137,6 @@ function User(): JSX.Element | undefined {
                     </div>
                   </div>
                 </div>
-
-                <button
-                  type="submit"
-                  onClick={() => setEdit((prev) => !prev)}
-                  style={{ border: 'none', backgroundColor: '#fff' }}
-                >
-                  <DoneIcon />
-                </button>
               </form>
               <button
                 className="btn"
