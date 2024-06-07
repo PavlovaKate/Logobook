@@ -42,7 +42,7 @@ function AuthorizationPage({
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit(submit)}>
+    <form className="login-form authForm" onSubmit={handleSubmit(submit)}>
       <label htmlFor="email">
         Email:
         <input type="email" {...register('email')} />

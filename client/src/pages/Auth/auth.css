@@ -9,9 +9,13 @@ form {
   border-radius: 10px;
   color: #121711;
   font-family: 'Aneliza';
-  font-weight: 400;
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 20px;
   line-height: 150%;
+}
+
+.authForm {
+  color: #f3eece;
 }
 
 /* Стили для инпутов */

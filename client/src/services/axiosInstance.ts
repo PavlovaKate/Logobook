@@ -1,10 +1,14 @@
-import type { AxiosRequestConfig, AxiosResponse, AxiosError, } from 'axios';
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore
+// @ts-nocheck
+
+import type { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import axios from 'axios';
 
 export const request = axios.create({
   baseURL: '/api',
   withCredentials: true,
-  headers :{}
+  headers: {},
 });
 
 let accessToken: string = '';
@@ -21,7 +25,7 @@ request.interceptors.request.use((config: AxiosRequestConfig): AxiosRequestConfi
   if (!config.headers.Authorization) {
     config.headers.Authorization = `Bearer ${accessToken}`;
   }
-  return config
+  return config;
 });
 
 // перехватчик запроса

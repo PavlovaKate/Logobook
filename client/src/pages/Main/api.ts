@@ -18,23 +18,31 @@ export const axiosUpdateFavourite = async (
   return response.data;
 };
 
-
 export const reviewAxios = async (review: Review): Promise<Review> => {
   const { data }: AxiosResponse<{ message: string; review: Review }> = await request.post(
     '/review/add',
     review,
   );
+
   return data.review;
 };
 
-export const axiosAddToCart = async (id: BookId): Promise<{ message: string, cartline: CartLine }> => {
-  const response: AxiosResponse<{ message: string, cartline: CartLine }> =
-    await request.post(`/books/addToCart/${id}`);
+export const axiosAddToCart = async (
+  id: BookId,
+): Promise<{ message: string; cartline: CartLine }> => {
+  const response: AxiosResponse<{ message: string; cartline: CartLine }> = await request.post(
+    `/books/addToCart/${id}`,
+  );
   return response.data;
 };
 
-export const axiosAddRate = async (id: BookId, rate: number | null): Promise<{ message: string, rateLine: RateLine }> => {
+export const axiosAddRate = async (
+  id: BookId,
+  rate: number | null,
+): Promise<{ message: string; rateLine: RateLine }> => {
   const response: AxiosResponse<{ message: string; rateLine: RateLine }> = await request.put(
-    `/books/addRate/${id}`, { rate })
+    `/books/addRate/${id}`,
+    { rate },
+  );
   return response.data;
 };
