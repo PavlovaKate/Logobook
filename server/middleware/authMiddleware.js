@@ -5,7 +5,6 @@ function verifyRefreshToken(req, res, next) {
   try {
     const { refreshToken } = req.cookies;
     const { user } = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
-
     res.locals.user = user;
     next();
   } catch ({ message }) {
@@ -18,12 +17,11 @@ function verifyAccessToken(req, res, next) {
   try {
     const accessToken = req.headers.authorization.split(' ')[1];
     const { user } = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-
     res.locals.user = user;
     next();
   } catch ({ message }) {
-    console.log(message, 'verifyAccessToken');
-    res.status(403).send({ error: message });
+    console.log(message);
+    res.status(403).json(message);
   }
 }
 module.exports = { verifyRefreshToken, verifyAccessToken };

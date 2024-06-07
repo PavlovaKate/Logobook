@@ -1,0 +1,59 @@
+.CartItem {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.CartItem-image {
+  width: 182px;
+  height: 220px;
+  background-color: rgba(241, 241, 241, 0.4);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.CartItem-image img {
+  width: 120px;
+  height: 170px;
+}
+
+.CartItem-book {
+  display: flex;
+  gap: 30px;
+}
+
+.bookInfo {
+  width: 500px;
+  text-align: left;
+}
+
+.bookInfo h3 {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.bookInfo p {
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.bookOrder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.bookOrder p {
+  font-weight: 500;
+  font-size: 28px;
+}
+
+.bookBtnGroup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

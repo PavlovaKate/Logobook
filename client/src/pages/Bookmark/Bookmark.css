@@ -1,0 +1,28 @@
+.Bookmark {
+  font-family: var(--font-family);
+  min-height: 60vh;
+}
+
+.Bookmark h2 {
+  font-weight: 400;
+  font-size: 55px;
+  text-transform: uppercase;
+  text-align: left;
+  font-family: 'Felidae';
+}
+
+.bookContainer {
+  display: flex;
+  justify-content: start;
+  gap: 42px;
+  flex-wrap: wrap;
+}
+
+.message p {
+  font-size: 24px;
+  margin: 40px 0;
+}
+
+.message a {
+  font-size: 30px;
+}

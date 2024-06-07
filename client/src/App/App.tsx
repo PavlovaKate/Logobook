@@ -1,35 +1,31 @@
-import React, { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import elbrusLogo from './assets/elbrus.svg';
+import React, { useEffect } from 'react';
 import './App.css';
 
+import AppRoutes from './provider/AppRoutes';
+import { useAppDispatch } from './store/store';
+import { checkedUser, loadUsers } from '../pages/Auth/authSlice';
+import { loadBooks } from '../pages/Main/mainSlice';
+import Footer from '../pages/Footer/Footer';
+import { loadCategories } from '../pages/Catalog/catalogSlice';
+
 function App(): JSX.Element {
-  const [count, setCount] = useState(0);
+  const dispatch = useAppDispatch();
+
+  const axiosCheck = async (): Promise<void> => {
+    dispatch(checkedUser()).catch(console.log);
+  };
+
+  useEffect(() => {
+    axiosCheck().catch(console.log);
+    dispatch(loadBooks()).catch(console.log);
+    dispatch(loadUsers()).catch(console.log);
+    dispatch(loadCategories()).catch(console.log);
+  }, [dispatch]);
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://github.com/Elbrus-Bootcamp" target="_blank" rel="noreferrer">
-          <img src={elbrusLogo} className="logo elbrus" alt="Elbrus logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h2>Elbrus Bootcamp</h2>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button type="button" onClick={() => setCount((prev) => prev + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <AppRoutes />
+      <Footer />
     </div>
   );
 }

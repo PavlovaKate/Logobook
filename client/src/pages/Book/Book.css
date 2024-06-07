@@ -1,0 +1,133 @@
+.BookBlok {
+  width: 100%;
+  height: 750px;
+  display: flex;
+  gap: 100px;
+  align-items: center;
+  justify-content: space-around;
+
+  margin-top: 80px;
+
+  font-family: 'Aneliza';
+  color: #121711;
+}
+
+.BookCover {
+  width: 530px;
+  height: 645px;
+  background-color: rgba(241, 241, 241, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.BookCover img {
+  width: 368px;
+  height: 524px;
+}
+
+.BookInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  text-align: left;
+  width: 530px;
+  height: 645px;
+}
+
+.BookInfo h2 {
+  font-weight: 500;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.BookInfo h3 {
+  font-weight: 300;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+
+.bookInfoAll {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top: 30px;
+  gap: 10px;
+}
+
+.Price {
+  font-weight: 500;
+  font-size: 28px;
+  margin-top: 50px;
+}
+
+.description,
+.reviews {
+  width: 100%;
+  border-top: 0.5px solid rgba(84, 112, 80, 0.2);
+  padding: 40px 0;
+  text-align: left;
+}
+
+.description h3,
+.reviews h3 {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.description p,
+.reviews p {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 150%;
+}
+
+.review {
+  display: flex;
+  gap: 10px;
+  color: #121711;
+}
+
+.review img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin: 5px 20px;
+}
+
+.userNameRev {
+  font-size: 26px;
+  font-weight: 600 !important;
+}
+
+.nameRev {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.arrows {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.formReview {
+  display: flex;
+  align-items: center;
+}
+
+.formReview input {
+  width: 800px;
+  height: 90px;
+  background-color: #fff;
+  color: #121711;
+}
+
+.whitePage {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,88 @@
+/* Общие стили для формы */
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 310px;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid #cccccc00;
+  border-radius: 10px;
+  color: #121711;
+  font-family: 'Aneliza';
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+.authForm {
+  color: #f3eece;
+}
+
+/* Стили для инпутов */
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-family: 'Aneliza';
+  background-color: #fff;
+  color: #121711;
+}
+
+form input:focus {
+  border-color: #547050;
+  outline: none;
+}
+
+/* Стили для кнопок */
+form button {
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+  color: #121711;
+  border: 1px solid #121711;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #81a67c;
+}
+
+.errMesage {
+  font-weight: 300;
+  font-size: 13px;
+  color: #f00;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 600px) {
+  form {
+    padding: 15px;
+  }
+
+  form button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.btn-link {
+  border: none;
+  background-color: #f3eece00;
+}
+
+.btn-link:hover {
+  background-color: #f3eece00;
+}
